@@ -3,6 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\CompanyServiceProvider;
+use App\Models\CouponCode;
+use App\Models\IndividualServiceProvider;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,11 +17,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        // User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // CouponCode::factory(10)->create();
+        // CouponCode::factory(6)->unlimited()->create();
+        // CouponCode::factory(6)->used()->create();
+        // CouponCode::factory(6)->expired()->create();
+        // CouponCode::factory(6)->unlimited()->used()->create();
+        // CouponCode::factory(6)->unlimited()->expired()->create();
+        // CouponCode::factory(6)->used()->expired()->create();
+        // CouponCode::factory(6)->unlimited()->used()->expired()->create();
+        // CouponCode::factory(6)->inactive()->create();
+
+        IndividualServiceProvider::factory(3)->create();
+        CompanyServiceProvider::factory(6)->create();
     }
 }

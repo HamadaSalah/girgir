@@ -1,0 +1,412 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Cairo:wght@200..1000&display=swap");
+
+body {
+  font-family: cabin, sans-serif;
+  font-weight: 500 !important;
+  overflow-x: hidden;
+}
+
+.navbar-nav .nav-link {
+  color: black !important;
+}
+
+.navbar-nav .nav-item:not(:last-child) {
+  border-right: 2px solid #bfbfbf;
+}
+
+.fm-cairo {
+  font-family: cairo, sans-serif;
+}
+
+.hero__img {
+  width: 100%;
+}
+
+.hero__content {
+  transform: translate(-50%, 50%);
+}
+
+.dot {
+  cursor: pointer;
+  height: 17px;
+  width: 17px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0px 4px 10.6px 6px #000000a3;
+}
+
+.dot.active {
+  background-color: #931158;
+}
+
+.heading::before {
+  content: "";
+  position: absolute;
+  width: 93px;
+  height: 2px;
+  background-color: #931158;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.arr-left {
+  top: 40%;
+  left: 5%;
+  z-index: 2;
+}
+
+.arr-right {
+  top: 40%;
+  right: 5%;
+  z-index: 2;
+}
+
+.bg-gray {
+  background-color: #ddd;
+}
+.fs-14 {
+  font-size: 14px;
+}
+.fs-12 {
+  font-size: 12px;
+}
+.fs-10 {
+  font-size: 10px;
+}
+.wedding {
+  background-image: linear-gradient(
+      82.27deg,
+      rgba(37, 37, 37, 0.73) 30.68%,
+      rgba(139, 139, 139, 0) 92.7%
+    ),
+    url("../imgs/weddding.webp");
+  background-position: center center;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-size: cover;
+}
+
+.spread_dot {
+  height: 17px;
+  width: 17px;
+  border-radius: 50rem;
+
+  .describe__input {
+    height: 53px;
+    background-color: #efefef;
+  }
+  &:not(:last-child) {
+    margin-right: 15px;
+  }
+}
+.line {
+  height: 2px;
+  width: 15px;
+}
+.right {
+  z-index: 3;
+}
+.right::before {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: #931158;
+  border-radius: 50rem;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.top-54 {
+  top: 54% !important;
+}
+
+.w-90 {
+  width: 90% !important;
+}
+
+.w-165 {
+  width: 165% !important;
+}
+
+// .robot__img::after {
+//   content: "";
+//   position: absolute;
+//   width: 233px;
+//   height: 233px;
+//   border-radius: 50%;
+//   background-color: $primary;
+//   bottom: 0;
+//   left: 0;
+// }
+
+.ls-5 {
+  letter-spacing: -0.5px !important;
+}
+
+.robot {
+  background-image: url("../imgs/bgrobot.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+}
+
+.container-range--1::before,
+.container-range--2::before {
+  position: absolute;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33px;
+  height: 33px;
+  border-radius: 30rem;
+  background-color: #931158;
+  left: 0;
+  top: -20%;
+  z-index: 3;
+}
+.container-range--1::before {
+  content: "1";
+}
+.container-range--2::before {
+  content: "100$";
+}
+
+.btn-primary-light {
+  background-color: #9311588c;
+}
+
+.events {
+  cursor: pointer;
+}
+
+.circle {
+  content: attr(data-value);
+  position: absolute;
+  top: -6px; /* Adjust to move it above */
+
+  width: 33px;
+  height: 33px;
+  background: #931158;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(0); /* Will be dynamically updated */
+  transition: transform 0.2s ease;
+}
+
+// .my-slider-progress {
+//   background: #ccc;
+// }
+
+// .my-slider-progress-bar {
+//   background: greenyellow;
+//   height: 2px;
+//   transition: width 400ms ease;
+// }
+
+.my-slider-progress {
+  align-self: center;
+  margin-bottom: 2rem;
+  background: #ccc;
+  height: 5px;
+  width: 165px; /* Set the width of the progress bar container */
+  position: relative; /* Ensure the bar positions correctly inside */
+  margin-top: 10px; /* Add some margin if needed */
+}
+
+/* Progress bar */
+.my-slider-progress-bar {
+  background: #931158; /* Set the color of the progress bar */
+  height: 100%; /* Match the height of the container */
+  width: 0%; /* Start at 0%, will be dynamically updated */
+  transition: width 400ms ease; /* Smooth transition when width changes */
+  position: absolute; /* Position the progress bar absolutely inside the container */
+  top: 0;
+  left: 0;
+}
+
+/* Set a minimum height for the slider container */
+.splide {
+  height: auto; /* Adjust this value as per your design */
+}
+
+/* Ensure the slides take up the full height of the slider */
+.splide__slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+/* Ensure images are responsive */
+.splide__slide img {
+  max-width: 100%;
+  height: auto; /* Ensures the image retains its aspect ratio */
+}
+
+.arr__next {
+  padding: 1rem 2rem !important;
+  position: absolute;
+  bottom: 20%;
+  transform: translateY(500%);
+}
+.arr__prev {
+  background-color: transparent !important;
+  margin-left: 2rem;
+  position: absolute;
+  top: 5%;
+}
+
+.search__content::before,
+.services__heading::before {
+  content: "";
+  position: absolute;
+  width: 110.39px;
+  height: 4px;
+  background-color: #931158;
+  left: 0;
+  bottom: 0;
+  border-radius: 4px;
+}
+
+.add__tofav {
+  left: 38%;
+}
+.mr-neg-3 {
+  margin-right: -3rem;
+}
+
+@media only screen and (max-width: 62em) {
+  .navbar-nav .nav-item:not(:last-child) {
+    border-right: none;
+  }
+  .hero__content {
+    width: 80% !important;
+    transform: translate(-50%, 125%);
+  }
+  .dot {
+    height: 10px;
+    width: 10px;
+  }
+  .overlay__content {
+    width: 80% !important;
+  }
+  .w-165 {
+    width: 120% !important;
+  }
+}
+@media only screen and (max-width: 36em) {
+  .hero__content {
+    width: 100% !important;
+    transform: translate(-50%, 85%);
+  }
+  .overlay__content {
+    width: 100% !important;
+  }
+  .w-165 {
+    width: 115% !important;
+    height: 15% !important;
+    margin-left: -3rem;
+  }
+  .add__tofav {
+    left: 85%;
+  }
+}
+
+.bg-main {
+  background-color: #f2f2f2;
+}
+
+.service__label {
+  flex-basis: 60%;
+}
+
+/* footer */
+footer {
+  background-color: #8a004f;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-logo h2 {
+  font-size: 44px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-section {
+  min-width: 150px;
+  margin: 0px 20px;
+}
+
+.footer-section h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 5px;
+}
+
+.footer-section ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-social ul li img {
+  width: 30px;
+  height: 30px;
+}
+
+.footer-apps a {
+  margin: 0 10px;
+}
+
+.footer-apps img {
+  width: 120px;
+  height: 40px;
+}
+
+.footer-bottom p {
+  margin-top: 20px;
+  font-size: 14px;
+}
+@media only screen and (max-width: 600px) {
+  footer {
+    margin-top: 200px;
+  }
+}
