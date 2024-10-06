@@ -19,6 +19,10 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
+    protected static ?string $navigationGroup = "Users";
+    protected static ?string $navigationLabel = "Users";
+
+
     public static function form(Form $form): Form
 {
     return $form
@@ -27,9 +31,9 @@ class UserResource extends Resource
                 ->schema([
                     Forms\Components\Grid::make()
                         ->columns([
-                            'default' => 1,  // 1 column on mobile
-                            'sm' => 2,       // 2 columns on small screens
-                            'lg' => 3,       // 3 columns on large screens
+                            'default' => 1,
+                            'sm' => 2,
+                            'lg' => 3,
                         ])
                         ->schema([
                             Forms\Components\TextInput::make('first_name')
@@ -76,7 +80,7 @@ class UserResource extends Resource
                                 ->columnSpan(1),
                         ]),
                 ])
-                ->extraAttributes(['class' => 'mt-4']), // Adding margin to the top
+                ->extraAttributes(['class' => 'mt-4']),
         ]);
 }
 
@@ -84,6 +88,7 @@ class UserResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn (Builder $query) => $query->where('type' , 'user'))
             ->columns([
                 Tables\Columns\ToggleColumn::make('active')
                     ->label('')
@@ -94,10 +99,6 @@ class UserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
-                    Tables\Columns\BadgeColumn::make('type')
-                    ->color('primary')
-                    ->formatStateUsing(fn (string $state): string => ucwords(str_replace('_', ' ', $state))),
-
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Joined At')
                     ->sortable(),

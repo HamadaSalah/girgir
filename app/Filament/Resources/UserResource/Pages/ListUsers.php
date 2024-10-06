@@ -31,23 +31,6 @@ class ListUsers extends ListRecords
             Tab::make('inactive')
                 ->label('Inactive')
                 ->modifyQueryUsing(fn (Builder $query) => $query->where('active', false)),
-
-            Tab::make('user')
-                ->label('Users')
-                ->modifyQueryUsing(fn (Builder $query) => $query->where('type', 'user')),
-
-            Tab::make('company_provider')
-                ->label('Company Providers')
-                ->modifyQueryUsing(fn (Builder $query) => $query->where('type', 'company_provider')),
-
-
-            Tab::make('individual_provider')
-            ->label('Individual Providers')
-            ->modifyQueryUsing(fn (Builder $query) => $query->where('type', 'individual_provider')),
-
-            Tab::make('admin')
-                ->label('Admins')
-                ->modifyQueryUsing(fn (Builder $query) => $query->where('type', 'admin')),
         ];
     }
 

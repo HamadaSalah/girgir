@@ -59,13 +59,57 @@ class User extends Authenticatable implements FilamentUser
         return $this->first_name . ' ' . $this->last_name;
     }
 
-    public function company()
+    public function serviceProvider()
     {
-        return $this->hasOne(CompanyServiceProvider::class);
+        return $this->hasOne(ServiceProvider::class);
     }
 
-    public function individual()
+    public function getBusinessNameAttribute()
     {
-        return $this->hasOne(IndividualServiceProvider::class);
+        return $this->serviceProvider->business_name;
     }
+    public function getProfilePictureAttribute()
+    {
+        if ($this->type == 'individual_provider' || $this->type == 'company_provider') {
+            return $this->serviceProvider && $this->serviceProvider->profile_picture
+                ? url($this->serviceProvider->profile_picture)
+                : 'https://ui-avatars.com/api/?name=' . urlencode($this->first_name . ' ' . $this->last_name) . '&color=7F9CF5&background=EBF4FF';
+        } else {
+            return 'https://ui-avatars.com/api/?name=' . urlencode($this->first_name . ' ' . $this->last_name) . '&color=7F9CF5&background=EBF4FF';
+        }
+    }
+
+    public function getBusinessPictureAttribute()
+    {
+        return $this->serviceProvider->profile_picture
+            ? url($this->serviceProvider->profile_picture)
+            : 'https://ui-avatars.com/api/?name=' . urlencode($this->business_name) . '&color=7F9CF5&background=EBF4FF';
+    }
+
+
+    public function isProvider()
+    {
+        if ($this->type == 'individual_provider' || $this->type == 'company_provider') {
+            return true;
+        }
+        return false;
+    }
+
+
+    public function packages()
+    {
+        return $this->hasMany(Package::class);
+    }
+
+    public function favourites()
+    {
+        return $this->belongsToMany(Package::class, 'favourites');
+    }
+
+    public function hasFavorited(Package $package)
+    {
+        return $this->favourites()->where('package_id', $package->id)->exists();
+    }
+
+
 }

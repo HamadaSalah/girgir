@@ -4,10 +4,13 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\CompanyServiceProvider;
+use App\Models\Category;
 use App\Models\CouponCode;
-use App\Models\IndividualServiceProvider;
+use App\Models\Favoutire;
+use App\Models\Feedback;
+use App\Models\Service;
 use App\Models\User;
+use App\Models\WebsiteInfo;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,19 +20,60 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        WebsiteInfo::create(
+            [
+                'email' => 'admin@website.com',
+                'coins_rate' => 0.1,
+                'withdraw_rate' => 0.1,
+                'phone' => '123456789',
+                'address' => 'Address',
+                'facebook' => 'https://www.facebook.com',
+                'twitter' => 'https://www.twitter.com',
+                'instagram' => 'https://www.instagram.com',
+                'tiktok' => 'https://www.tiktok.com',
+                'youtube' => 'https://www.youtube.com',
+                'whatsapp' => 'https://www.whatsapp.com',
+                'play_store_link' => 'https://www.playstore.com',
+                'app_store_link' => 'https://www.appstore.com',
+                'about' => 'About us',
+            ]
+        );
+        User::create([
+            'first_name' => 'Admin',
+            'last_name' => 'Admin',
+            'email' => 'admin@website.com',
+            'phone' => '123456789',
+            'email_verified_at' => now(),
+            'password' => 'Admin3@1',
+            'type' => 'admin',
+            'active' => true,
+            'coins' => 0,
+        ]);
+        User::factory(50)->create();
 
-        // CouponCode::factory(10)->create();
-        // CouponCode::factory(6)->unlimited()->create();
-        // CouponCode::factory(6)->used()->create();
-        // CouponCode::factory(6)->expired()->create();
-        // CouponCode::factory(6)->unlimited()->used()->create();
-        // CouponCode::factory(6)->unlimited()->expired()->create();
-        // CouponCode::factory(6)->used()->expired()->create();
-        // CouponCode::factory(6)->unlimited()->used()->expired()->create();
-        // CouponCode::factory(6)->inactive()->create();
 
-        IndividualServiceProvider::factory(3)->create();
-        CompanyServiceProvider::factory(6)->create();
+        User::factory(3)->individualProvider()->create();
+        User::factory(3)->companyProvider()->create();
+
+        CouponCode::factory(10)->create();
+        CouponCode::factory(6)->unlimited()->create();
+        CouponCode::factory(6)->used()->create();
+        CouponCode::factory(6)->expired()->create();
+        CouponCode::factory(6)->unlimited()->used()->create();
+        CouponCode::factory(6)->unlimited()->expired()->create();
+        CouponCode::factory(6)->used()->expired()->create();
+        CouponCode::factory(6)->unlimited()->used()->expired()->create();
+        CouponCode::factory(6)->inactive()->create();
+
+        Category::factory(10)->create();
+
+
+        Service::factory(12)->package()->create();
+        Service::factory(12)->service()->create();
+
+        Feedback::factory(80)->create();
+        Feedback::factory(10)->withFeedback()->create();
+
+        Favoutire::factory(200)->create();
     }
 }

@@ -1,0 +1,587 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Cairo:wght@200..1000&display=swap");
+body {
+  width: 100% !important;
+  font-family: cabin, sans-serif;
+  font-weight: 500 !important;
+  overflow-x: hidden !important;
+}
+
+.navbar-nav .nav-link {
+  color: black !important;
+}
+
+.navbar-nav .nav-item:not(:last-child) {
+  border-right: 2px solid #bfbfbf;
+}
+
+@media only screen and (max-width: 62em) {
+  .navbar-nav .nav-item:not(:last-child) {
+    border-right: none;
+  }
+}
+.fm-cairo {
+  font-family: cairo, sans-serif;
+}
+/*---------------------------------------- */
+
+.backgroundService {
+  background-image: url(../imgs/Rectangle\ 3463298.png);
+  width: 100%;
+  height: 266px;
+  position: relative;
+}
+
+.backgroundImg {
+  position: absolute;
+  width: 89px;
+  height: 88px !;
+  top: 58px;
+  left: 172px;
+  gap: 0px;
+  opacity: 0px;
+}
+.hypernav {
+  position: absolute;
+  top: 25px;
+  left: 250px;
+}
+.hypernav a {
+  color: white;
+  margin-left: 10px;
+  width: 84px;
+  height: 12px;
+  font-family: Barlow;
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 12px;
+  text-align: left;
+}
+.companyname {
+  position: absolute;
+  top: 60px;
+  left: 280px;
+}
+.companyname h1 {
+  color: white;
+  font-family: Chau Philomene One;
+  font-size: 43px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  text-align: center;
+  font-size: 43px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+}
+.companyname span img {
+  width: 28px;
+  height: 26px;
+}
+@media only screen and (max-width: 600px) {
+  .hypernav {
+    position: absolute;
+    top: 25px;
+    left: 30px;
+  }
+  .companyname {
+    position: absolute;
+    top: 150px;
+    left: 40px;
+  }
+}
+/* -------------------------------------- */
+
+.navservice {
+  position: absolute;
+  left: 302px;
+  display: flex;
+  justify-content: space-between;
+}
+.navservice .nav-link {
+  width: 121px;
+  height: 36px;
+  border-radius: 17px;
+  text-align: center;
+  font-family: Cairo;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+}
+.navservice .active {
+  background: #931158;
+  color: white;
+  padding: 5px;
+  font-family: Cairo;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  text-align: center;
+}
+.vector-item {
+  width: 14.67px;
+  height: 16.5px;
+  margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    max-width: 600px;
+  }
+  .navservice {
+    position: absolute;
+    left: 3px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .nav-link {
+    width: 80px !important;
+  }
+  .active {
+    width: 90px;
+    font-size: 16px;
+  }
+}
+/* ---------------------------------------- */
+.Pacckages {
+  width: 100%;
+  height: 80px;
+  margin-top: 50px;
+  font-family: Cabin;
+  font-size: 43px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  padding: 10px;
+  margin-left: 100px;
+}
+.Pacckagesicons {
+  width: 200px;
+  height: 45px;
+  margin-left: 40px;
+}
+.PacckagesQR {
+  width: 80px;
+  height: 40px;
+}
+@media only screen and (max-width: 600px) {
+  .Pacckages {
+    width: 100%;
+    height: 80px;
+    margin-top: 50px;
+    padding: 20px;
+    margin-left: 10px;
+    margin-top: 150px;
+  }
+  .Pacckagesicons {
+    margin-left: 30px;
+    margin-top: 20px;
+  }
+  .PacckagesQR {
+    margin-top: 20px;
+  }
+}
+
+/* par */
+.paragraph {
+  position: relative;
+  height: 100px !important;
+}
+.description p {
+  width: 609px;
+  height: 54px;
+  left: 275px;
+  gap: 0px;
+  opacity: 0px;
+  font-family: Cairo;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.5px;
+  text-align: left;
+  position: absolute;
+}
+@media only screen and (max-width: 600px) {
+  .description p {
+    width: 300px;
+    margin: 10px;
+    left: 20px;
+    margin-top: 100px;
+    font-size: 18px;
+  }
+}
+
+/* info */
+.containerInfo {
+  display: flex;
+  justify-content: left;
+  text-align: center;
+  height: 600px;
+}
+.customer-details-container {
+  width: 762px;
+  height: 375px;
+  border-radius: 9px;
+  display: flex;
+  max-width: 750px;
+  flex-direction: column;
+  margin-left: 10%;
+}
+.customer-details-content {
+  border-radius: 9px;
+  background-color: #efefef;
+  width: 100%;
+  padding: 16px 80px 16px 15px;
+}
+.customer-details-grid {
+  display: flex;
+  gap: 20px;
+}
+.customer-details-column {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+}
+.customer-details-column-left {
+  width: 41%;
+}
+.customer-details-column-right {
+  width: 59%;
+  margin-left: 20px;
+}
+.customer-details-title {
+  color: #911258;
+  font-size: 19px;
+  line-height: 1;
+  align-self: start;
+}
+.customer-details-labels {
+  display: flex;
+  margin-top: 10px;
+  padding-left: 30px;
+  flex-direction: column;
+  align-items: start;
+  font-size: 22px;
+  color: #4a4a4a;
+  text-align: center;
+  line-height: 1;
+}
+.customer-details-label {
+  padding-top: 14px;
+}
+.customer-details-values {
+  display: flex;
+  margin-top: 30px;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: start;
+  color: #606060;
+  margin-top: 50px;
+  text-align: center;
+  font: 200 23px/1 Cairo, sans-serif;
+}
+@media (max-width: 991px) {
+  .customer-details-content {
+    max-width: 100%;
+    padding-right: 20px;
+  }
+  .customer-details-grid {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin-left: 5%;
+  }
+  .customer-details-column {
+    width: 100%;
+  }
+  .customer-details-column-left,
+  .customer-details-column-right {
+    margin: 40px 0 0;
+  }
+  .customer-details-labels {
+    padding-left: 20px;
+  }
+  .customer-details-values {
+    white-space: normal;
+  }
+}
+@media (max-width: 600px) {
+  .customer-details-content {
+    max-width: 100%;
+    padding-right: 20px;
+    margin-top: 120px;
+    margin-left: -50px;
+  }
+  .customer-details-grid {
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    margin-left: 1px;
+  }
+  .customer-details-column {
+    width: 100%;
+  }
+  .customer-details-column-left,
+  .customer-details-column-right {
+    margin: 40px 0 0;
+  }
+  .customer-details-labels {
+    width: 139px;
+    padding-left: 0px;
+    font-size: 19px;
+    margin-top: 18px;
+  }
+  .customer-details-values {
+    width: 300px;
+    font-size: 17px;
+    white-space: normal;
+    margin-left: 5px;
+    margin-top: 65px;
+  }
+}
+/* info */
+
+/* Misson */
+.containerMission {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  margin-top: 25px;
+}
+.containerMission h2 {
+  width: 229px;
+  height: 20px;
+  font-family: Cairo;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 20px;
+}
+.mission {
+  position: absolute;
+  left: 262px;
+  position: relative;
+}
+.mission div {
+  position: absolute;
+  left: 80px;
+}
+.mission div h2 {
+  font-family: Cairo;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+}
+.mission div p {
+  width: 461px;
+  height: 26px;
+  font-family: Cairo;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 13px;
+  text-align: left;
+  color: #00000099;
+}
+.reviewtext {
+  margin: 5px;
+  position: relative;
+}
+.reviewtext span {
+  width: 279px;
+  height: 35px;
+  margin: 5px;
+}
+.reviewtext span img {
+  width: 35px;
+  height: 35px;
+  top: 1380px;
+  left: 380px;
+  gap: 0px;
+  opacity: 0px;
+}
+.reviewtext span p {
+  margin-left: 60px;
+  font-family: Cairo;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #931158;
+}
+.reviewtext .reviewparagraph{
+  width: 474px;
+  height: 32px;
+  font-family: Cairo;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  text-align: left;
+  color: #00000099;
+
+}
+.arrowformore a {
+  width: 59px;
+  height: 20px;
+  font-family: Cairo;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: center;
+  color: #717171;
+}
+.arrowformore {
+  text-align: right;
+position: absolute;
+right: 5%;
+top: 95%;
+}
+
+@media (max-width: 600px) {
+  .containerMission h2 {
+    width: auto;
+    height: 20px;
+    font-family: Cairo;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 20px;
+  }
+  .mission {
+    margin-top: 100px;
+    left: 5px;
+  }
+  .mission div {
+    position: absolute;
+    left: 80px;
+  }
+  .mission div h2 {
+    font-family: Cairo;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    text-align: center;
+  }
+  .mission div p {
+    width: auto;
+    height: 26px;
+    font-family: Cairo;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 13px;
+    text-align: left;
+  }
+}
+
+/* Misson */
+
+/* ----------------------------------- */
+/* footer */
+footer {
+  background-color: #8a004f;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-logo h2 {
+  font-size: 44px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-section {
+  min-width: 150px;
+  margin: 0px 20px;
+}
+
+.footer-section h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 5px;
+}
+
+.footer-section ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-social ul li img {
+  width: 30px;
+  height: 30px;
+}
+
+.footer-apps a {
+  margin: 0 10px;
+}
+
+.footer-apps img {
+  width: 120px;
+  height: 40px;
+}
+
+.footer-bottom p {
+  margin-top: 20px;
+  font-size: 14px;
+}
+@media only screen and (max-width: 600px) {
+  footer {
+    margin-top: 0px;
+  }
+}
+.pallon1{
+position: absolute;
+width: 207.19px;
+height: 214.29px;
+top: 854px;
+left: 1177.76px;
+gap: 0px;
+opacity: 0.34px;
+}
+.pallon2{
+  position: absolute;
+  width: 124.51px;
+  height: 127.44px;
+  top: 844px;
+  left: 1091.24px;
+  gap: 0px;
+  opacity: 0.34px;
+
+  
+}
+@media only screen and (max-width: 900px) {
+.pallon1{
+  display: none;
+}
+.pallon2{
+  display: none;
+}
+}
+

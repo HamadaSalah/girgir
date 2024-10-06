@@ -82,18 +82,41 @@ try {
 
   splideServicesOne.mount();
 
-  var splide = new Splide(".progress", {
+  var splidePro = new Splide(".progress", {
     pagination: false,
   });
-  var bar = splide.root.querySelector(".my-slider-progress-bar");
+  var bar = splidePro.root.querySelector(".my-slider-progress-bar");
 
   // Updates the bar width whenever the carousel moves:
-  splide.on("mounted move", function () {
-    var end = splide.Components.Controller.getEnd() + 1;
-    var rate = Math.min((splide.index + 1) / end, 1);
+  splidePro.on("mounted move", function () {
+    var end = splidePro.Components.Controller.getEnd() + 1;
+    var rate = Math.min((splidePro.index + 1) / end, 1);
     bar.style.width = String(100 * rate) + "%";
   });
 
+  splidePro.mount();
+
+  var splide = new Splide(".hero__splide", {
+    type: "loop",
+    autoplay: true,
+    interval: 2000,
+    arrows: false,
+    pagination: false,
+    speed: 2000,
+    easing: "cubic-bezier(0.25, 1, 0.5, 1)",
+    direction: "ltr",
+  });
+  splide.mount();
+  var splide = new Splide(".wedding__splide", {
+    type: "loop",
+    autoplay: true,
+    interval: 2000,
+    arrows: false,
+    pagination: false,
+    speed: 2000,
+    easing: "cubic-bezier(0.25, 1, 0.5, 1)",
+    direction: "ltr",
+  });
   splide.mount();
 
   //////////////////////////////////////////////
@@ -103,18 +126,36 @@ try {
   const overlay = document.querySelector(".overlay");
   const overlayContent = document.querySelector(".overlay__content");
   const btnClose = document.querySelector(".close");
+  const addPackage = document.querySelectorAll(".add__package");
+  const arrangement = document.querySelector(".arrangemet");
+  const btnCloseArrangement = document.querySelector(".close__arrangement");
 
-  btnStart.addEventListener("click", function () {
+  addPackage?.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      overlay.classList.toggle("visually-hidden");
+      arrangement.classList.toggle("visually-hidden");
+    });
+  });
+
+  btnCloseArrangement?.addEventListener("click", function () {
+    overlay.classList.toggle("visually-hidden");
+    arrangement.classList.toggle("visually-hidden");
+  });
+
+  btnStart?.addEventListener("click", function () {
     overlay.classList.toggle("visually-hidden");
     overlayContent.classList.toggle("visually-hidden");
   });
 
-  overlay.addEventListener("click", function () {
+  overlay?.addEventListener("click", function () {
     overlay.classList.toggle("visually-hidden");
-    overlayContent.classList.toggle("visually-hidden");
+    overlayContent.classList.add("visually-hidden");
+    arrangement.classList.add("visually-hidden");
+    settings.classList.remove("appear");
+    supportContainer.classList.add("d-none");
   });
 
-  btnClose.addEventListener("click", function () {
+  btnClose?.addEventListener("click", function () {
     overlay.classList.toggle("visually-hidden");
     overlayContent.classList.toggle("visually-hidden");
   });
@@ -142,7 +183,7 @@ try {
   }
 
   // Update position on input change
-  rangeInput.addEventListener("change", updateCirclePosition);
+  rangeInput?.addEventListener("change", updateCirclePosition);
 
   // Initial update when page loads
   updateCirclePosition();
@@ -170,7 +211,7 @@ try {
   }
 
   // Update position on input change
-  rangeInputTwo.addEventListener("change", updatecircleTwoPosition);
+  rangeInputTwo?.addEventListener("change", updatecircleTwoPosition);
 
   // Initial update when page loads
   updatecircleTwoPosition();
@@ -185,23 +226,22 @@ try {
   const formNavInput = document.querySelector(".form__nav--input");
   const homeMain = document.querySelectorAll(".home__main");
 
-  formNav.addEventListener("submit", function (e) {
+  formNav?.addEventListener("submit", function (e) {
     e.preventDefault();
     const searchValue = formNavInput.value;
-    console.log(searchValue);
+
     if (searchValue !== "") {
       searchResults.classList.remove("d-none");
       searchEmpty.classList.add("d-none");
       mainContent.classList.add("d-none");
     } else if (searchValue === "") {
-      console.log("cart is empty!!!");
       searchResults.classList.add("d-none");
       searchEmpty.classList.remove("d-none");
       mainContent.classList.add("d-none");
     }
   });
 
-  homeMain.forEach((el) => {
+  homeMain?.forEach((el) => {
     el.addEventListener("click", function () {
       searchResults.classList.add("d-none");
       searchEmpty.classList.add("d-none");
@@ -212,28 +252,75 @@ try {
   ////////////////////////////////////////
   //// toggle vendours
   const vendours = document.querySelector(".vendours");
-  console.log(vendours);
-  vendours.addEventListener("click", function (e) {
+
+  vendours?.addEventListener("click", function (e) {
     if (!e.target.classList.contains("col")) return;
     e.target.classList.toggle("btn-primary");
   });
 
   const events = document.querySelectorAll(".events");
-  events.forEach((event) => {
-    event.addEventListener("click", function () {
-      event.classList.toggle("btn-primary-light");
+  events?.forEach((event) => {
+    event?.addEventListener("click", function () {
+      event?.classList.toggle("btn-primary-light");
     });
   });
+
+  const hallContainer = document.querySelectorAll(".hall__container");
+  const hallInputs = document.querySelectorAll(".hall__input");
+
+  hallContainer?.forEach((hall) => {
+    hall?.addEventListener("click", function (e) {
+      if (!e.target.classList.contains("hall__input")) return;
+      hallInputs.forEach((input) => {
+        input.classList.remove("btn-primary");
+      });
+      e.target.classList.add("btn-primary");
+    });
+  });
+
+  ////////////////////////////////////////
+  //// settings toggle
+  const settings = document.querySelector(".settings");
+  const settingsBtn = document.querySelector(".settings__btn");
+  const supportContainer = document.querySelector(".support");
+  settingsBtn?.addEventListener("click", function () {
+    settings.classList.toggle("appear");
+    overlay.classList.remove("visually-hidden");
+  });
+
+  settings?.addEventListener("click", function (e) {
+    if (e.target.classList.contains("settings__item")) {
+      settings.classList.toggle("appear");
+      overlay.classList.add("visually-hidden");
+    } else if (
+      e.target.closest(".support__content") ||
+      e.target.closest(".support__btn")
+    ) {
+      supportContainer.classList.remove("d-none");
+    } else {
+      supportContainer.classList.add("d-none");
+    }
+  });
+
+  ////////////////////////////////////////
+  //// filters toggle
+  const filterBtn = document.querySelector(".filter__btn");
+  const filters = document.querySelector(".filters");
+  console.log(filterBtn, filters);
+
+  filterBtn?.addEventListener("click", function () {
+    filters.classList.toggle("visually-hidden");
+  });
 } catch (error) {
-  console.log(error.message);
+  console.log(error);
 }
 
 ////////////////////////////////////////
 //////// for sign up selection
-select.addEventListener("change", function (e) {
+select?.addEventListener("change", function (e) {
   const selected = e.target.value;
 
-  if (selected == "company_provider") {
+  if (selected == "Company providers") {
     passwordInput.forEach((input) => {
       input.classList.add("d-none");
     });
@@ -245,21 +332,26 @@ select.addEventListener("change", function (e) {
     companyWebsite.classList.remove("d-none");
   } else if (selected == "user") {
     passwordInput.forEach((input) => {
-      input.classList.add("d-none");
+      input.classList.remove("d-none");
     });
     providerPassowrd.forEach((input) => {
-      input.classList.remove("d-none");
+      input.classList.add("d-none");
     });
     companyIdInput.classList.add("d-none");
     companyWebsite.classList.add("d-none");
+    account.classList.add("d-none");
   } else {
     passwordInput.forEach((input) => {
-      input.classList.remove("d-none");
+      input.classList.add("d-none");
     });
     providerPassowrd.forEach((input) => {
-      input.classList.add("d-none");
+      input.classList.remove("d-none");
     });
     companyIdInput.classList.add("d-none");
     companyWebsite.classList.add("d-none");
+    account.classList.remove("d-none");
   }
 });
+
+//////////////////////////////////////////
+/// // payment page

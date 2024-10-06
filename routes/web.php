@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SearchController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,18 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('', HomeController::class)->name('home');
+Route::get('category/{category:uuid}',[CategoryController::class,'show'])->name('category.show')->whereUuid('category');
 
-Route::get('logout', function () {
-    auth()->logout();
-
-    return redirect()->route('home');
-})->name('logout');
-
-Route::get('test-mail', function()
-{
-    $user = \App\Models\User::find(4);
-    return view('mail.test',compact('user'));
+Route::group(['prefix' => 'search'], function () {
+    Route::get('', SearchController::class)->name('search');
 });
