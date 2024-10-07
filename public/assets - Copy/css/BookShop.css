@@ -1,0 +1,890 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Cairo:wght@200..1000&display=swap");
+body {
+  width: 100% !important;
+  font-family: cabin, sans-serif;
+  font-weight: 500 !important;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-nav .nav-link {
+  color: black !important;
+}
+
+.navbar-nav .nav-item:not(:last-child) {
+  border-right: 2px solid #bfbfbf;
+}
+
+@media only screen and (max-width: 62em) {
+  .navbar-nav .nav-item:not(:last-child) {
+    border-right: none;
+  }
+}
+.fm-cairo {
+  font-family: cairo, sans-serif;
+}
+/*---------------------------------------- */
+
+.backgroundService {
+  background-image: url(../imgs/Rectangle\ 3463298.png);
+  width: 100%;
+  height: 266px;
+  position: relative;
+}
+
+.backgroundImg {
+  position: absolute;
+  width: 89px;
+  height: 88px !;
+  top: 58px;
+  left: 172px;
+  gap: 0px;
+  opacity: 0px;
+}
+.hypernav {
+  position: absolute;
+  top: 25px;
+  left: 250px;
+}
+.hypernav a {
+  color: white;
+  margin-left: 10px;
+  width: 84px;
+  height: 12px;
+  font-family: Barlow;
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 12px;
+  text-align: left;
+}
+.companyname {
+  position: absolute;
+  top: 60px;
+  left: 280px;
+}
+.companyname h1 {
+  color: white;
+  font-family: Chau Philomene One;
+  font-size: 43px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  text-align: center;
+  font-size: 43px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+}
+.companyname span img {
+  width: 28px;
+  height: 26px;
+}
+@media only screen and (max-width: 600px) {
+  .hypernav {
+    position: absolute;
+    top: 25px;
+    left: 30px;
+  }
+  .companyname {
+    position: absolute;
+    top: 150px;
+    left: 40px;
+  }
+}
+/* -------------------------------------- */
+
+.navservice {
+  position: absolute;
+  left: 302px;
+  display: flex;
+  justify-content: space-between;
+}
+.navservice .nav-link {
+  width: 121px;
+  height: 36px;
+  border-radius: 17px;
+  text-align: center;
+  font-family: Cairo;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+}
+.navservice .active {
+  background: #931158;
+  color: white;
+  padding: 5px;
+  font-family: Cairo;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  text-align: center;
+}
+.vector-item {
+  width: 14.67px;
+  height: 16.5px;
+  margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    max-width: 600px;
+  }
+  .navservice {
+    position: absolute;
+    left: 3px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .nav-link {
+    width: 50px;
+  }
+  .active {
+    width: 90px;
+    font-size: 16px;
+  }
+}
+
+footer {
+  background-color: #8a004f;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  margin-top: 200px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-logo h2 {
+  font-size: 44px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-section {
+  min-width: 150px;
+  margin: 0px 20px;
+}
+
+.footer-section h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 5px;
+}
+
+.footer-section ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-social ul li img {
+  width: 30px;
+  height: 30px;
+}
+
+.footer-apps a {
+  margin: 0 10px;
+}
+
+.footer-apps img {
+  width: 120px;
+  height: 40px;
+}
+
+.footer-bottom p {
+  margin-top: 20px;
+  font-size: 14px;
+}
+@media only screen and (max-width: 600px) {
+  footer {
+    margin-top: 200px;
+  }
+}
+
+/* image background style */
+
+.bookShop-container .image-background {
+  width: 100%;
+  height: 30vh;
+  background-image: url(../imgs/Rectangle\ 3463298.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.bookShop-container .image-background > div {
+  display: flex;
+  position: absolute;
+  left: 20%;
+  top: 10%;
+}
+.bookShop-container .image-background .image img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: red;
+}
+.bookShop-container .image-background .image-info {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+.bookShop-container .image-background .image-info ul {
+  display: flex;
+  gap: 5px;
+  list-style: none;
+  justify-content: left;
+}
+.bookShop-container .image-background .image-info ul li a {
+  color: white;
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 12px;
+}
+.bookShop-container .image-background .image-info h2 {
+  color: white;
+  font-family: Chau Philomene One;
+  font-size: 43px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+}
+.bookShop-container .image-background .image-info .rate-stars .fa-solid {
+  text-align: center;
+  color: #f2c94c;
+}
+.bookShop-container .image-background .image-info .rate-stars span {
+  color: white;
+}
+
+/* style second nav => after image background */
+
+.bookShop-container .second-nav {
+  background: #eaeaea;
+  min-height: 50px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bookShop-container .second-nav ul {
+  margin: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  list-style-type: none;
+}
+.bookShop-container .second-nav ul li a {
+  color: #5c5c5c;
+  height: 100%;
+  padding: 10px;
+  border-radius: 7px;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+.bookShop-container .second-nav ul li a:hover {
+  background-color: #931158;
+  color: white;
+}
+
+/* style ballons section */
+
+.bookShop-container .ballons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+.bookShop-container .ballons h1 {
+  color: #5c5c5c;
+  margin: 40px 0;
+  font-family: Cabin;
+  font-size: 43px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+}
+.bookShop-container .ballons h1 span {
+  background: #e8e8e8;
+  padding: 5px;
+  border-radius: 5px;
+}
+.bookShop-container .ballons h1 span .fa-solid {
+  color: #f2c94c;
+}
+.bookShop-container .ballons h1 span {
+  color: black;
+  font-size: 25px;
+}
+.bookShop-container .ballons .images img {
+  width: calc(95% / 3);
+  min-width: 250px;
+  height: 400px;
+}
+
+/* style service section */
+
+.bookShop-container .service {
+  width: 50%;
+  padding: 10px;
+  margin: auto;
+  margin-top: 20px;
+  border: 1px solid #0000002e;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+}
+.bookShop-container .service div:first-child {
+  border-bottom: 1px solid #0000002e;
+  display: flex;
+  gap: 10px;
+}
+.bookShop-container .service div:first-child h4 {
+  color: #444444;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  text-align: center;
+}
+.bookShop-container .service div:first-child h4 span {
+  color: #8a8a8a;
+  font-family: Cairo;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  text-align: center;
+}
+.bookShop-container .service div:nth-child(2) h1 {
+  color: #444444;
+  font-family: Cairo;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+}
+.bookShop-container .service div:nth-child(2) p {
+  color: #808080;
+  width: 30%;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  text-align: left;
+}
+
+/* style delivery section */
+
+.bookShop-container .delivery {
+  width: 50%;
+  margin: auto;
+  margin-top: 20px;
+}
+.bookShop-container .delivery h1 {
+  font-family: Cairo;
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  color: #444444;
+}
+.bookShop-container .delivery .booking {
+  border: 1px solid #0000002e;
+  padding: 10px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.bookShop-container .delivery .booking .time {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #5f5f5f;
+}
+.bookShop-container .delivery .booking .time .day {
+  font-family: Cairo;
+  font-size: 31px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  text-align: center;
+}
+.bookShop-container .delivery .booking .time .date {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  font-family: Cairo;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  text-align: center;
+}
+.bookShop-container .delivery .booking button {
+  font-family: Cairo;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  text-align: center;
+  color: white;
+  background-color: #931158;
+  border-radius: 8px;
+  padding: 10px;
+  outline: 0;
+  border: 0;
+}
+
+/* style color section */
+
+.bookShop-container .color {
+  margin: auto;
+  margin-top: 20px;
+  width: 50%;
+  border: 1px solid #0000002e;
+  padding: 10px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.bookShop-container .color h1 {
+  font-family: Cairo;
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  color: #444444;
+}
+.bookShop-container .color .colors {
+  display: flex;
+  gap: 10px;
+}
+.bookShop-container .color .colors div {
+  width: 70px;
+  height: 70px;
+  background-color: red;
+}
+.bookShop-container .color .colors .one {
+  background-color: red;
+}
+.bookShop-container .color .colors .two {
+  background-color: yellow;
+}
+.bookShop-container .color .colors .three {
+  background-color: green;
+}
+.bookShop-container .color .colors .four {
+  background-color: blue;
+}
+.bookShop-container .color .colors .five {
+  background-color: orange;
+}
+.bookShop-container .color .counter button {
+  outline: 0;
+  border: 0;
+}
+.bookShop-container .color .counter button:first-child {
+  color: #f3f3f3;
+  background-color: #931158;
+  box-shadow: 0px 6px 24px 0px #00000033;
+  border-radius: 40px 0 0 40px;
+  padding-right: 20px;
+}
+.bookShop-container .color .counter button:nth-child(2) {
+  background-color: #f3f3f3;
+  color: #931158;
+  box-shadow: 0px 6px 24px 0px #00000033;
+  border-radius: 0 40px 40px 0;
+  padding-left: 20px;
+}
+.bookShop-container .color .counter span {
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 24.99px;
+  text-align: right;
+}
+/* style gender section */
+
+.bookShop-container .gender {
+  width: 50%;
+  margin: auto;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+.bookShop-container .gender div {
+  display: flex;
+  margin-top: 10px;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+.bookShop-container .gender > div {
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+}
+.bookShop-container .gender h1 {
+  color: #444444;
+  font-family: Cairo;
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  text-align: center;
+}
+.bookShop-container .gender div .fa-mars-and-venus {
+  background-color: #6c6c6c;
+  color: white;
+  padding: 5px;
+  border-radius: 4px;
+}
+.bookShop-container .gender .kind {
+  padding: 10px;
+  border: 1px solid #bababa;
+  border-radius: 5px;
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bookShop-container .gender .kind div {
+  display: flex;
+  gap: 5px;
+}
+.bookShop-container .gender .kind .fa-circle-check {
+  color: #444444;
+  font-size: x-large;
+}
+
+/* order */
+
+.order-summary {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+}
+
+.order-details {
+  flex: 1;
+}
+
+.order-summary .order-details .input {
+  padding: 5px;
+  border: 1px solid #b1b1b1;
+  border-radius: 15px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.order-summary .order-details .input h4 {
+  font-family: Cairo;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 26.24px;
+  text-align: left;
+  color: #931158;
+}
+.order-summary .order-details .input .info {
+  font-family: Cairo;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 28.11px;
+  text-align: left;
+  color: #a6a6a6;
+}
+.info {
+  border: none;
+  background: none;
+}
+.code {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.code .input {
+  flex: 1;
+}
+.bookShop-container .summary-details {
+  margin-top: 10px;
+  display: flex;
+  gap: 20px;
+}
+.bookShop-container .summary-details .box {
+  background-color: #dfdfdf;
+  border: 1px solid #931158;
+  border-radius: 10px;
+  flex: 1;
+  position: relative;
+}
+.bookShop-container .summary-details .box div {
+  width: 40%;
+  margin: 10px;
+}
+.bookShop-container .summary-details .box::after {
+  background-color: #931158;
+  color: white;
+  width: 200px;
+  padding: 5px;
+  border-radius: 10px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -15%);
+  content: "Total amount 40$";
+  text-align: center;
+  font-family: Cairo;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 31.86px;
+}
+.bookShop-container .summary-details .btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.bookShop-container .summary-details .btns button {
+  color: #931158;
+  width: 217px;
+  height: 44px;
+  border-radius: 10px;
+  outline: 0;
+  border: 0;
+  animation-duration: 0.3s;
+  background-color: #dfdfdf;
+}
+.bookShop-container .summary-details .btns button:hover {
+  background-color: #444444;
+  color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .ballons h1 {
+    max-width: 400px;
+    font-size: 22px !important;
+  }
+  .ballons{
+    margin-top: 180px !important;
+  }
+  .images {
+    text-align: center;
+  }
+  .service {
+    width: 350px !important;
+  }
+  .service p {
+    width: 350px !important;
+  }
+  /* .delivery {
+  width:350 px !important;
+  text-align: left;
+  background-color: #8a004f;
+} */
+  .delivery {
+    width: 380px !important ;
+    margin-right: 20px;
+  }
+  .delivery button {
+    margin-right: 20px;
+  }
+
+  .booking {
+    width: 400px !important;
+    margin-top: 25px;
+  }
+  .delivery h1 {
+    width: 350px;
+  }
+  .color {
+    width: 360px !important ;
+  }
+  .counter {
+    margin-top: 25px;
+  }
+  .gender {
+    width: 350px !important ;
+  }
+  .order-summary {
+    width: 350px !important ;
+  }
+  .code {
+    flex-direction: column;
+  }
+  .code .input {
+    width: 100%;
+  }
+  .summary-details {
+    width: 100%;
+    flex-direction: column;
+  }
+  .summary-details .btns {
+    width: 350px;
+    height: 200px;
+    margin-top: 25px;
+    margin-left: 60px;
+  }
+}
+
+
+
+/* ----------------------------- */
+
+.backgroundService {
+  background-image: url(../imgs/Rectangle\ 3463298.png);
+  width: 100%;
+  height: 266px;
+  position: relative;
+}
+
+.backgroundImg {
+  position: absolute;
+  width: 89px;
+  height: 88px !;
+  top: 58px;
+  left: 172px;
+  gap: 0px;
+  opacity: 0px;
+}
+.hypernav {
+  position: absolute;
+  top: 25px;
+  left: 250px;
+}
+.hypernav a {
+  color: white;
+  margin-left: 10px;
+  width: 84px;
+  height: 12px;
+  font-family: Barlow;
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 12px;
+  text-align: left;
+}
+.companyname {
+  position: absolute;
+  top: 60px;
+  left: 280px;
+}
+.companyname h1 {
+  color: white;
+  font-family: Chau Philomene One;
+  font-size: 43px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  text-align: center;
+  font-size: 43px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+}
+.companyname span img {
+  width: 28px;
+  height: 26px;
+}
+@media only screen and (max-width: 600px) {
+  .hypernav {
+    position: absolute;
+    top: 25px;
+    left: 30px;
+  }
+  .companyname {
+    position: absolute;
+    top: 150px;
+    left: 40px;
+  }
+}
+/* -------------------------------------- */
+
+.navservice {
+  position: absolute;
+  left: 302px;
+  display: flex;
+  justify-content: space-between;
+}
+.navservice .nav-link {
+  width: 121px;
+  height: 36px;
+  border-radius: 17px;
+  text-align: center;
+  font-family: Cairo;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+}
+.navservice .active {
+  background: #931158;
+  color: white;
+  padding: 5px;
+  font-family: Cairo;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  text-align: center;
+}
+.vector-item {
+  width: 14.67px;
+  height: 16.5px;
+  margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    max-width: 600px;
+  }
+  .navservice {
+    position: absolute;
+    left: 3px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .nav-link {
+    width: 50px;
+  }
+}
+

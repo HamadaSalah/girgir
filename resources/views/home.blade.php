@@ -129,7 +129,7 @@
                             ><img src="{{ asset('assets') }}/imgs/houseico.svg" alt="icon" /> Shop :
                             {{ $package->createdBy->business_name }}</span
                           >
-                          <br /><br />{{ $package->features->pluck('title')->implode(', ') }}
+                          <br /><br />{{ substr($package->features->pluck('title')->implode(', '), 15) . "..." }}
                         </p>
                         <div
                           class="d-flex align-items-center justify-content-between"
@@ -263,7 +263,7 @@
                           class="d-flex align-items-center justify-content-between mb-2"
                         >
                           <h3 class="card-title h6 fw-bold mb-0 mt-4">
-                            {{ $shop->business_name }}
+                            {{ strlen($shop->business_name) > 15 ? substr($shop->business_name, 0, 15) . '...' : $shop->business_name }}
                           </h3>
                           <span
                             class="d-flex align-items-center bg_rating p-1 rounded-5"
@@ -356,7 +356,7 @@
                             <a
                               href="#"
                               class="btn text-black p-1 text-decoration-underline fs-14 fw-medium fm-cairo"
-                              >{{ strlen($package->createdBy->business_name) > 20 ? substr($package->createdBy->business_name, 0, 20) . '...' : $package->createdBy->business_name }}</a
+                              >{{ strlen($package->createdBy->business_name) > 15 ? substr($package->createdBy->business_name, 0, 15) . '...' : $package->createdBy->business_name }}</a
                             >
                           </div>
                           <div class="d-flex align-items-center">

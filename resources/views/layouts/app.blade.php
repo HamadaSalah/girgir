@@ -4,9 +4,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ env('APP_NAME') }} | @yield('title') @section('title', 'HOME')</title>
+    <title>{{ env('APP_NAME') }} | @yield('title')</title>
     <link rel="stylesheet" href="{{ asset('assets') }}/css/bootstrap.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/card.css" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/Aboutproviders.css" />
 
     <link
       href="
@@ -14,7 +15,6 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
 "
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="{{ asset('assets/') }}/css/style.css" />
   </head>
   <body>
     <div class="container-fluid border-bottom">
@@ -126,7 +126,6 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
           </div>
         </form>
       </div>
-    </div>
     </div>
     @yield('content')
     <section class="search__results bg-main d-none">
@@ -940,12 +939,11 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
             </div>
             <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
           </button>
-          <button
+          <a
+            href="{{ route('logout') }}"
             class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
           >
             <div class="d-flex align-items-center">
-            <a href="{{ route('logout') }}">
-
               <img
                 src=" {{ asset('assets') }}/imgs/signoutfill.svg"
                 alt="icon"
@@ -953,9 +951,8 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
               />
               <span>Sign out</span>
             </div>
-            </a>
             <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
-          </button>
+        </a>
         </div>
       </div>
     @endauth

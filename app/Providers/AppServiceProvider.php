@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use App\Models\WebsiteInfo;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
@@ -23,6 +24,9 @@ class AppServiceProvider extends ServiceProvider
     {
         $website_info = WebsiteInfo::first();
 
+        $categories = Category::take(5)->get();
+
         View::share('website_info', $website_info);
+        View::share('categories', $categories);
     }
 }

@@ -26,6 +26,16 @@ class ServiceProvider extends Model
         return $this->hasMany(Service::class , 'created_by');
     }
 
+    public function packages()
+    {
+        return $this->services()->where('type', 'package');
+    }
+
+    public function servicesItems()
+    {
+        return $this->services()->where('type', 'service');
+    }
+
     public function orders()
     {
         return $this->hasMany(Order::class);
@@ -39,6 +49,11 @@ class ServiceProvider extends Model
     public function averageRating()
     {
         return $this->feedbacks()->avg('rating');
+    }
+
+    public function info()
+    {
+        return $this->hasOne(ServiceProvideInfo::class);
     }
 
 

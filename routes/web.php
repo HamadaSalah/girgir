@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ServiceProviderController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('', HomeController::class)->name('home');
 Route::get('category/{category:uuid}',[CategoryController::class,'show'])->name('category.show')->whereUuid('category');
 
-Route::group(['prefix' => 'search'], function () {
-    Route::get('', SearchController::class)->name('search');
+Route::group(['prefix' => 'p'], function(){
+    Route::group(['as' => 'provider.','prefix' => '{provider:uuid}', 'controller' => ServiceProviderController::class] , function()
+    {
+        Route::get('','index')->name('index');
+        Route::get('reviews','reviews')->name('reviews');
+        Route::get('packages','packages')->name('packages');
+        Route::get('services','services')->name('services');
+        Route::get('location','location')->name('location');
+        Route::get('about','about')->name('about');
+    });
 });
+
+Route::get('search', SearchController::class)->name('search');
+
