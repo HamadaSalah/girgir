@@ -1,0 +1,212 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Cairo:wght@200..1000&display=swap");
+body {
+  font-family: cabin, sans-serif;
+  font-weight: 500 !important;
+  overflow-x: hidden;
+}
+
+.navbar-nav .nav-link {
+  color: black !important;
+}
+
+.navbar-nav .nav-item:not(:last-child) {
+  border-right: 2px solid #bfbfbf;
+}
+
+.fm-cairo {
+  font-family: cairo, sans-serif;
+}
+
+.hero__img {
+  width: 100%;
+}
+
+.hero__content {
+  transform: translate(-50%, 50%);
+}
+
+.dot {
+  cursor: pointer;
+  height: 17px;
+  width: 17px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0px 4px 10.6px 6px rgba(0, 0, 0, 0.6392156863);
+}
+
+.dot.active {
+  background-color: #931158;
+}
+.coinuser{
+  width: 113px;
+  position: absolute;
+  right: 10px;
+  bottom: 25px;
+}
+.coinuser span{
+  width: 65px;
+  height: 28px;
+  font-family: Cairo;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 28.11px;
+  text-align: left;
+  color: #931158;
+    
+}
+.coinuser img{
+  width:18px;
+  height: 18px;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .coinuser{
+    width: 113px;
+    position: absolute;
+    right: 0px;
+    bottom: -5px;
+  }
+}
+
+/* -------- */
+.freecardimg {
+  width: 100%;
+  position: relative;
+  text-align: center;
+  justify-content: center;
+}
+.freecardimg .freecardtext {
+  position: absolute;
+  top: 10px;
+  left: 60px;
+}
+.freecardimg .freecardtext h2 {
+  font-family: Cabin;
+  font-size: 43px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  text-align: center;
+  color: #404040;
+  font-family: Cabin;
+  font-size: 43px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  text-align: center;
+  margin: 20px;
+}
+.freecardimg .freecardtext a {
+  font-family: Barlow;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12px;
+  text-align: left;
+  margin: 5px;
+  color: #000000;
+}
+.freecardimg img {
+  width: 481px;
+  height: 353.59px;
+  margin-top: 45px;
+}
+.freecardimg p {
+  font-family: Cairo;
+  font-size: 27px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  margin-top: 20px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .freecardimg img {
+        width: 381px;
+        height: 253.59px;
+        margin-top: 65px;
+      }
+  }
+
+/* -------- */
+
+footer {
+  background-color: #8a004f;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  margin-top: 200px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-logo h2 {
+  font-size: 44px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-section {
+  min-width: 150px;
+  margin: 0px 20px;
+}
+
+.footer-section h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 5px;
+}
+
+.footer-section ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-social ul li img {
+  width: 30px;
+  height: 30px;
+}
+
+.footer-apps a {
+  margin: 0 10px;
+}
+
+.footer-apps img {
+  width: 120px;
+  height: 40px;
+}
+
+.footer-bottom p {
+  margin-top: 20px;
+  font-size: 14px;
+}
+@media only screen and (max-width: 600px) {
+  footer {
+    margin-top: 200px;
+  }
+}

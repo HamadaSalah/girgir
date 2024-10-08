@@ -5,15 +5,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ env('APP_NAME') }} | Login</title>
-    <link rel="stylesheet" href="{{ asset('assets/') }}/css/bootstrap.css" />
-    <link rel="stylesheet" href="{{ asset('assets/') }}/css/style.css" />
+    <link rel="stylesheet" href="{{ asset('') }}css/bootstrap.css" />
+    <link rel="stylesheet" href="{{ asset('') }}css/style.css" />
   </head>
   <body>
     <header>
       <div class="row justify-content-between">
         <div class="col-lg-4 d-none d-md-block">
           <img
-            src="{{ asset('assets/') }}/imgs/signup.webp"
+            src="{{ asset('') }}imgs/signup.webp"
             alt="childern"
             class="img-fluid h-100 object-fit-cover"
           />
@@ -21,7 +21,7 @@
 
         <div class="col-lg-4 mx-md-auto col-md-6 mx-sm-1 vh-100 mt-4 mb-6">
           <div class="mb-3">
-            <img src="{{ asset('assets/') }}/imgs/logo.svg" class="img-fluid" alt="brand logo" />
+            <img src="{{ asset('') }}imgs/logo.svg" class="img-fluid" alt="brand logo" />
           </div>
           <form class="form p-2" method="POST" action="">
             @csrf
@@ -52,7 +52,7 @@
                 class="btn text-primary p-2 pe-3 border-0 bg-secondary rounded-end-5"
               >
                 <img
-                  src="{{ asset('assets/') }}/imgs/show_pass_icon.svg"
+                  src="{{ asset('') }}imgs/show_pass_icon.svg"
                   class="img-fluid"
                   alt="show password icon"
                 />
@@ -70,12 +70,12 @@
         </div>
         <div class="col-lg-1 mt-4 d-none d-lg-block">
           <a href="#" class="btn p-4">
-            <img src="{{ asset('assets/') }}/imgs/humbruger icon.svg" alt="humburger icon" />
+            <img src="{{ asset('') }}imgs/humbruger icon.svg" alt="humburger icon" />
           </a>
         </div>
       </div>
     </header>
-    <script src="{{ asset('assets/') }}/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('assets/') }}/js/script.js"></script>
+    <script src="{{ asset('') }}js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('') }}js/script.js"></script>
   </body>
 </html>

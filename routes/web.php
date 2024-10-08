@@ -35,3 +35,7 @@ Route::group(['prefix' => 'p'], function(){
 
 Route::get('search', SearchController::class)->name('search');
 
+Route::get('test-view',function()
+{
+    return view('auth.login');
+});

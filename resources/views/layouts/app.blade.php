@@ -5,16 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ env('APP_NAME') }} | @yield('title')</title>
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/bootstrap.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/Aboutproviders.css" />
-
-    <link
-      href="
-https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
-"
-      rel="stylesheet"
-    />
+    @stack('css')
+    <link rel="stylesheet" href="{{ asset('css/nav.css') }}" />
   </head>
   <body>
     <div class="container-fluid border-bottom">
@@ -32,7 +24,7 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
             id="navbarNav"
           >
             <a href="#" class="navbar-brand ps-5">
-              <img src="{{ asset('assets') }}/imgs/logo.svg" alt="brand logo"
+              <img src="{{ asset('imgs') }}/logo.svg" alt="brand logo"
             /></a>
             <ul class="navbar-nav align-items-center">
               <li class="nav-item active px-4 text-nowrap">
@@ -54,63 +46,59 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
           </div>
         </nav>
         <div class="col-md-12 col-lg-4 ms-lg-auto text-center text-lg-start">
-            <a href="#contactus" class="text-decoration-none text-black text-opacity-75">
-                <img src="{{ asset('assets') }}/imgs/call-calling.svg" alt="contact us">
-                <span>Contact Us</span>
-            </a>
-            @auth
-                <button class="btn btn-outline-primary border-0 py-1 px-2">
-                  <img src="{{ asset('assets') }}/imgs/Bell_pin_light.svg" alt="bell pin light">
-                </button>
-                <button class="btn btn-outline-primary border-0 py-1 px-2">
-                  <img src="{{ asset('assets') }}/imgs/fav_icon.svg" alt="add to icon">
-                </button>
-                <button class="btn btn-outline-primary border-0 py-1 px-2">
-                  <img src="{{ asset('assets') }}/imgs/messagesnavico.svg" alt="messages icon">
-                </button>
-                <button class="btn btn-outline-primary border-0 py-1 px-2 mb-1">
-                  <img src="{{ asset('assets') }}/imgs/cartnavico.svg" alt="cart icon">
-                </button>
-                <button class="btn btn-outline-primary border-0 py-1 px-2 mb-1 settings__btn">
-                  <img src="{{ asset('assets') }}/imgs/settingnavico.svg" alt="settings icon">
-                </button>
-                @if(auth()->user()->type == 'admin')
-                {{-- <a href="{{ route('filament.manage.pages.dashboard') }}" target="_blank" class="fm-cairo btn btn-primary py-1 px-3 mx-3"
-                ><span><img src="{{ asset('assets') }}/imgs/loginico.svg" alt="login icon" /></span>
-                Manage</a
-                > --}}
-                @endif
-            @else
-                <a href="{{ route('users.login') }}" class="fm-cairo btn btn-primary py-1 px-3 mx-3"
-                ><span><img src="{{ asset('assets') }}/imgs/loginico.svg" alt="login icon" /></span>
-                Login</a
-                >
+          <a
+            href="#contactus"
+            class="text-decoration-none text-black text-opacity-75"
+          >
+            <img src="{{ asset('imgs') }}/call-calling.svg" alt="contact us" />
+            <span>Contact Us</span>
+          </a>
+          @guest
+            <a href="#" class="fm-cairo btn btn-primary py-1 px-3 mx-3"
+            ><span><img src="{{ asset('imgs') }}/loginico.svg" alt="login icon" /></span>
+            Login</a
+            >
             <a
-                href="signupuser.html"
-                class="fm-cairo btn text-bg-light py-1 px-3"
+            href="signupuser.html"
+            class="fm-cairo btn text-bg-light py-1 px-3"
             >
-                <span><img src="{{ asset('assets') }}/imgs/signupico.svg" alt="sign up icon" /></span>
-                Sign Up</a
+            <span><img src="{{ asset('imgs') }}/signupico.svg" alt="sign up icon" /></span>
+            Sign Up</a
             >
-            @endauth
+          @endguest
+          @auth
+            <button class="btn btn-outline-primary border-0 py-1 px-2">
+              <img src="{{ asset('imgs') }}/Bell_pin_light.svg" alt="bell pin light">
+            </button>
+            <button class="btn btn-outline-primary border-0 py-1 px-2">
+              <img src="{{ asset('imgs') }}/fav_icon.svg" alt="add to icon">
+            </button>
+            <button class="btn btn-outline-primary border-0 py-1 px-2">
+              <img src="{{ asset('imgs') }}/messagesnavico.svg" alt="messages icon">
+            </button>
+            <button class="btn btn-outline-primary border-0 py-1 px-2 mb-1">
+              <img src="{{ asset('imgs') }}/cartnavico.svg" alt="cart icon">
+            </button>
+            <button class="btn btn-outline-primary border-0 py-1 px-2 mb-1 settings__btn">
+              <img src="{{ asset('imgs') }}/settingnavico.svg" alt="settings icon">
+            </button>
+          @endauth
         </div>
       </div>
     </div>
     <div class="row align-items-center position-relative">
-      @auth
-      <!-- hna el coins ahooo================================================  -->
-      <div class="coinuser">
-        <span><img src="{{asset('assets')}}/imgs/openmoji_coin.png" alt="">{{ number_format(auth()->user()->coins,1) }} Coin</span>
+        {{-- Auth User Coins --}}
+      <div class="coinuser">          
+        <span><img src="./imgs/openmoji_coin.png" alt=""> 1024Coin</span>
       </div>
-      @endauth
-      <!-- =================================================================== -->
+      {{--End auth user coins --}}
       <div class="col-6 d-none d-lg-block">
         <ul class="list-group d-flex flex-row ms-5">
-          @foreach($categories as $category)
+            {{--(LOOPING) Start categories --}}
           <li class="list-group-item p-0 border-0">
-            <a href="#" class="btn px-2 py-3 text-black-50">{{ $category->name }}</a>
+            <a href="#" class="btn px-2 py-3 text-black-50">weddings</a>
           </li>
-          @endforeach
+          {{-- End categories --}}
         </ul>
       </div>
       <div class="col-lg-5 col-sm-12">
@@ -118,631 +106,21 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
           <div class="input-group border ms-2 rounded rounded-5">
             <input type="text" class="form-control border-end-0 rounded-start-5 p-2 form__nav--input" placeholder="What is the event?">
             <button class="btn filter p-2">
-              <img src="{{ asset('assets') }}/imgs/uil_filter.svg" alt="filter icon">
+              <img src="imgs/uil_filter.svg" alt="filter icon">
             </button>
             <button class="btn search p-2">
-              <img src="{{ asset('assets') }}/imgs/searchico.svg" alt="search icon">
+              <img src="imgs/searchico.svg" alt="search icon">
             </button>
           </div>
         </form>
       </div>
     </div>
     @yield('content')
-    <section class="search__results bg-main d-none">
-      <div class="container mt-4">
-        <div class="routing d-flex align-items-center">
-          <a href="#" class="text-black home__main fs-10 me-2 fw-light">Home</a>
-          <span class="text-black">-</span>
-          <a href="#" class="text-black fs-10 ms-2 fw-light add__package"
-            >Search Filter</a
-          >
-        </div>
-        <h3 class="mt-3 mb-5 me-2 h1">Search results</h3>
-        <div
-          class="d-flex justify-content-between border-bottom pb-2 mb-4 search__content position-relative"
-        >
-          <div class="d-flex align-items-center">
-            <label for="#type" class="service__label">Service Provider :</label>
-            <select
-              id="type"
-              name="type"
-              id="type"
-              class="form-select border-0 text-black-50 bg-main"
-            >
-              <option value="Individual providers">
-                Individual service providers
-              </option>
-              <option value="Company providers" selected>
-                Company service providers
-              </option>
-            </select>
-          </div>
-          <button class="btn filter__btn position-relative">
-            <img src="{{ asset('assets') }}/imgs/filterlogo.svg" alt="filter" class="img-fluid" />
-            <ul
-              class="p-2 bg-gray position-absolute start-0 rounded-2 filters visually-hidden z-3 list-unstyled"
-            >
-              <h5>Provider Type :</h5>
-              <li class="filters_item">
-                <a href="#" class="btn p-1 text-black-50">All providers</a>
-              </li>
-              <li class="filters_item">
-                <a href="#" class="btn p-1 text-black-50">Company providers</a>
-              </li>
-              <li class="filters_item">
-                <a href="#" class="btn p-1 text-black-50"
-                  >Individual providers</a
-                >
-              </li>
-            </ul>
-          </button>
-        </div>
-        <div class="row gap-4 justify-content-center">
-          <div
-            class="col-lg-5 flex-column flex-lg-row card mb-5 text-start shadow-sm position-relative border-0 p-0 rounded-5 flex-row"
-          >
-            <img
-              src="{{ asset('assets') }}/imgs/mdi_heart-outline.svg"
-              alt="add to fav"
-              class="p-2 bg-dark bg-opacity-75 rounded-5 position-absolute add__tofav mt-3"
-            />
-
-            <img
-              src="{{ asset('assets') }}/imgs/most1.png"
-              alt="wedding"
-              class="card-img-top img-fluid rounded-3"
-            />
-
-            <div class="card-body rounded-5 px-4 py-2 bg-white">
-              <div
-                class="d-flex align-items-center justify-content-between mb-2"
-              >
-                <h3 class="card-title h6 fw-bold mb-0">Pink Theme Wedding</h3>
-                <span class="d-flex align-items-center bg_rating p-1 rounded-5"
-                  ><img src="{{ asset('assets') }}/imgs/Star_1.svg" alt="rating" class="me-1" />
-                  <span class="rating__number text-white fs-12 fw-light"
-                    >4.9</span
-                  >
-                </span>
-              </div>
-              <p class="card-text text-black fs-14 ls-5 fm-cairo mb-2">
-                Name shop :
-                <span class="text-secondary text-black-50"> kareem evee </span>
-              </p>
-              <p class="card-text text-black fs-14 ls-5 fm-cairo mb-2">
-                Details :
-                <span class="text-secondary text-black-50">
-                  100 Guests , DJ Muisc , Drinks , Decor 100 Guests , DJ Muisc ,
-                  Drinks , Decor 100 Guests , DJ Muisc , Drinks , Decor
-                </span>
-              </p>
-              <p class="card-text text-black fs-14 ls-5 fm-cairo mb-2">
-                Provider Type :
-                <span class="text-secondary text-black-50"> Company </span>
-              </p>
-              <p class="fm-cairo mb-0">
-                from/<span class="text-primary fw-medium">100$</span>
-              </p>
-              <div class="d-flex align-items-center justify-content-end gap-2">
-                <a href="#" class="btn btn-primary fm-cairo py-1 px-5 rounded-2"
-                  >Edit</a
-                >
-                <a href="#" class="btn btn-primary fm-cairo py-1 px-2 rounded-2"
-                  >Discover now</a
-                >
-              </div>
-            </div>
-          </div>
-          <div
-            class="col-lg-5 flex-column flex-lg-row card mb-5 text-start shadow-sm position-relative border-0 p-0 rounded-5 flex-row"
-          >
-            <img
-              src="{{ asset('assets') }}/imgs/mdi_heart-outline.svg"
-              alt="add to fav"
-              class="p-2 bg-dark bg-opacity-75 rounded-5 position-absolute add__tofav mt-3"
-            />
-
-            <img
-              src="{{ asset('assets') }}/imgs/most1.png"
-              alt="wedding"
-              class="card-img-top img-fluid rounded-3"
-            />
-
-            <div class="card-body rounded-5 px-4 py-2 bg-white">
-              <div
-                class="d-flex align-items-center justify-content-between mb-2"
-              >
-                <h3 class="card-title h6 fw-bold mb-0">Pink Theme Wedding</h3>
-                <span class="d-flex align-items-center bg_rating p-1 rounded-5"
-                  ><img src="{{ asset('assets') }}/imgs/Star_1.svg" alt="rating" class="me-1" />
-                  <span class="rating__number text-white fs-12 fw-light"
-                    >4.9</span
-                  >
-                </span>
-              </div>
-              <p class="card-text text-black fs-14 ls-5 fm-cairo mb-2">
-                Name shop :
-                <span class="text-secondary text-black-50"> kareem evee </span>
-              </p>
-              <p class="card-text text-black fs-14 ls-5 fm-cairo mb-2">
-                Details :
-                <span class="text-secondary text-black-50">
-                  100 Guests , DJ Muisc , Drinks , Decor 100 Guests , DJ Muisc ,
-                  Drinks , Decor 100 Guests , DJ Muisc , Drinks , Decor
-                </span>
-              </p>
-              <p class="card-text text-black fs-14 ls-5 fm-cairo mb-2">
-                Provider Type :
-                <span class="text-secondary text-black-50"> Company </span>
-              </p>
-              <p class="fm-cairo mb-0">
-                from/<span class="text-primary fw-medium">100$</span>
-              </p>
-              <div class="d-flex align-items-center justify-content-end gap-2">
-                <a href="#" class="btn btn-primary fm-cairo py-1 px-5 rounded-2"
-                  >Edit</a
-                >
-                <a href="#" class="btn btn-primary fm-cairo py-1 px-2 rounded-2"
-                  >Discover now</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row gap-4 justify-content-center">
-          <div
-            class="col-lg-5 flex-column flex-lg-row card mb-5 text-start shadow-sm position-relative border-0 p-0 rounded-5 flex-row"
-          >
-            <img
-              src="{{ asset('assets') }}/imgs/mdi_heart-outline.svg"
-              alt="add to fav"
-              class="p-2 bg-dark bg-opacity-75 rounded-5 position-absolute add__tofav mt-3"
-            />
-
-            <img
-              src="{{ asset('assets') }}/imgs/most1.png"
-              alt="wedding"
-              class="card-img-top img-fluid rounded-3"
-            />
-
-            <div class="card-body rounded-5 px-4 py-2 bg-white">
-              <div
-                class="d-flex align-items-center justify-content-between mb-2"
-              >
-                <h3 class="card-title h6 fw-bold mb-0">Pink Theme Wedding</h3>
-                <span class="d-flex align-items-center bg_rating p-1 rounded-5"
-                  ><img src="{{ asset('assets') }}/imgs/Star_1.svg" alt="rating" class="me-1" />
-                  <span class="rating__number text-white fs-12 fw-light"
-                    >4.9</span
-                  >
-                </span>
-              </div>
-              <p class="card-text text-black fs-14 ls-5 fm-cairo mb-2">
-                Name shop :
-                <span class="text-secondary text-black-50"> kareem evee </span>
-              </p>
-              <p class="card-text text-black fs-14 ls-5 fm-cairo mb-2">
-                Details :
-                <span class="text-secondary text-black-50">
-                  100 Guests , DJ Muisc , Drinks , Decor 100 Guests , DJ Muisc ,
-                  Drinks , Decor 100 Guests , DJ Muisc , Drinks , Decor
-                </span>
-              </p>
-              <p class="card-text text-black fs-14 ls-5 fm-cairo mb-2">
-                Provider Type :
-                <span class="text-secondary text-black-50"> Company </span>
-              </p>
-              <p class="fm-cairo mb-0">
-                from/<span class="text-primary fw-medium">100$</span>
-              </p>
-              <div class="d-flex align-items-center justify-content-end gap-2">
-                <a href="#" class="btn btn-primary fm-cairo py-1 px-5 rounded-2"
-                  >Edit</a
-                >
-                <a href="#" class="btn btn-primary fm-cairo py-1 px-2 rounded-2"
-                  >Discover now</a
-                >
-              </div>
-            </div>
-          </div>
-          <div
-            class="col-lg-5 flex-column flex-lg-row card mb-5 text-start shadow-sm position-relative border-0 p-0 rounded-5 flex-row"
-          >
-            <img
-              src="{{ asset('assets') }}/imgs/mdi_heart-outline.svg"
-              alt="add to fav"
-              class="p-2 bg-dark bg-opacity-75 rounded-5 position-absolute add__tofav mt-3"
-            />
-
-            <img
-              src="{{ asset('assets') }}/imgs/most1.png"
-              alt="wedding"
-              class="card-img-top img-fluid rounded-3"
-            />
-
-            <div class="card-body rounded-5 px-4 py-2 bg-white">
-              <div
-                class="d-flex align-items-center justify-content-between mb-2"
-              >
-                <h3 class="card-title h6 fw-bold mb-0">Pink Theme Wedding</h3>
-                <span class="d-flex align-items-center bg_rating p-1 rounded-5"
-                  ><img src="{{ asset('assets') }}/imgs/Star_1.svg" alt="rating" class="me-1" />
-                  <span class="rating__number text-white fs-12 fw-light"
-                    >4.9</span
-                  >
-                </span>
-              </div>
-              <p class="card-text text-black fs-14 ls-5 fm-cairo mb-2">
-                Name shop :
-                <span class="text-secondary text-black-50"> kareem evee </span>
-              </p>
-              <p class="card-text text-black fs-14 ls-5 fm-cairo mb-2">
-                Details :
-                <span class="text-secondary text-black-50">
-                  100 Guests , DJ Muisc , Drinks , Decor 100 Guests , DJ Muisc ,
-                  Drinks , Decor 100 Guests , DJ Muisc , Drinks , Decor
-                </span>
-              </p>
-              <p class="card-text text-black fs-14 ls-5 fm-cairo mb-2">
-                Provider Type :
-                <span class="text-secondary text-black-50"> Company </span>
-              </p>
-              <p class="fm-cairo mb-0">
-                from/<span class="text-primary fw-medium">100$</span>
-              </p>
-              <div class="d-flex align-items-center justify-content-end gap-2">
-                <a href="#" class="btn btn-primary fm-cairo py-1 px-5 rounded-2"
-                  >Edit</a
-                >
-                <a href="#" class="btn btn-primary fm-cairo py-1 px-2 rounded-2"
-                  >Discover now</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="d-flex justify-content-center">
-          <button class="btn btn-primary fw-light py-1 px-3 mb-5 text-center">
-            Find out more &rarr;
-          </button>
-        </div>
-        <h5 class="pb-4 border-bottom mb-3 position-relative services__heading">
-          services
-        </h5>
-        <section
-          class="splide services__slider--one container"
-          aria-label="Splide Basic HTML Example"
-        >
-          <div class="splide__track">
-            <ul class="splide__list gap-2">
-              <li class="splide__slide">
-                <div
-                  class="card mb-5 text-start shadow-sm position-relative border-0 p-0 rounded-5"
-                >
-                  <img
-                    src="{{ asset('assets') }}/imgs/mdi_heart-outline.svg"
-                    alt="add to fav"
-                    class="p-2 bg-dark bg-opacity-75 rounded-5 position-absolute end-0 me-3 mt-3"
-                  />
-
-                  <img
-                    src="{{ asset('assets') }}/imgs/most1.png"
-                    alt="wedding"
-                    class="card-img-top"
-                  />
-
-                  <div class="card-body px-2 py-3">
-                    <div
-                      class="d-flex align-items-center justify-content-between mb-2"
-                    >
-                      <h3 class="card-title h6 fw-bold mb-0">100 Ballons</h3>
-                      <span
-                        class="d-flex align-items-center bg_rating p-1 rounded-5"
-                        ><img src="{{ asset('assets') }}/imgs/Star_1.svg" alt="rating" class="me-1" />
-                        <span class="rating__number text-white fs-12 fw-light"
-                          >4.9</span
-                        >
-                      </span>
-                    </div>
-                    <p
-                      class="card-text text-black-50 fs-12 d-flex align-items-center mb-2"
-                    >
-                      <span
-                        class="text-black text-opacity-25 fs-14 d-flex align-items-center"
-                        ><img src="{{ asset('assets') }}/imgs/houseico.svg" alt="icon" /> Shop :
-                      </span>
-                      kareem evee
-                    </p>
-                    <p class="card-text text-black fs-14 ls-5 fm-cairo mb-2">
-                      Provider Type :
-                      <span class="text-secondary text-black-50">
-                        Company
-                      </span>
-                    </p>
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <a
-                        href="#"
-                        class="btn btn-primary fm-cairo py-1 px-2 rounded-2"
-                        >+ add your package</a
-                      >
-                      <p class="fm-cairo mb-0">
-                        from/<span class="text-primary fw-medium">100$</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="splide__slide">
-                <div
-                  class="card mb-5 text-start shadow-sm position-relative border-0 p-0 rounded-5"
-                >
-                  <img
-                    src="{{ asset('assets') }}/imgs/mdi_heart-outline.svg"
-                    alt="add to fav"
-                    class="p-2 bg-dark bg-opacity-75 rounded-5 position-absolute end-0 me-3 mt-3"
-                  />
-
-                  <img
-                    src="{{ asset('assets') }}/imgs/services2.png"
-                    alt="wedding"
-                    class="card-img-top"
-                  />
-
-                  <div class="card-body px-2 py-3">
-                    <div
-                      class="d-flex align-items-center justify-content-between mb-2"
-                    >
-                      <h3 class="card-title h6 fw-bold mb-0">100 Ballons</h3>
-                      <span
-                        class="d-flex align-items-center bg_rating p-1 rounded-5"
-                        ><img src="{{ asset('assets') }}/imgs/Star_1.svg" alt="rating" class="me-1" />
-                        <span class="rating__number text-white fs-12 fw-light"
-                          >4.9</span
-                        >
-                      </span>
-                    </div>
-                    <p
-                      class="card-text text-black-50 fs-12 d-flex align-items-center mb-2"
-                    >
-                      <span
-                        class="text-black text-opacity-25 fs-14 d-flex align-items-center"
-                        ><img src="{{ asset('assets') }}/imgs/houseico.svg" alt="icon" /> Shop :
-                      </span>
-                      kareem evee
-                    </p>
-                    <p class="card-text text-black fs-14 ls-5 fm-cairo mb-2">
-                      Provider Type :
-                      <span class="text-secondary text-black-50">
-                        Company
-                      </span>
-                    </p>
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <a
-                        href="#"
-                        class="btn btn-primary fm-cairo py-1 px-2 rounded-2"
-                        >+ add your package</a
-                      >
-                      <p class="fm-cairo mb-0">
-                        from/<span class="text-primary fw-medium">100$</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="splide__slide">
-                <div
-                  class="card mb-5 text-start shadow-sm position-relative border-0 p-0 rounded-5"
-                >
-                  <img
-                    src="{{ asset('assets') }}/imgs/mdi_heart-outline.svg"
-                    alt="add to fav"
-                    class="p-2 bg-dark bg-opacity-75 rounded-5 position-absolute end-0 me-3 mt-3"
-                  />
-
-                  <img
-                    src="{{ asset('assets') }}/imgs/services3.png"
-                    alt="wedding"
-                    class="card-img-top"
-                  />
-
-                  <div class="card-body px-2 py-3">
-                    <div
-                      class="d-flex align-items-center justify-content-between mb-2"
-                    >
-                      <h3 class="card-title h6 fw-bold mb-0">12 Cake</h3>
-                      <span
-                        class="d-flex align-items-center bg_rating p-1 rounded-5"
-                        ><img src="{{ asset('assets') }}/imgs/Star_1.svg" alt="rating" class="me-1" />
-                        <span class="rating__number text-white fs-12 fw-light"
-                          >4.9</span
-                        >
-                      </span>
-                    </div>
-                    <p
-                      class="card-text text-black-50 fs-12 d-flex align-items-center mb-2"
-                    >
-                      <span
-                        class="text-black text-opacity-25 fs-14 d-flex align-items-center"
-                        ><img src="{{ asset('assets') }}/imgs/houseico.svg" alt="icon" /> Shop :
-                      </span>
-                      kareem evee
-                    </p>
-                    <p class="card-text text-black fs-14 ls-5 fm-cairo mb-2">
-                      Provider Type :
-                      <span class="text-secondary text-black-50">
-                        Company
-                      </span>
-                    </p>
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <a
-                        href="#"
-                        class="btn btn-primary fm-cairo py-1 px-2 rounded-2"
-                        >+ add your package</a
-                      >
-                      <p class="fm-cairo mb-0">
-                        from/<span class="text-primary fw-medium">100$</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="splide__slide">
-                <div
-                  class="card mb-5 text-start shadow-sm position-relative border-0 p-0 rounded-5"
-                >
-                  <img
-                    src="{{ asset('assets') }}/imgs/mdi_heart-outline.svg"
-                    alt="add to fav"
-                    class="p-2 bg-dark bg-opacity-75 rounded-5 position-absolute end-0 me-3 mt-3"
-                  />
-
-                  <img
-                    src="{{ asset('assets') }}/imgs/services4.png"
-                    alt="wedding"
-                    class="card-img-top"
-                  />
-
-                  <div class="card-body px-2 py-3">
-                    <div
-                      class="d-flex align-items-center justify-content-between mb-2"
-                    >
-                      <h3 class="card-title h6 fw-bold mb-0">100 Cake</h3>
-                      <span
-                        class="d-flex align-items-center bg_rating p-1 rounded-5"
-                        ><img src="{{ asset('assets') }}/imgs/Star_1.svg" alt="rating" class="me-1" />
-                        <span class="rating__number text-white fs-12 fw-light"
-                          >4.9</span
-                        >
-                      </span>
-                    </div>
-                    <p
-                      class="card-text text-black-50 fs-12 d-flex align-items-center mb-2"
-                    >
-                      <span
-                        class="text-black text-opacity-25 fs-14 d-flex align-items-center"
-                        ><img src="{{ asset('assets') }}/imgs/houseico.svg" alt="icon" /> Shop :
-                      </span>
-                      kareem evee
-                    </p>
-                    <p class="card-text text-black fs-14 ls-5 fm-cairo mb-2">
-                      Provider Type :
-                      <span class="text-secondary text-black-50">
-                        Company
-                      </span>
-                    </p>
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <a
-                        href="#"
-                        class="btn btn-primary fm-cairo py-1 px-2 rounded-2"
-                        >+ add your package</a
-                      >
-                      <p class="fm-cairo mb-0">
-                        from/<span class="text-primary fw-medium">100$</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="splide__slide">
-                <div
-                  class="card mb-5 text-start shadow-sm position-relative border-0 p-0 rounded-5"
-                >
-                  <img
-                    src="{{ asset('assets') }}/imgs/mdi_heart-outline.svg"
-                    alt="add to fav"
-                    class="p-2 bg-dark bg-opacity-75 rounded-5 position-absolute end-0 me-3 mt-3"
-                  />
-
-                  <img
-                    src="{{ asset('assets') }}/imgs/services5.png"
-                    alt="wedding"
-                    class="card-img-top"
-                  />
-
-                  <div class="card-body px-2 py-3">
-                    <div
-                      class="d-flex align-items-center justify-content-between mb-2"
-                    >
-                      <h3 class="card-title h6 fw-bold mb-0">2 Cake</h3>
-                      <span
-                        class="d-flex align-items-center bg_rating p-1 rounded-5"
-                        ><img src="{{ asset('assets') }}/imgs/Star_1.svg" alt="rating" class="me-1" />
-                        <span class="rating__number text-white fs-12 fw-light"
-                          >4.9</span
-                        >
-                      </span>
-                    </div>
-                    <p
-                      class="card-text text-black-50 fs-12 d-flex align-items-center mb-2"
-                    >
-                      <span
-                        class="text-black text-opacity-25 fs-14 d-flex align-items-center"
-                        ><img src="{{ asset('assets') }}/imgs/houseico.svg" alt="icon" /> Shop :
-                      </span>
-                      kareem evee
-                    </p>
-                    <p class="card-text text-black fs-14 ls-5 fm-cairo mb-2">
-                      Provider Type :
-                      <span class="text-secondary text-black-50">
-                        Company
-                      </span>
-                    </p>
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <a
-                        href="#"
-                        class="btn btn-primary fm-cairo py-1 px-2 rounded-2"
-                        >+ add your package</a
-                      >
-                      <p class="fm-cairo mb-0">
-                        from/<span class="text-primary fw-medium">100$</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </section>
-      </div>
-    </section>
-
-    <section class="search__empty bg-main d-none">
-      <div class="container">
-        <div class="routing d-flex align-items-center"></div>
-        <a href="#" class="text-black fs-10 me-2 fw-light home__main">Home</a>
-        <span class="text-black">-</span>
-        <a href="#" class="text-black fs-10 ms-2 fw-light add__package"
-          >Search Filter</a
-        >
-        <h3 class="mt-3 mb-5 me-2 h1">Search results</h3>
-        <p class="fm-cairo">
-          search :
-          <span class="search__message text-decoration-underline text-black-50"
-            >birthday32</span
-          >
-        </p>
-        <div class="d-flex flex-column align-items-center">
-          <img src="{{ asset('assets') }}/imgs/cart.png" alt="cart image" />
-          <p class="mr-neg-3 mt-4">No data</p>
-        </div>
-      </div>
-    </section>
-
     <footer>
       <div class="footer-container">
         <div class="footer-logo">
           <h2>
-            Gir <img style="width: 30%" src="{{ asset('assets') }}/imgs/Vectorgir.png" alt="" />
+            Gir <img style="width: 30%" src="./imgs/Vectorgir.png" alt="" />
             <br />
             Events
           </h2>
@@ -789,21 +167,23 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
             </ul>
           </div>
         </div>
+        {{-- Start of Social Media of website --}}
         <div class="footer-social">
-          <a href="{{ $website_info->facebook }}"
-            ><img src="{{ asset('assets') }}/imgs/Group 1000004623.png" alt="Facebook"
+          <a href="#"
+            ><img src="./imgs/Group 1000004623.png" alt="Facebook"
           /></a>
         </div>
+        {{-- End of Social Media of website --}}
         <div class="footer-apps">
           <h4>Get the app</h4>
-          <a href="{{ $website_info->app_store_link }}"
+          <a href="#"
             ><img
-              src="{{ asset('assets') }}/imgs/app-store.24ce31e7a13056d542d1.png"
+              src="./imgs/app-store.24ce31e7a13056d542d1.png"
               alt="App Store"
           /></a>
-          <a href="{{ $website_info->play_store_link }}"
+          <a href="#"
             ><img
-              src="{{ asset('assets') }}/imgs/googleApp.8f241223f55c067c2fb6.png"
+              src="./imgs/googleApp.8f241223f55c067c2fb6.png"
               alt="Google Play"
           /></a>
         </div>
@@ -815,155 +195,12 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
       </div>
     </footer>
 
-    @auth
-    <div class="settings bg-main overflow-scroll">
-        <div class="d-flex flex-column align-items-center p-4">
-          <button
-            class="btn btn-outline-primary border-0 py-1 px-2 mb-1 align-self-end"
-          >
-            <img
-              src=" {{ asset('assets') }}/imgs/settingnavico.svg"
-              alt="settings icon"
-              class="settings__item"
-            />
-          </button>
-          <div>
-            <img src=" {{ auth()->user()->profile_picture }}" alt="user photo" class="rounded-full" width="100px"/>
-          </div>
-          <p class="user__name">{{ auth()->user()->name }}</p>
-          <p class="user__register_date text-black-50">Registered on {{ auth()->user()->created_at->format('F j') }}</p>
-          <a
-            href="#"
-            class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
-          >
-            <div class="d-flex align-items-center">
-              <img
-                src=" {{ asset('assets') }}/imgs/userfill.svg"
-                alt="icon"
-                class="p-2 bg-gray rounded-5 me-2"
-              />
-              <span>Edit Settings information</span>
-            </div>
-            <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
-        </a>
-          @if(auth()->user()->isProvider())
-          <button
-          class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
-        >
-          <div class="d-flex align-items-center">
-            <img
-              src=" {{ asset('assets') }}/imgs/userfill.svg"
-              alt="icon"
-              class="p-2 bg-gray rounded-5 me-2"
-            />
-            <span>Manage my business</span>
-          </div>
-          <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
-        </button>
-          @endif
-          <button
-            class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
-          >
-            <div class="d-flex align-items-center">
-              <img
-                src=" {{ asset('assets') }}/imgs/heartfill.svg"
-                alt="icon"
-                class="p-2 bg-gray rounded-5 me-2"
-              />
-              <span>Favorites</span>
-            </div>
-            <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
-          </button>
-          <button
-            class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
-          >
-            <div class="d-flex align-items-center">
-              <img
-                src=" {{ asset('assets') }}/imgs/historyfill.svg"
-                alt="icon"
-                class="p-2 bg-gray rounded-5 me-2"
-              />
-              <span>My Booking history</span>
-            </div>
-            <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
-          </button>
-          <button
-            class="d-flex support__btn justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
-          >
-            <div class="d-flex align-items-center support__content">
-              <img
-                src=" {{ asset('assets') }}/imgs/phonefill.svg"
-                alt="icon"
-                class="p-2 bg-gray rounded-5 me-2"
-              />
-              <span>Support</span>
-            </div>
-            <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
-          </button>
-          <button
-            class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
-          >
-            <div class="d-flex align-items-center">
-              <img
-                src=" {{ asset('assets') }}/imgs/ifill.svg"
-                alt="icon"
-                class="p-2 bg-gray rounded-5 me-2"
-              />
-              <span>About us</span>
-            </div>
-            <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
-          </button>
-          <button
-            class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
-          >
-            <div class="d-flex align-items-center">
-              <img
-                src=" {{ asset('assets') }}/imgs/lockfill.svg"
-                alt="icon"
-                class="p-2 bg-gray rounded-5 me-2"
-              />
-              <span>Privacy policies</span>
-            </div>
-            <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
-          </button>
-          <button
-            class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
-          >
-            <div class="d-flex align-items-center">
-              <img
-                src=" {{ asset('assets') }}/imgs/termsfill.svg"
-                alt="icon"
-                class="p-2 bg-gray rounded-5 me-2"
-              />
-              <span>Order history</span>
-            </div>
-            <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
-          </button>
-          <a
-            href="{{ route('logout') }}"
-            class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
-          >
-            <div class="d-flex align-items-center">
-              <img
-                src=" {{ asset('assets') }}/imgs/signoutfill.svg"
-                alt="icon"
-                class="p-2 bg-gray rounded-5 me-2"
-              />
-              <span>Sign out</span>
-            </div>
-            <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
-        </a>
-        </div>
-      </div>
-    @endauth
-
-
     <div class="overlay bg-black bg-opacity-50 visually-hidden"></div>
     <div
       class="overlay__content z-3 w-50 position-fixed top-50 start-50 translate-middle visually-hidden"
     >
       <button class="btn text-dark z-3 close position-absolute top-25 end-0">
-        <img src="{{ asset('assets') }}/imgs/close.svg" alt="close button" />
+        <img src="{{ asset('imgs') }}/close.svg" alt="close button" />
       </button>
       <div class="splide progress flex-column bg-white">
         <div class="splide__arrows splide__arrows--ltr">
@@ -973,7 +210,7 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
             aria-label="Previous slide"
             aria-controls="splide01-track"
           >
-            <img src="{{ asset('assets') }}/imgs/arrleft.svg" alt="button previous" />
+            <img src="{{ asset('imgs') }}/arrleft.svg" alt="button previous" />
           </button>
 
           <button
@@ -994,19 +231,19 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
                   <div
                     class="col-3 events d-flex flex-column align-items-center bg-gray"
                   >
-                    <img src="{{ asset('assets') }}/imgs/wpf_birthday.svg" alt="birthday icon" />
+                    <img src="{{ asset('imgs') }}/wpf_birthday.svg" alt="birthday icon" />
                     <span>Birthday</span>
                   </div>
                   <div
                     class="col-3 events d-flex flex-column align-items-center bg-gray"
                   >
-                    <img src="{{ asset('assets') }}/imgs/wpf_wedding-cake.svg" alt="birthday icon" />
+                    <img src="{{ asset('imgs') }}/wpf_wedding-cake.svg" alt="birthday icon" />
                     <span> weddings </span>
                   </div>
                   <div
                     class="col-3 events d-flex flex-column align-items-center bg-gray"
                   >
-                    <img src="{{ asset('assets') }}/imgs/cil_child.svg" alt="birthday icon" />
+                    <img src="{{ asset('imgs') }}/cil_child.svg" alt="birthday icon" />
                     <span>New born</span>
                   </div>
                 </div>
@@ -1015,7 +252,7 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
                     class="col-3 events d-flex flex-column align-items-center bg-gray"
                   >
                     <img
-                      src="{{ asset('assets') }}/imgs/game-icons_engagement-ring.svg"
+                      src="{{ asset('imgs') }}/game-icons_engagement-ring.svg"
                       alt="birthday icon"
                     />
                     <span>Engagement</span>
@@ -1024,7 +261,7 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
                     class="col-3 events d-flex flex-column align-items-center bg-gray"
                   >
                     <img
-                      src="{{ asset('assets') }}/imgs/mdi_graduation-cap.svg"
+                      src="{{ asset('imgs') }}/mdi_graduation-cap.svg"
                       alt="birthday icon"
                     />
                     <span>Graduation</span>
@@ -1033,7 +270,7 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
                     class="col-3 events d-flex flex-column align-items-center bg-gray"
                   >
                     <img
-                      src="{{ asset('assets') }}/imgs/hugeicons_corporate.svg"
+                      src="{{ asset('imgs') }}/hugeicons_corporate.svg"
                       alt="birthday icon"
                     />
                     <span>Corporate Events</span>
@@ -1180,17 +417,17 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
                     You can also log in using your account with:
                   </p>
                   <div class="social__link d-flex justify-content-center gap-3">
-                    <a href="{{ $website_info->facebook }}" class="p-2 bg-gray"
-                      ><img src="{{ asset('assets') }}/imgs/xico.svg" alt="facebook"
+                    <a href="#" class="p-2 bg-gray"
+                      ><img src="{{ asset('imgs') }}/xico.svg" alt="facebook"
                     /></a>
                     <a href="#" class="p-2 bg-gray"
-                      ><img src="{{ asset('assets') }}/imgs/appleico.svg" alt="google"
+                      ><img src="{{ asset('imgs') }}/appleico.svg" alt="google"
                     /></a>
                     <a href="#" class="p-2 bg-gray"
-                      ><img src="{{ asset('assets') }}/imgs/Google.svg" alt="facebook"
+                      ><img src="{{ asset('imgs') }}/Google.svg" alt="facebook"
                     /></a>
                     <a href="#" class="p-2 bg-gray"
-                      ><img src="{{ asset('assets') }}/imgs/teamsico.svg" alt="google"
+                      ><img src="{{ asset('imgs') }}/teamsico.svg" alt="google"
                     /></a>
                   </div>
                 </div>
@@ -1211,7 +448,7 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
       <button
         class="btn close__arrangement text-dark z-3 close position-absolute top-25 end-0"
       >
-        <img src="{{ asset('assets') }}/imgs/close.svg" alt="close button" />
+        <img src="{{ asset('imgs') }}/close.svg" alt="close button" />
       </button>
       <div class="p-3 d-flex flex-column">
         <h3>Arrangment</h3>
@@ -1221,20 +458,20 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
           >
             <li class="pb-2 border-bottom">
               <span class="right position-relative"
-                ><img src="{{ asset('assets') }}/imgs/rightprimary.svg" alt="right check"
+                ><img src="{{ asset('imgs') }}/rightprimary.svg" alt="right check"
               /></span>
               Most requested
             </li>
 
             <li class="pb-2 border-bottom">
               <span class="right position-relative"
-                ><img src="{{ asset('assets') }}/imgs/rightprimary.svg" alt="right check"
+                ><img src="{{ asset('imgs') }}/rightprimary.svg" alt="right check"
               /></span>
               Most rated to least rated
             </li>
             <li class="pb-2 border-bottom">
               <span class="right position-relative"
-                ><img src="{{ asset('assets') }}/imgs/rightprimary.svg" alt="right check"
+                ><img src="{{ asset('imgs') }}/rightprimary.svg" alt="right check"
               /></span>
               Lowest rating Highest rating
             </li>
@@ -1247,14 +484,14 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
               >
                 <li>
                   <span class="right position-relative"
-                    ><img src="{{ asset('assets') }}/imgs/rightprimary.svg" alt="right check"
+                    ><img src="{{ asset('imgs') }}/rightprimary.svg" alt="right check"
                   /></span>
                   The most
                 </li>
 
                 <li>
                   <span class="right position-relative"
-                    ><img src="{{ asset('assets') }}/imgs/rightprimary.svg" alt="right check"
+                    ><img src="{{ asset('imgs') }}/rightprimary.svg" alt="right check"
                   /></span>
                   The leat
                 </li>
@@ -1265,7 +502,7 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
               <ul class="d-flex text-black gap-2 list-unstyled fm-cairo fs-14">
                 <li>
                   <span class="right position-relative"
-                    ><img src="{{ asset('assets') }}/imgs/rightprimary.svg" alt="right check"
+                    ><img src="{{ asset('imgs') }}/rightprimary.svg" alt="right check"
                   /></span>
 
                   company
@@ -1273,7 +510,7 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
 
                 <li>
                   <span class="right position-relative"
-                    ><img src="{{ asset('assets') }}/imgs/rightprimary.svg" alt="right check"
+                    ><img src="{{ asset('imgs') }}/rightprimary.svg" alt="right check"
                   /></span>
                   Individual
                 </li>
@@ -1284,9 +521,143 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
         <button class="btn btn-primary align-self-end">Go</button>
       </div>
     </div>
-
-    <script src="{{ asset('assets') }}/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-    <script src="{{ asset('assets') }}/js/script.js"></script>
+@auth
+<div class="settings bg-main overflow-scroll">
+    <div class="d-flex flex-column align-items-center p-4">
+      <button
+        class="btn btn-outline-primary border-0 py-1 px-2 mb-1 align-self-end"
+      >
+        <img
+          src="imgs/settingnavico.svg"
+          alt="settings icon"
+          class="settings__item"
+        />
+      </button>
+      <div>
+        <img src="imgs/userimg1.png" alt="user photo" />
+      </div>
+      <p class="user__name">Roba Ahmed</p>
+      <p class="user__register_date text-black-50">Registered on May 20</p>
+      <button
+        class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
+      >
+        <div class="d-flex align-items-center">
+          <img
+            src="imgs/userfill.svg"
+            alt="icon"
+            class="p-2 bg-gray rounded-5 me-2"
+          />
+          <span>Edit Settings information</span>
+        </div>
+        <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
+      </button>
+      <button
+        class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
+      >
+        <div class="d-flex align-items-center">
+          <img
+            src="imgs/heartfill.svg"
+            alt="icon"
+            class="p-2 bg-gray rounded-5 me-2"
+          />
+          <span>Favorites</span>
+        </div>
+        <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
+      </button>
+      <button
+        class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
+      >
+        <div class="d-flex align-items-center">
+          <img
+            src="imgs/historyfill.svg"
+            alt="icon"
+            class="p-2 bg-gray rounded-5 me-2"
+          />
+          <span>My Booking history</span>
+        </div>
+        <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
+      </button>
+      <button
+        class="d-flex support__btn justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
+      >
+        <div class="d-flex align-items-center support__content">
+          <img
+            src="imgs/phonefill.svg"
+            alt="icon"
+            class="p-2 bg-gray rounded-5 me-2"
+          />
+          <span>Support</span>
+        </div>
+        <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
+      </button>
+      <button
+        class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
+      >
+        <div class="d-flex align-items-center">
+          <img
+            src="imgs/languagefill.svg"
+            alt="icon"
+            class="p-2 bg-gray rounded-5 me-2"
+          />
+          <span>Language</span>
+        </div>
+        <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
+      </button>
+      <button
+        class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
+      >
+        <div class="d-flex align-items-center">
+          <img
+            src="imgs/ifill.svg"
+            alt="icon"
+            class="p-2 bg-gray rounded-5 me-2"
+          />
+          <span>About us</span>
+        </div>
+        <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
+      </button>
+      <button
+        class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
+      >
+        <div class="d-flex align-items-center">
+          <img
+            src="imgs/lockfill.svg"
+            alt="icon"
+            class="p-2 bg-gray rounded-5 me-2"
+          />
+          <span>Privacy policies</span>
+        </div>
+        <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
+      </button>
+      <button
+        class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
+      >
+        <div class="d-flex align-items-center">
+          <img
+            src="imgs/termsfill.svg"
+            alt="icon"
+            class="p-2 bg-gray rounded-5 me-2"
+          />
+          <span>Order history</span>
+        </div>
+        <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
+      </button>
+      <button
+        class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
+      >
+        <div class="d-flex align-items-center">
+          <img
+            src="imgs/signoutfill.svg"
+            alt="icon"
+            class="p-2 bg-gray rounded-5 me-2"
+          />
+          <span>Sign out</span>
+        </div>
+        <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
+      </button>
+    </div>
+  </div>
+@endauth
+    @stack('js')
   </body>
 </html>

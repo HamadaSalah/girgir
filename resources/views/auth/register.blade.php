@@ -5,15 +5,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ env('APP_NAME') }} | Register</title>
-    <link rel="stylesheet" href="{{ asset('assets/') }}/css/bootstrap.css" />
-    <link rel="stylesheet" href="{{ asset('assets/') }}/css/style.css" />
+    <link rel="stylesheet" href="{{ asset('') }}css/bootstrap.css" />
+    <link rel="stylesheet" href="{{ asset('') }}css/style.css" />
   </head>
   <body>
     <header>
       <div class="row justify-content-between">
         <div class="col-lg-4 d-none d-md-block">
           <img
-            src="{{ asset('assets/') }}/imgs/signup.webp"
+            src="{{ asset('') }}imgs/signup.webp"
             alt="childern"
             class="img-fluid h-100 object-fit-cover"
           />
@@ -21,7 +21,7 @@
 
         <div class="col-lg-4 mx-md-auto col-md-6 mx-sm-1 vh-100 mt-4 mb-6">
           <div class="mb-3">
-            <img src="{{ asset('assets/') }}/imgs/logo.svg" class="img-fluid" alt="brand logo" />
+            <img src="{{ asset('') }}imgs/logo.svg" class="img-fluid" alt="brand logo" />
           </div>
           <form class="form p-2" method="POST" action="">
             @csrf
@@ -75,7 +75,7 @@
                 class="btn text-primary p-2 pe-3 border-0 bg-secondary rounded-end-5"
               >
                 <img
-                  src="{{asset('assets/')}}/imgs/show_pass_icon.svg"
+                  src="{{ asset('') }}imgs/show_pass_icon.svg"
                   class="img-fluid"
                   alt="show password icon"
                 />
@@ -96,7 +96,7 @@
                 class="btn text-primary p-2 pe-3 border-0 bg-secondary rounded-end-5"
               >
                 <img
-                  src="{{asset('assets/')}}/imgs/show_pass_icon.svg"
+                  src="{{ asset('') }}imgs/show_pass_icon.svg"
                   class="img-fluid"
                   alt="show password icon"
                 />
@@ -721,25 +721,88 @@
               id="type"
               class="form-select rounded-5 bg-secondary border-0"
             >
-              <option value="individual_provider">
-                Individual Service Provider
+            <option value="Individual providers">
+                Individual service providers
               </option>
-              <option value="company_provider">
-                Company Service Provider
+              <option value="Company providers">
+                Company service providers
               </option>
-              <option value="user" selected>User</option>
+            <option value="user" selected>User</option>
             </select>
             <div class="input-group mt-3 companyId d-none">
+                <label for="type" class="form-label fw-bold mt-3 w-100"
+                  >Enter Company Add mail
+                </label>
+                <div class="d-flex">
+                  <div class="d-flex">
+                    <input
+                      id="id"
+                      type="text"
+                      placeholder="1"
+                      class="form-control rounded-5 bg-secondary border-0"
+                    />
+                    <input
+                      id="id"
+                      type="text"
+                      placeholder="2"
+                      class="form-control rounded-5 bg-secondary border-0"
+                    />
+                    <input
+                      id="id"
+                      type="text"
+                      placeholder="3"
+                      class="form-control rounded-5 bg-secondary border-0"
+                    />
+                    <input
+                      id="id"
+                      type="text"
+                      placeholder="4"
+                      class="form-control rounded-5 bg-secondary border-0"
+                    />
+                    <input
+                      id="id"
+                      type="text"
+                      placeholder="5"
+                      class="form-control rounded-5 bg-secondary border-0"
+                    />
+                    <input
+                      id="id"
+                      type="text"
+                      placeholder="6"
+                      class="form-control rounded-5 bg-secondary border-0"
+                    />
+                  </div>
+                </div>
+              </div>
               <input
-                id="id"
                 type="text"
-                placeholder="Admin "
-                class="form-control rounded-5 bg-secondary border-0"
+                class="form-control rounded mt-3 d-none account rounded-5 bg-secondary border-0"
+                placeholder="Account Business Name"
               />
-              <label for="id" class="d-block text-bg-primary p-2 rounded-end"
-                >22222</label
+              <input
+                type="text"
+                class="form-control rounded mt-3 website d-none rounded-5 bg-secondary border-0"
+                placeholder="Website "
+              />
+              <div
+                class="input-group align-items-start mb-3 mt-3 provider-password d-none"
               >
-            </div>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  class="form-control p-2 rounded-start-5 bg-secondary border-0"
+                />
+                <button
+                  class="btn text-primary p-2 pe-3 border-0 bg-secondary rounded-end-5"
+                >
+                  <img
+                    src="imgs/show_pass_icon.svg"
+                    class="img-fluid"
+                    alt="show password icon"
+                  />
+                </button>
+              </div>
+
             <input
               type="text"
               class="form-control rounded mt-3 d-none account rounded-5 bg-secondary border-0"
@@ -750,24 +813,6 @@
               class="form-control rounded mt-3 website d-none rounded-5 bg-secondary border-0"
               placeholder="Website "
             />
-            <div
-              class="input-group align-items-start mb-3 mt-3 provider-password d-none"
-            >
-              <input
-                type="password"
-                placeholder="Password"
-                class="form-control p-2 rounded-start-5 bg-secondary border-0"
-              />
-              <button
-                class="btn text-primary p-2 pe-3 border-0 bg-secondary rounded-end-5"
-              >
-                <img
-                  src="{{ asset('assets/') }}/imgs/show_pass_icon.svg"
-                  class="img-fluid"
-                  alt="show password icon"
-                />
-              </button>
-            </div>
             <div
               class="input-group align-items-start provider-password mb-3 d-none"
             >
@@ -780,7 +825,7 @@
                 class="btn text-primary p-2 pe-3 border-0 bg-secondary rounded-end-5"
               >
                 <img
-                  src="{{asset('assets/')}}/imgs/show_pass_icon.svg"
+                  src="{{ asset('') }}imgs/show_pass_icon.svg"
                   class="img-fluid"
                   alt="show password icon"
                 />
@@ -793,12 +838,12 @@
         </div>
         <div class="col-lg-1 mt-4 d-none d-lg-block">
           <a href="#" class="btn p-4">
-            <img src="{{ asset('assets/') }}/imgs/humbruger icon.svg" alt="humburger icon" />
+            <img src="{{ asset('') }}imgs/humbruger icon.svg" alt="humburger icon" />
           </a>
         </div>
       </div>
     </header>
-    <script src="{{ asset('assets/') }}/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('assets/') }}/js/script.js"></script>
+    <script src="{{ asset('') }}js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('') }}js/script.js"></script>
   </body>
 </html>

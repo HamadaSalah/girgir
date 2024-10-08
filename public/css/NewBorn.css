@@ -1,0 +1,471 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Cairo:wght@200..1000&display=swap");
+body {
+  width: 100% !important;
+  font-family: cabin, sans-serif;
+  font-weight: 500 !important;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  background: white !important;
+}
+
+.navbar-nav .nav-link {
+  color: black !important;
+}
+
+.navbar-nav .nav-item:not(:last-child) {
+  border-right: 2px solid #bfbfbf;
+}
+
+.fm-cairo {
+  font-family: cairo, sans-serif;
+}
+
+.hero__img {
+  width: 100%;
+}
+
+.hero__content {
+  transform: translate(-50%, 50%);
+}
+
+.dot {
+  cursor: pointer;
+  height: 17px;
+  width: 17px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0px 4px 10.6px 6px rgba(0, 0, 0, 0.6392156863);
+}
+
+.dot.active {
+  background-color: #931158;
+}
+.coinuser{
+  width: 113px;
+  position: absolute;
+  right: 10px;
+  bottom: 25px;
+}
+.coinuser span{
+  width: 65px;
+  height: 28px;
+  font-family: Cairo;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 28.11px;
+  text-align: left;
+  color: #931158;
+    
+}
+.coinuser img{
+  width:18px;
+  height: 18px;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .coinuser{
+    width: 113px;
+    position: absolute;
+    right: 0px;
+    bottom: -5px;
+  }
+}
+/*---------------------------------------- */
+
+.backgroundService {
+  background-image: url(../imgs/Rectangle\ 3463298.png);
+  width: 100%;
+  height: 266px;
+  position: relative;
+}
+
+.backgroundImg {
+  position: absolute;
+  width: 89px;
+  height: 88px !;
+  top: 58px;
+  left: 172px;
+  gap: 0px;
+  opacity: 0px;
+}
+.hypernav {
+  position: absolute;
+  top: 25px;
+  left: 250px;
+}
+.hypernav a {
+  color: white;
+  margin-left: 10px;
+  width: 84px;
+  height: 12px;
+  font-family: Barlow;
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 12px;
+  text-align: left;
+}
+.companyname {
+  position: absolute;
+  top: 60px;
+  left: 280px;
+}
+.companyname h1 {
+  color: white;
+  font-family: Chau Philomene One;
+  font-size: 43px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  text-align: center;
+  font-size: 43px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+}
+.companyname span img {
+  width: 28px;
+  height: 26px;
+}
+@media only screen and (max-width: 600px) {
+  .hypernav {
+    position: absolute;
+    top: 25px;
+    left: 30px;
+  }
+  .companyname {
+    position: absolute;
+    top: 150px;
+    left: 40px;
+  }
+}
+/* -------------------------------------- */
+
+.navservice {
+  position: absolute;
+  left: 302px;
+  display: flex;
+  justify-content: space-between;
+}
+.navservice .nav-link {
+  width: 121px;
+  height: 36px;
+  border-radius: 17px;
+  text-align: center;
+  font-family: Cairo;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+}
+.navservice .active {
+  background: #931158;
+  color: white;
+  padding: 5px;
+  font-family: Cairo;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  text-align: center;
+}
+.vector-item {
+  width: 14.67px;
+  height: 16.5px;
+  margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    max-width: 600px;
+  }
+  .navservice {
+    position: absolute;
+    left: 3px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .nav-link {
+    width: 50px;
+  }
+  .active {
+    width: 90px;
+    font-size: 16px;
+  }
+}
+
+footer {
+  background-color: #8a004f;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  margin-top: 200px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-logo h2 {
+  font-size: 44px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-section {
+  min-width: 150px;
+  margin: 0px 20px;
+}
+
+.footer-section h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 5px;
+}
+
+.footer-section ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-social ul li img {
+  width: 30px;
+  height: 30px;
+}
+
+.footer-apps a {
+  margin: 0 10px;
+}
+
+.footer-apps img {
+  width: 120px;
+  height: 40px;
+}
+
+.footer-bottom p {
+  margin-top: 20px;
+  font-size: 14px;
+}
+@media only screen and (max-width: 600px) {
+  footer {
+    margin-top: 200px;
+  }
+}
+
+/* muhamed hmada */
+
+.newBorn-container{
+  background-color:#F6F6F6 !important;
+  padding:30px;
+}
+
+.newBorn-container .divide{
+    display:flex;
+    /* gap:50px; */
+}
+
+/* asid = > dashboard */
+
+aside{
+    /* background-color:red; */
+    min-width: 300px;
+}
+aside ul{
+    list-style: none;
+}
+aside ul li{
+    color: #4F4F4F;
+    padding: 10px 20px;
+    border-radius:7px;
+    display:flex;
+    justify-content:space-between;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 25.52px;
+    text-align:center;
+}
+aside ul li:hover{
+    background-color:#4F4F4F;
+    color: white;
+}
+/* cards */
+.newBorn >h1{
+    color: #000;
+    padding-bottom:10px;
+    border-radius:3px;
+    border-bottom:3px solid #ECECEC;
+    position: relative;
+    font-family: Cabin;
+    font-size: 43px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+}
+.newBorn >h1:before{
+    background-color:#931158;
+    width:10%;
+    height:3px;
+    border-radius:3px;
+    position: absolute;
+    bottom:-3px;
+    content:"";
+}
+.myCards{
+    padding:10px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    justify-content:space-between;
+}
+.myCards .myCard{
+    background-color:white;
+    width:40%;
+    min-width: 400px;
+    min-height:fit-content;
+    padding: 30px;
+    border-radius:10px;
+    display:flex !important;
+    justify-content:space-between;
+}
+.myCards .myCard .image{
+    width:48% ;
+}
+.myCards{
+  position: relative;
+}
+.myCard{
+  position: relative;
+}
+
+.myCards .myCard .image img{
+    width:100%;
+    height:fit-content;
+    border-radius:8px;
+}
+.myCards .myCard .info{
+    width:48%;
+    min-height:200px;
+    display:flex;
+    flex-direction:column;
+}
+.myCards .myCard .info .header{
+    display:flex;
+    justify-content:space-between;
+}
+.myCards .myCard .info .header h1{
+    font-family: Cairo;
+    font-size: 17px;
+    font-weight: 700;
+    /* line-height: 20px; */
+    letter-spacing: -0.5px;
+}
+.myCards .myCard .info .header span{
+position: absolute;
+top: 10px;
+right: 10px;
+}
+.myCards .myCard .info .header span .fa-star{
+    color: #FFCC00;    
+}
+.myCards .myCard .info p{
+    font-family: Cairo;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: -0.5px;
+}
+.myCards .myCard .info span{
+    color: #6F6F6F;
+    font-family: Cairo;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: -0.5px;
+}
+.myCards .myCard .info button{
+    background-color: #931158;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: -0.5px;
+    border:0;
+    outline:0;
+    padding: 10px 15px;
+    border-radius:8px;
+    text-align:right;
+    align-self:flex-end;
+}
+.btnmore{
+  text-align: end;
+}
+.btnformore{
+  width: 161px;
+height: 34px;
+background: #931158 ;
+/* position: absolute;
+right: 5%;
+bottom:50px; */
+text-align: right !important;
+
+}
+.btnformore button{
+  width: 161px;
+height: 34px;
+background: #931158 ;
+color: white;
+font-family: Cabin;
+font-size: 16px;
+font-weight: 400;
+line-height: 19.44px;
+text-align: center;
+
+
+}
+@media only screen and (max-width: 1300px) {
+.myCard{
+  width: 100% !important;
+}
+  }
+
+@media only screen and (max-width: 600px) {
+aside{
+  display: none;
+}
+.myCard{
+  /* width: 450px; */
+  flex-direction: column;
+  text-align: center;
+}
+.image{
+  width: 280px !important;
+}
+.info{
+  width: 280px !important;
+}
+.btnmore{
+ width: 300px !important;
+}
+}
