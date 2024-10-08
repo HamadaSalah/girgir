@@ -99,8 +99,8 @@
                         class="p-2 bg-dark bg-opacity-75 rounded-5 position-absolute end-0 me-3 mt-3"
                       />
 
-                      <img
-                        src="{{ asset($package->cover) }}"
+                       <img
+                        src="{{ asset($package->files()->first()->path) }}"
                         alt="wedding"
                         class="card-img-top"
                       />
@@ -120,16 +120,18 @@
                               class="me-1"
                             />
                             <span class="rating__number text-white fs-12 fw-light"
-                              >{{ number_format($package->averageRating(), 1) }}</span
+                              >5
+                              {{-- {{ number_format($package->averageRating(), 1) }} --}}
+                              </span
                             >
                           </span>
                         </div>
                         <p class="card-text text-black-50 fs-12">
                           <span class="text-black text-opacity-25 fs-14"
                             ><img src="{{ asset('assets') }}/imgs/houseico.svg" alt="icon" /> Shop :
-                            {{ $package->createdBy->business_name }}</span
+                            {{ $package->provider->name }}</span
                           >
-                          <br /><br />{{ substr($package->features->pluck('title')->implode(', '), 15) . "..." }}
+                          <br /><br />{{ $package->description }}
                         </p>
                         <div
                           class="d-flex align-items-center justify-content-between"
@@ -140,7 +142,7 @@
                             >Discover now</a
                           >
                           <p class="fm-cairo mb-0">
-                            from/<span class="text-primary fw-medium">{{ number_format($package->price,1) }}</span>
+                            from/<span class="text-primary fw-medium">{{ number_format($package->cost,1) }}</span>
                           </p>
                         </div>
                       </div>
@@ -162,7 +164,7 @@
     >
       <div class="splide__track">
         <ul class="splide__list gap-2">
-        @foreach($packages as $package)
+        @foreach($most_requested_packages as $package)
           <li class="splide__slide">
             <section class="wedding w-100 p-2 mt-5 mb-6 position-relative">
               <div
@@ -181,18 +183,10 @@
                     <ul
                       class="d-flex flex-column gap-2 text-white list-unstyled fm-cairo fs-14"
                     >
-                    @foreach ($package->features as $feature)
-                    <li>
-                        <span class="right position-relative"
-                          ><img src="{{ asset('assets') }}/imgs/rightprimary.svg" alt="right check"
-                        /></span>
-                        {{ $feature->title }}
-                      </li>
-                    @endforeach
-                    </ul>
+                    {{ $package->description }}
                     <p class="text-white fm-cairo fw-medium">
-                      providers: {{ $package->createdBy->business_name }} <br />
-                      sartes from: {{ number_format($package->price,1) }} $
+                      providers: {{ $package->provider->name }} <br />
+                      sartes from: {{ number_format($package->cost,1) }} $
                     </p>
 
                     <button
@@ -253,7 +247,7 @@
                       />
 
                       <img
-                        src="{{ asset($shop->profile_picture) }}"
+                        src="{{ asset($package->files()->first()->path) }}"
                         alt="wedding"
                         class="card-img-top"
                       />
@@ -273,14 +267,17 @@
                               class="me-1"
                             />
                             <span class="rating__number text-white fs-12 fw-light"
-                              >{{ number_format($shop->averageRating(),1) }}</span
+                              >
+                              5
+                              {{-- {{ number_format($shop->averageRating(),1) }} --}}
+                              </span
                             >
                           </span>
                         </div>
                         <p class="card-text text-black-50 fs-12">
                           <span class="text-black fs-6"
                             ><img src="{{ asset('assets') }}/imgs/houseico.svg" alt="icon" /> Shop :
-                            {{ $shop->user->name }}</span
+                            {{ $shop->name }}</span
                           >
                         </p>
                         <div class="d-flex justify-content-between">
@@ -334,7 +331,7 @@
                 <li class="splide__slide">
                     <div class="mb-3 position-relative">
                       <img
-                        src="{{ asset($package->cover) }}"
+                        src="{{ asset($package->files()->first()->path) }}"
                         alt="birthday party"
                         class="img-fluid"
                       />
@@ -356,7 +353,7 @@
                             <a
                               href="#"
                               class="btn text-black p-1 text-decoration-underline fs-14 fw-medium fm-cairo"
-                              >{{ strlen($package->createdBy->business_name) > 15 ? substr($package->createdBy->business_name, 0, 15) . '...' : $package->createdBy->business_name }}</a
+                              >{{ strlen($package->provider->name) > 15 ? substr($package->provider->name, 0, 15) . '...' : $package->provider->name }}</a
                             >
                           </div>
                           <div class="d-flex align-items-center">
@@ -367,7 +364,7 @@
                                 class="me-1"
                             /></span>
                             <p class="cost fm-cairo fs-12 fw-light mb-0">
-                              Cost {{number_format($package->price,1) }}
+                              Cost {{number_format($package->cost,1) }}
                             </p>
                           </div>
                           <div class="d-flex align-items-center">
@@ -378,7 +375,8 @@
                                 class="me-1 rounded-5 bg-black p-1"
                             /></span>
                             <p class="cost fm-cairo fs-12 fw-light mb-0">
-                              rating {{ number_format($package->averageRating(),1) }}
+                              rating 5
+                              {{-- {{ number_format($package->averageRating(),1) }} --}}
                             </p>
                           </div>
                         </div>

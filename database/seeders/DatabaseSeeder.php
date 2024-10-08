@@ -55,25 +55,9 @@ class DatabaseSeeder extends Seeder
         User::factory(3)->individualProvider()->create();
         User::factory(3)->companyProvider()->create();
 
-        CouponCode::factory(10)->create();
-        CouponCode::factory(6)->unlimited()->create();
-        CouponCode::factory(6)->used()->create();
-        CouponCode::factory(6)->expired()->create();
-        CouponCode::factory(6)->unlimited()->used()->create();
-        CouponCode::factory(6)->unlimited()->expired()->create();
-        CouponCode::factory(6)->used()->expired()->create();
-        CouponCode::factory(6)->unlimited()->used()->expired()->create();
-        CouponCode::factory(6)->inactive()->create();
 
-        Category::factory(10)->create();
-
-
-        Service::factory(12)->package()->create();
-        Service::factory(12)->service()->create();
-
-        Feedback::factory(80)->create();
-        Feedback::factory(10)->withFeedback()->create();
-
-        Favoutire::factory(200)->create();
+        $this->call(CategorySeeder::class);
+        $this->call(ServicesSeeder::class);
+        $this->call(PackagesSeeder::class);
     }
 }
