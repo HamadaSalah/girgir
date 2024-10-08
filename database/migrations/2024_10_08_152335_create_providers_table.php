@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Service;
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('feedback', function (Blueprint $table) {
+        Schema::create('providers', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Service::class)->constrained()->cascadeOnDelete();
-            $table->longText('feedback')->nullable();
-            $table->integer('rating');
+            $table->string('name');
+            $table->string('tag')->nullable();
+            $table->text('description')->nullable();
+            $table->string('email')->nullable();
+            $table->string('password')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('feedback');
+        Schema::dropIfExists('providers');
     }
 };

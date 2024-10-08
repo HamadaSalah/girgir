@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Service;
-use App\Models\User;
+use App\Models\Manager;
+use App\Models\Order;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('favoutires', function (Blueprint $table) {
+        Schema::create('manager_order', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Service::class)->constrained()->cascadeOnDelete();
-
-            $table->unique(['user_id', 'service_id']);
+            $table->foreignId('order_id')->constrained('orders')->cascadeOnDelete();
+            $table->foreignId('mamanger_id')->constrained('managers')->cascadeOnDelete();
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('favoutires');
+        Schema::dropIfExists('manager_order');
     }
 };
