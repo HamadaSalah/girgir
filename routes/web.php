@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ServiceProviderController;
 use App\Models\Category;
+use App\Models\File;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,5 +38,7 @@ Route::get('search', SearchController::class)->name('search');
 
 Route::get('test-view',function()
 {
-    return view('auth.login');
+    $package = \App\Models\Package::find(1)->withCount('orders')->first();
+
+    dd($package);
 });

@@ -17,7 +17,7 @@ class CouponCodeResource extends Resource
 {
     protected static ?string $model = CouponCode::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-ticket';
+    protected static ?string $navigationIcon = 'heroicon-o-percent-badge';
 
     public static function form(Form $form): Form
     {
@@ -86,7 +86,7 @@ class CouponCodeResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->color(fn($record) => $record->expires_at->isPast() ? 'danger' : 'success')
-                    ->badge(fn($record) => $record->expires_at->isPast() ? true : false),
+                    ->badge(fn($record) => $record->expires_at && $record->expires_at->isPast()),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

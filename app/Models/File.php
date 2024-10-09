@@ -52,4 +52,16 @@ class File extends Model
     {
         return $this->morphTo();
     }
+
+
+        /*
+     |--------------------------------------------------------------------------
+     | File URL Mutator
+     |--------------------------------------------------------------------------
+    */
+    public function getUrlAttribute()
+    {
+        return asset($this->path);
+    }
+
 }

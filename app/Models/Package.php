@@ -27,6 +27,7 @@ class Package extends Model
     {
         return $this->belongsToMany(Service::class);
     }
+
     public function provider()
     {
         return $this->belongsTo(Provider::class);
@@ -35,6 +36,11 @@ class Package extends Model
     public function orders(): MorphMany
     {
         return $this->morphMany(Order::class, 'orderable');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
 
