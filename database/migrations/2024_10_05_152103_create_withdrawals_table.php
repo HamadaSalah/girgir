@@ -15,6 +15,12 @@ return new class extends Migration
         Schema::create('withdrawals', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->string('name');
+            $table->string('IBAN');
+            $table->string('bank_name');
+            $table->string('swift_code');
+            $table->string('address');
+            $table->string('currency');
             $table->float('amount');
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->text('note')->nullable();
