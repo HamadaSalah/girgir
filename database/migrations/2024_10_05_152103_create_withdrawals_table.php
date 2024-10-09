@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('currency');
             $table->float('amount');
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->text('user_note')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();
         });
