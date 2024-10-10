@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('tag')->nullable();
+            $table->enum('type',['individual','company'])->default('individual');
             $table->text('description')->nullable();
+            $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->string('password')->nullable();
             $table->timestamps();

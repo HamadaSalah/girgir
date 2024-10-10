@@ -22,11 +22,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $website_info = WebsiteInfo::first();
+        // $website_info = WebsiteInfo::first();
 
-        $categories = Category::take(5)->get();
+        // $categories = Category::take(5)->get();
 
-        View::share('website_info', $website_info);
-        View::share('categories', $categories);
+        // View::share('website_info', $website_info);
+        // View::share('categories', $categories);
     }
 }
