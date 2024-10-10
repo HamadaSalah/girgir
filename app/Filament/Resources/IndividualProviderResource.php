@@ -4,15 +4,14 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\IndividualProviderResource\Pages;
 use App\Filament\Resources\IndividualProviderResource\RelationManagers;
-use App\Models\IndividualProvider;
 use App\Models\Provider;
-use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class IndividualProviderResource extends Resource
@@ -25,11 +24,54 @@ class IndividualProviderResource extends Resource
     protected static ?string $navigationGroup = "Users";
     protected static ?string $navigationLabel = "Individual Providers";
 
+    public static function canCreate(): bool
+    {
+        return true;
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return false;
+    }
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Card::make()->schema([
+
+                    Forms\Components\Section::make('Business Information')->schema([
+
+                        Forms\Components\TextInput::make('name')
+                            ->label('Name')
+                            ->required()
+                            ->maxLength(255),
+
+                        Forms\Components\TextInput::make('tag')
+                            ->label('Business Name')
+                            ->required()
+                            ->maxLength(255),
+
+                    ])->columns(2),
+
+                    Forms\Components\Section::make('Contact Information')->schema([
+
+                        Forms\Components\TextInput::make('phone')
+                            ->label('Phone Number')
+                            ->tel()
+                            ->unique('providers', 'phone')
+                            ->required()
+                            ->maxLength(255),
+
+                        Forms\Components\TextInput::make('email')
+                            ->label('Email Address')
+                            ->email()
+                            ->unique('providers', 'email')
+                            ->required()
+                            ->maxLength(255),
+
+                    ])->columns(2),
+
+                ])->columnSpan('full'),
             ]);
     }
 
@@ -41,13 +83,9 @@ class IndividualProviderResource extends Resource
             Tables\Columns\ImageColumn::make('business_picture')
             ->label('')
             ->circular(),
-
-            Tables\Columns\ToggleColumn::make('active')
-                ->label('')
-                ->alignCenter(),
             Tables\Columns\TextColumn::make('name')
             ->searchable(),
-            Tables\Columns\TextColumn::make('business_name')
+            Tables\Columns\TextColumn::make('tag')
             ->searchable(),
             Tables\Columns\TextColumn::make('phone')
                 ->searchable(),
