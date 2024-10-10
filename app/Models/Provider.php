@@ -9,13 +9,7 @@ class Provider extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'tag',
-        'description',
-        'email',
-        'password',
-    ];
+    protected $guarded = [];
 
 
     public function services()
@@ -26,6 +20,12 @@ class Provider extends Model
     public function orders()
     {
         return $this->hasMany(Order::class );
+    }
+
+    //Password Mutator for Hashing Password
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
     }
 
 }

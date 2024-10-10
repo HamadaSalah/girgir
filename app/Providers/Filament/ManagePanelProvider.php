@@ -2,6 +2,9 @@
 
 namespace App\Providers\Filament;
 
+
+use Filament\Facades\Filament;
+use Filament\Navigation\NavigationItem;
 use App\Filament\Widgets\OrdersWidget;
 use App\Filament\Widgets\UsersWidget;
 use Filament\Http\Middleware\Authenticate;
@@ -64,5 +67,17 @@ class ManagePanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ]);
+    }
+
+    public function boot()
+    {
+        Filament::serving(function () {
+            Filament::registerNavigationItems([
+                NavigationItem::make('Visit Website')
+                    ->url(env('APP_URL'), shouldOpenInNewTab: true)
+                    ->icon('heroicon-o-globe-alt')
+                    ->sort(1),
+            ]);
+        });
     }
 }

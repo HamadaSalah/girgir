@@ -425,33 +425,6 @@
         </div>
       </div>
     </section>
-
-    <section class="robot">
-      <div class="container d-flex flex-column align-items-center">
-        <h2 class="text-black mt-7 mb-5">
-          Let AI help you find amazing ideas for your event !!
-        </h2>
-
-        <div class="d-flex">
-          <img
-            src="{{ asset('imgs') }}/robot.png"
-            alt="ai assistant"
-            class="robot__img position-relative"
-          />
-          <div>
-            <h4 class="text-primary">Let me help you.</h4>
-            <p class="text-black-50">
-              What is your event, and how many people will be attending?
-            </p>
-            <input
-              type="text"
-              class="form-control bg-white py-sm-0 px-sm-0 py-lg-4 px-lg-2 bg-opacity-50 w-165"
-              placeholder="I have 20 guests for a birthday party. I want a birthday cake, and I need a clown for the kids."
-            />
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <section class="search__results bg-main d-none">
