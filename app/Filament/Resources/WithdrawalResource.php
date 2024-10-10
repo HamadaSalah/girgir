@@ -27,6 +27,11 @@ class WithdrawalResource extends Resource
         return false;
     }
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::where('status', 'pending')->count();
+    }
+
     public static function canEdit(Model $record): bool
     {
         return $record->status === 'pending';
