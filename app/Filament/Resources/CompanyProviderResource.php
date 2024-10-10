@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CompanyProviderResource\Pages;
 use App\Filament\Resources\CompanyProviderResource\RelationManagers;
 use App\Models\CompanyProvider;
+use App\Models\Provider;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -16,7 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CompanyProviderResource extends Resource
 {
-    protected static ?string $model = User::class;
+    protected static ?string $model = Provider::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
     protected static ?string $navigationGroup = "Users";
@@ -33,7 +34,7 @@ class CompanyProviderResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->modifyQueryUsing(fn (Builder $query) => $query->where('type' , 'company_provider'))
+            ->modifyQueryUsing(fn (Builder $query) => $query->where('type' , 'company'))
             ->columns([
             Tables\Columns\ImageColumn::make('business_picture')
             ->label('')

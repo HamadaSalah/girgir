@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\IndividualProviderResource\Pages;
 use App\Filament\Resources\IndividualProviderResource\RelationManagers;
 use App\Models\IndividualProvider;
+use App\Models\Provider;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -16,7 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class IndividualProviderResource extends Resource
 {
-    protected static ?string $model = User::class;
+    protected static ?string $model = Provider::class;
 
 
 
@@ -35,7 +36,7 @@ class IndividualProviderResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->modifyQueryUsing(fn (Builder $query) => $query->where('type' , 'individual_provider'))
+            ->modifyQueryUsing(fn (Builder $query) => $query->where('type' , 'individual'))
             ->columns([
             Tables\Columns\ImageColumn::make('business_picture')
             ->label('')

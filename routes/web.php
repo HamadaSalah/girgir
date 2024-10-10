@@ -6,6 +6,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ServiceProviderController;
 use App\Models\Category;
 use App\Models\File;
+use App\Models\Withdrawal;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,7 +39,6 @@ Route::get('search', SearchController::class)->name('search');
 
 Route::get('test-view',function()
 {
-    $package = \App\Models\Package::find(1)->withCount('orders')->first();
-
-    dd($package);
+    $user = App\Models\User::first();
+    return view('emails.user-created', compact('user'));
 });
