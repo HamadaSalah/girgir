@@ -24,7 +24,16 @@ body {
 .hero__content {
   transform: translate(-50%, 50%);
 }
-
+.myiconn {
+  position: relative;
+  margin-top: 20px;
+  display: inline-block;
+  margin-right: 5px;
+  margin-left: 0;
+  height: 20px!important;
+  margin-top: -5px;
+  margin-bottom: 5px;
+}
 .dot {
   cursor: pointer;
   height: 17px;

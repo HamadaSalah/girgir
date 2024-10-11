@@ -95,10 +95,12 @@
       <div class="col-6 d-none d-lg-block">
         <ul class="list-group d-flex flex-row ms-5">
             {{--(LOOPING) Start categories --}}
-          <li class="list-group-item p-0 border-0">
-            <a href="#" class="btn px-2 py-3 text-black-50">weddings</a>
-          </li>
-          {{-- End categories --}}
+            @foreach($categories as $category)
+            <li class="list-group-item p-0 border-0">
+              <a href="#" class="btn px-2 py-3 text-black-50">{{ $category->name }}</a>
+            </li>
+            @endforeach
+            {{-- End categories --}}
         </ul>
       </div>
       <div class="col-lg-5 col-sm-12">
