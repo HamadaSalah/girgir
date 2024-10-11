@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\WithdrawalResource\Pages;
 use App\Filament\Resources\WithdrawalResource\RelationManagers;
+use App\Jobs\WithdrawalJob;
 use App\Models\Withdrawal;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -26,11 +27,15 @@ class WithdrawalResource extends Resource
         return false;
     }
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::where('status', 'pending')->count();
+    }
+
     public static function canEdit(Model $record): bool
     {
         return $record->status === 'pending';
     }
-
     public static function form(Form $form): Form
     {
         return $form
@@ -38,14 +43,14 @@ class WithdrawalResource extends Resource
                 Forms\Components\Section::make('Withdrawal Details')
                     ->schema([
                         Forms\Components\Select::make('user_id')
-                        ->label('User')
-                        ->options(
-                            \App\Models\User::all()->mapWithKeys(function ($user) {
-                                return [$user->id => $user->name];
-                            })
-                        )
-                        ->disabled()
-                        ->columnSpan(1),
+                            ->label('User')
+                            ->options(
+                                \App\Models\User::all()->mapWithKeys(function ($user) {
+                                    return [$user->id => $user->name];
+                                })
+                            )
+                            ->disabled()
+                            ->columnSpan(1),
 
                         Forms\Components\TextInput::make('amount')
                             ->label('Amount')
@@ -53,6 +58,36 @@ class WithdrawalResource extends Resource
                             ->numeric()
                             ->disabled()
                             ->columnSpan(1),
+
+                        Forms\Components\TextInput::make('IBAN')
+                            ->label('IBAN')
+                            ->disabled()
+                            ->columnSpan(1),
+
+                        Forms\Components\TextInput::make('bank_name')
+                            ->label('Bank Name')
+                            ->disabled()
+                            ->columnSpan(1),
+
+                        Forms\Components\TextInput::make('swift_code')
+                            ->label('SWIFT Code')
+                            ->disabled()
+                            ->columnSpan(1),
+
+                        Forms\Components\TextInput::make('currency')
+                            ->label('Currency')
+                            ->disabled()
+                            ->columnSpan(1),
+
+                        Forms\Components\Textarea::make('address')
+                            ->label('Address')
+                            ->disabled()
+                            ->columnSpan(2),
+
+                        Forms\Components\Textarea::make('user_note')
+                            ->label('User Notes')
+                            ->disabled()
+                            ->columnSpan(2),
                     ])
                     ->columns(2),
 
@@ -83,12 +118,24 @@ class WithdrawalResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
                     ->label('User')
-                    ->sortable(),
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('IBAN')
+                    ->label('IBAN')
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('user_note')
+                    ->label('User Notes')
+                    ->getStateUsing(fn($record) => $record->user_note ? $record->user_note : 'No Notes')
+                    ->badge(fn($record) => $record->user_note ? false : true)
+                    ->color(fn($record) => $record->user_note ? 'success' : 'danger')
+                    ->limit(20)
+                    ->searchable(),
 
                 Tables\Columns\TextColumn::make('amount')
                     ->label('Amount')
                     ->sortable()
-                    ->money(),
+                    ->getStateUsing(fn($record) =>$record->amount . ' ' . $record->currency),
 
                 Tables\Columns\BadgeColumn::make('status')
                     ->label('Status')
@@ -99,7 +146,7 @@ class WithdrawalResource extends Resource
                     }),
 
                 Tables\Columns\TextColumn::make('note')
-                    ->label('Notes')
+                    ->label('Admin Notes')
                     ->getStateUsing(fn($record) => $record->note ? $record->note : 'No Notes')
                     ->badge(fn($record) => $record->note ? false : true)
                     ->color(fn($record) => $record->note ? 'success' : 'danger')
@@ -119,7 +166,10 @@ class WithdrawalResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                ->after(function (Tables\Actions\EditAction $action, $record) {
+                    WithdrawalJob::dispatch($record);
+                }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -127,7 +177,6 @@ class WithdrawalResource extends Resource
                 ]),
             ]);
     }
-
     public static function getRelations(): array
     {
         return [

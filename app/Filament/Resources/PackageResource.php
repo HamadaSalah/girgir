@@ -45,9 +45,8 @@ class PackageResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\BadgeColumn::make('orders_count')
+                Tables\Columns\BadgeColumn::make('order_count')
                     ->label('Orders')
-                    ->counts('orders')
                     ->color(fn($record) => $record->orders_count > 0 ? 'success' : 'danger')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('description')

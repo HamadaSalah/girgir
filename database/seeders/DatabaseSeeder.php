@@ -49,15 +49,13 @@ class DatabaseSeeder extends Seeder
             'active' => true,
             'coins' => 0,
         ]);
+        
         User::factory(50)->create();
-
-
-        User::factory(3)->individualProvider()->create();
-        User::factory(3)->companyProvider()->create();
-
 
         $this->call(CategorySeeder::class);
         $this->call(ServicesSeeder::class);
         $this->call(PackagesSeeder::class);
+
+        $this->call(WithdrawalSeeder::class);
     }
 }

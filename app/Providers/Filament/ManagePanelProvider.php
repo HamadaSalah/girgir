@@ -2,6 +2,11 @@
 
 namespace App\Providers\Filament;
 
+
+use Filament\Facades\Filament;
+use Filament\Navigation\NavigationItem;
+use App\Filament\Widgets\OrdersWidget;
+use App\Filament\Widgets\UsersWidget;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -45,8 +50,8 @@ class ManagePanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                UsersWidget::class,
+                OrdersWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -62,5 +67,17 @@ class ManagePanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ]);
+    }
+
+    public function boot()
+    {
+        Filament::serving(function () {
+            Filament::registerNavigationItems([
+                NavigationItem::make('Visit Website')
+                    ->url(env('APP_URL'), shouldOpenInNewTab: true)
+                    ->icon('heroicon-o-globe-alt')
+                    ->sort(1),
+            ]);
+        });
     }
 }

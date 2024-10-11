@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('tag')->nullable();
+            $table->enum('type',allowed: ['individual','company'])->default('individual');
             $table->text('description')->nullable();
-            $table->string('email')->nullable();
+            $table->string('phone')->nullable()->unique();
+            $table->string('email')->nullable()->unique();
             $table->string('password')->nullable();
+            $table->float('balance')->default(0);
             $table->timestamps();
         });
     }

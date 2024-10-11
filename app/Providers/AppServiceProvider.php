@@ -24,9 +24,9 @@ class AppServiceProvider extends ServiceProvider
     {
         $website_info = WebsiteInfo::first();
 
-        $categories = Category::take(5)->get();
+        $global_categories = Category::take(5)->get();
 
         View::share('website_info', $website_info);
-        View::share('categories', $categories);
+        View::share('global_categories', $global_categories);
     }
 }

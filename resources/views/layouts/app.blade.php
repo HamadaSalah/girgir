@@ -88,8 +88,8 @@
     </div>
     <div class="row align-items-center position-relative">
         {{-- Auth User Coins --}}
-      <div class="coinuser">          
-        <span><img src="./imgs/openmoji_coin.png" alt=""> 1024Coin</span>
+      <div class="coinuser">
+        <span><img src="./imgs/openmoji_coin.png" alt=""> {{ auth()->user()->coins }} Coin</span>
       </div>
       {{--End auth user coins --}}
       <div class="col-6 d-none d-lg-block">
@@ -538,9 +538,24 @@
       <div>
         <img src="imgs/userimg1.png" alt="user photo" />
       </div>
-      <p class="user__name">Roba Ahmed</p>
-      <p class="user__register_date text-black-50">Registered on May 20</p>
-      <button
+      <p class="user__name">{{ auth()->user()->name }}</p>
+      <p class="user__register_date text-black-50">Registered on {{ auth()->user()->created_at->format('d M') }}</p>
+      @if(auth()->user()->type == 'admin')
+      <a href="{{route('filament.manage.pages.dashboard')}}" target="_blank"
+          class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
+        >
+          <div class="d-flex align-items-center">
+            <img
+              src="imgs/userfill.svg"
+              alt="icon"
+              class="p-2 bg-gray rounded-5 me-2"
+            />
+            <span>Manage Website</span>
+          </div>
+          <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
+      </a>
+      @endif
+      <a href="amr"
         class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
       >
         <div class="d-flex align-items-center">
@@ -552,7 +567,7 @@
           <span>Edit Settings information</span>
         </div>
         <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
-      </button>
+    </a>
       <button
         class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
       >
@@ -589,19 +604,6 @@
             class="p-2 bg-gray rounded-5 me-2"
           />
           <span>Support</span>
-        </div>
-        <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
-      </button>
-      <button
-        class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
-      >
-        <div class="d-flex align-items-center">
-          <img
-            src="imgs/languagefill.svg"
-            alt="icon"
-            class="p-2 bg-gray rounded-5 me-2"
-          />
-          <span>Language</span>
         </div>
         <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
       </button>
