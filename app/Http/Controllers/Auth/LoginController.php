@@ -15,12 +15,18 @@ class LoginController extends Controller
 
     public function authenticate(LoginRequest $request)
     {
-        if(auth()->attempt($request->only('email','password'))){
-            return redirect()->route('home');
+        $guard = $request->type;
+
+        if (auth()->guard($guard)->attempt($request->only('email', 'password'), $request->filled('remember'))) {
+            if ($guard === 'user') {
+                return redirect()->route('home');
+            } elseif ($guard === 'provider') {
+                return redirect()->route('provider-panel.home');
+            }
         }
 
-        return redirect()->back()->withErrors([
-            'email' => 'Invalid credentials'
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
         ]);
     }
 }
