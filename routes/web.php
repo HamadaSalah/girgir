@@ -50,6 +50,6 @@ Route::get('test-view',function()
     return view('emails.user-created', compact('user'));
 });
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
