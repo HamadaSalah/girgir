@@ -19,6 +19,8 @@ class PackagesSeeder extends Seeder
 
         Provider::create([
             'name'=>'Hamada Shops',
+            'email'=>'hamada@shops.com',
+            'password'=>'Password',
         ]);
 
         for($i=1; $i<=25; $i++){

@@ -54,7 +54,7 @@
             <span>Contact Us</span>
           </a>
           @guest
-            <a href="#" class="fm-cairo btn btn-primary py-1 px-3 mx-3"
+            <a href="{{ route('users.login') }}" class="fm-cairo btn btn-primary py-1 px-3 mx-3"
             ><span><img src="{{ asset('imgs') }}/loginico.svg" alt="login icon" /></span>
             Login</a
             >
@@ -88,9 +88,11 @@
     </div>
     <div class="row align-items-center position-relative">
         {{-- Auth User Coins --}}
-      <div class="coinuser">
-        <span><img src="./imgs/openmoji_coin.png" alt=""> {{ auth()->user()->coins }} Coin</span>
-      </div>
+        @auth
+            <div class="coinuser">
+                <span><img src="./imgs/openmoji_coin.png" alt=""> {{ auth()->user()->coins }} Coin</span>
+            </div>
+        @endauth
       {{--End auth user coins --}}
       <div class="col-6 d-none d-lg-block">
         <ul class="list-group d-flex flex-row ms-5">
@@ -646,7 +648,7 @@
         </div>
         <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
       </button>
-      <button
+      <a href="{{ route('logout') }}"
         class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
       >
         <div class="d-flex align-items-center">
@@ -658,7 +660,7 @@
           <span>Sign out</span>
         </div>
         <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
-      </button>
+    </a>
     </div>
   </div>
 @endauth
