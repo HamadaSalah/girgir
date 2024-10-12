@@ -18,23 +18,20 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function authenticate(LoginRequest $request)
     {
-        $this->middleware('guest')->except('logout');
-        $this->middleware('auth')->only('logout');
+        $guard = $request->type;
+
+        if (auth()->guard($guard)->attempt($request->only('email', 'password'), $request->filled('remember'))) {
+            if ($guard === 'user') {
+                return redirect()->route('home');
+            } elseif ($guard === 'provider') {
+                return redirect()->route('provider-panel.home');
+            }
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
     }
 }

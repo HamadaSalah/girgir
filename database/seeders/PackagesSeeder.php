@@ -19,7 +19,9 @@ class PackagesSeeder extends Seeder
 
         Provider::create([
             'name'=>'Hamada Shops',
-            'address' => '35 amman, Jordan'
+            'address' => '35 amman, Jordan',
+            'email'=>'hamada@shops.com',
+            'password'=>'Password',
         ]);
 
         File::create([

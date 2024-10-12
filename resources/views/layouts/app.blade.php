@@ -54,7 +54,7 @@
             <span>Contact Us</span>
           </a>
           @guest
-            <a href="#" class="fm-cairo btn btn-primary py-1 px-3 mx-3"
+            <a href="{{ route('users.login') }}" class="fm-cairo btn btn-primary py-1 px-3 mx-3"
             ><span><img src="{{ asset('imgs') }}/loginico.svg" alt="login icon" /></span>
             Login</a
             >
@@ -646,7 +646,7 @@
         </div>
         <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
       </button>
-      <button
+      <a href="{{ route('logout') }}"
         class="d-flex justify-content-between align-items-center btn p-2 bg-white shadow rounded-5 mt-3 w-100"
       >
         <div class="d-flex align-items-center">
@@ -658,7 +658,7 @@
           <span>Sign out</span>
         </div>
         <span class="me-3 h3 fw-bolder mb-0">&rarr;</span>
-      </button>
+    </a>
     </div>
   </div>
 @endauth
