@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ServiceProvideInfo extends Model
 {
@@ -11,7 +12,7 @@ class ServiceProvideInfo extends Model
 
     protected $guarded = [];
 
-    public function serviceProvider()
+    public function serviceProvider(): BelongsTo
     {
         return $this->belongsTo(ServiceProvider::class);
     }

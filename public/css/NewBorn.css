@@ -279,8 +279,7 @@ footer {
 
 .newBorn-container{
   background-color:#F6F6F6 !important;
-  padding:30px;
-}
+ }
 
 .newBorn-container .divide{
     display:flex;
@@ -341,7 +340,7 @@ aside ul li:hover{
 }
 .myCards .myCard{
     background-color:white;
-    width:40%;
+    width:49%;
     min-width: 400px;
     min-height:fit-content;
     padding: 30px;
@@ -360,9 +359,10 @@ aside ul li:hover{
 }
 
 .myCards .myCard .image img{
-    width:100%;
-    height:fit-content;
-    border-radius:8px;
+  width: 100%;
+     border-radius: 8px;
+    height: 100%;
+    object-fit: cover;
 }
 .myCards .myCard .info{
     width:48%;
@@ -393,7 +393,7 @@ right: 10px;
     font-family: Cairo;
     font-size: 14px;
     font-weight: 500;
-    line-height: 20px;
+    line-height: 0;
     letter-spacing: -0.5px;
 }
 .myCards .myCard .info span{
@@ -444,11 +444,6 @@ text-align: center;
 
 
 }
-@media only screen and (max-width: 1300px) {
-.myCard{
-  width: 100% !important;
-}
-  }
 
 @media only screen and (max-width: 600px) {
 aside{

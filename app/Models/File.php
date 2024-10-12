@@ -48,6 +48,9 @@ class File extends Model
      | Relations methods
      |--------------------------------------------------------------------------
     */
+    /**
+     * @return MorphTo
+     */
     public function fileable(): MorphTo
     {
         return $this->morphTo();
@@ -59,6 +62,9 @@ class File extends Model
      | File URL Mutator
      |--------------------------------------------------------------------------
     */
+    /**
+     * @return string
+     */
     public function getUrlAttribute()
     {
         return asset($this->path);

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use Illuminate\Support\Str;
 
 if (!function_exists('detectModelPath')) {
@@ -35,6 +36,13 @@ if (!function_exists('getModelKey')) {
         $shortName = class_basename($className);
 
         return strtolower(Str::snake($shortName));
+    }
+}
+
+if (!function_exists('categories')) {
+    function categories()
+    {
+       return Category::take(5)->get();
     }
 }
 

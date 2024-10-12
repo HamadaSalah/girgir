@@ -19,9 +19,19 @@ class PackagesSeeder extends Seeder
 
         Provider::create([
             'name'=>'Hamada Shops',
+            'address' => '35 amman, Jordan'
         ]);
 
+        File::create([
+            'name'=>'file',
+            'path'=>'provider1.png',
+            'fileable_type'=>'App\Models\Provider',
+            'fileable_id'=> 1,
+        ]);
+
+
         for($i=1; $i<=25; $i++){
+            
             Package::create([
                 'name'=>'Pink Theme Wedding',
                 'description'=>'100 Guests, DJ Muisc, Drinks, Decor 100 Guests 100 Guests, DJ Muisc, Drinks, Decor',
@@ -31,12 +41,12 @@ class PackagesSeeder extends Seeder
                 'order_count' => rand(1,200)
             ]);
 
-        File::create([
-            'name'=>'file',
-            'path'=>'file.png',
-            'fileable_type'=>'App\Models\Package',
-            'fileable_id'=> $i,
-        ]);
+            File::create([
+                'name'=>'file',
+                'path'=>'package'. $i%4 .'.png',
+                'fileable_type'=>'App\Models\Package',
+                'fileable_id'=> $i,
+            ]);
 
         }
     }

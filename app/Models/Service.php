@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Service extends Model
@@ -30,4 +32,13 @@ class Service extends Model
         return $this->morphMany(File::class, 'orderable');
     }
 
+    public function packages() :BelongsToMany
+    {
+        return $this->belongsToMany(Package::class);
+    }
+    public function firstPackage()
+    {
+        return $this->belongsToMany(Package::class)->limit(1)->first();
+    }
+    
 }

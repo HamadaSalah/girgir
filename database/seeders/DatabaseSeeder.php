@@ -53,8 +53,8 @@ class DatabaseSeeder extends Seeder
         User::factory(50)->create();
 
         $this->call(CategorySeeder::class);
-        $this->call(ServicesSeeder::class);
         $this->call(PackagesSeeder::class);
+        $this->call(ServicesSeeder::class);
 
         $this->call(WithdrawalSeeder::class);
     }

@@ -183,16 +183,18 @@ body {
   display: flex;
   justify-content: space-between;
   max-width: 586px;
-  height: 220px;
+  min-height: 220px;
   border-radius: 10px;
   margin: 20px 0;
   /* overflow: hidden; */
   position: relative;
+  box-shadow: 0 0 5px #ccc;
+    padding: 10px;
 }
 
 .package-card img {
   width: 264px;
-  height: 183.1px;
+  height: 95%;
   border-radius: 8px;
   object-fit: cover;
   margin: auto;

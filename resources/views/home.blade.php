@@ -355,7 +355,7 @@
                                     <a
                                       href="#"
                                       class="btn text-black p-1 text-decoration-underline fs-10 fw-medium fm-cairo"
-                                      >{{ strlen($package->provider->name) > 15 ? substr($package->provider->name, 0, 15) . '...' : $package->provider->name }}</a
+                                      >{{ strlen($package->provider->name) > 10 ? substr($package->provider->name, 0, 8) . '...' : $package->provider->name }}</a
                                     >
                                   </div>
                                   <div class="d-flex align-items-center">

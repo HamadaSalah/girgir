@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ env('APP_NAME') }} | @yield('title')</title>
-    @stack('css')
     <link rel="stylesheet" href="{{ asset('css/nav.css') }}" />
+    @stack('css')
   </head>
   <body>
     <div class="container-fluid border-bottom">
@@ -23,24 +23,24 @@
             class="collapse navbar-collapse text-center text-lg-start"
             id="navbarNav"
           >
-            <a href="#" class="navbar-brand ps-5">
+            <a href="{{ Route('home') }}" class="navbar-brand ps-5">
               <img src="{{ asset('imgs') }}/logo.svg" alt="brand logo"
             /></a>
             <ul class="navbar-nav align-items-center">
               <li class="nav-item active px-4 text-nowrap">
-                <a class="nav-link home__main p-0" href="#home">Home</a>
+                <a class="nav-link home__main p-0" href="{{ Route('home') }}">Home</a>
               </li>
               <li class="nav-item px-4 text-nowrap">
-                <a class="nav-link p-0" href="#packages">Packages</a>
+                <a class="nav-link p-0" href="{{ Route('search') }}">Packages</a>
               </li>
               <li class="nav-item px-4 text-nowrap">
-                <a class="nav-link p-0" href="#bestshops">Best shops</a>
+                <a class="nav-link p-0" href="{{ Route('providers') }}">Best shops</a>
               </li>
-              <li class="nav-item px-4 text-nowrap">
+              {{-- <li class="nav-item px-4 text-nowrap">
                 <a class="nav-link p-0" href="#vip">Vip</a>
-              </li>
+              </li> --}}
               <li class="nav-item px-4 text-nowrap">
-                <a class="nav-link p-0" href="#providers">Providers</a>
+                <a class="nav-link p-0" href="{{ Route('providers') }}">Providers</a>
               </li>
             </ul>
           </div>
@@ -89,15 +89,15 @@
     <div class="row align-items-center position-relative">
         {{-- Auth User Coins --}}
       <div class="coinuser">
-        <span><img src="./imgs/openmoji_coin.png" alt=""> {{ auth()->user()->coins }} Coin</span>
+        <span><img src="{{ asset('imgs/openmoji_coin.png') }}" alt=""> {{ auth()->user()?->coins }} Coin</span>
       </div>
       {{--End auth user coins --}}
       <div class="col-6 d-none d-lg-block">
         <ul class="list-group d-flex flex-row ms-5">
             {{--(LOOPING) Start categories --}}
-            @foreach($categories as $category)
+            @foreach(categories() as $category)
             <li class="list-group-item p-0 border-0">
-              <a href="#" class="btn px-2 py-3 text-black-50">{{ $category->name }}</a>
+              <a href="{{ Route('category', $category->id) }}" class="btn px-2 py-3 text-black-50">{{ $category->name }}</a>
             </li>
             @endforeach
             {{-- End categories --}}
@@ -108,10 +108,10 @@
           <div class="input-group border ms-2 rounded rounded-5">
             <input type="text" class="form-control border-end-0 rounded-start-5 p-2 form__nav--input" placeholder="What is the event?">
             <button class="btn filter p-2">
-              <img src="imgs/uil_filter.svg" alt="filter icon">
+              <img src="{{ asset('imgs/uil_filter.svg') }}" alt="filter icon">
             </button>
             <button class="btn search p-2">
-              <img src="imgs/searchico.svg" alt="search icon">
+              <img src="{{ asset('imgs/searchico.svg') }}" alt="search icon">
             </button>
           </div>
         </form>
@@ -122,7 +122,7 @@
       <div class="footer-container">
         <div class="footer-logo">
           <h2>
-            Gir <img style="width: 30%" src="./imgs/Vectorgir.png" alt="" />
+            Gir <img style="width: 30%" src="{{ asset('imgs/Vectorgir.png') }}" alt="" />
             <br />
             Events
           </h2>
@@ -172,7 +172,7 @@
         {{-- Start of Social Media of website --}}
         <div class="footer-social">
           <a href="#"
-            ><img src="./imgs/Group 1000004623.png" alt="Facebook"
+            ><img src="{{ asset('imgs/Group 1000004623.png') }}" alt="Facebook"
           /></a>
         </div>
         {{-- End of Social Media of website --}}
@@ -180,12 +180,12 @@
           <h4>Get the app</h4>
           <a href="#"
             ><img
-              src="./imgs/app-store.24ce31e7a13056d542d1.png"
+              src="{{ asset('imgs/app-store.24ce31e7a13056d542d1.png') }}"
               alt="App Store"
           /></a>
           <a href="#"
             ><img
-              src="./imgs/googleApp.8f241223f55c067c2fb6.png"
+              src="{{ asset('imgs/googleApp.8f241223f55c067c2fb6.png') }}"
               alt="Google Play"
           /></a>
         </div>

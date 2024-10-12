@@ -24,16 +24,7 @@ body {
 .hero__content {
   transform: translate(-50%, 50%);
 }
-.myiconn {
-  position: relative;
-  margin-top: 20px;
-  display: inline-block;
-  margin-right: 5px;
-  margin-left: 0;
-  height: 20px!important;
-  margin-top: -5px;
-  margin-bottom: 5px;
-}
+
 .dot {
   cursor: pointer;
   height: 17px;
@@ -42,7 +33,6 @@ body {
   border-radius: 50%;
   box-shadow: 0px 4px 10.6px 6px rgba(0, 0, 0, 0.6392156863);
 }
-
 .dot.active {
   background-color: #931158;
 }
@@ -279,7 +269,7 @@ body {
 }
 
 .add__tofav {
-  left: 38%;
+  left: 25%;
 }
 
 .mr-neg-3 {
@@ -1360,6 +1350,15 @@ footer {
   color: #ffffff;
   background-color: #931158;
 }
+
+.ProviderClass {
+    border-radius: 15px;
+    margin: 30px;
+    padding: 20px;
+    box-shadow: 0 0 5px #ccc;
+}
+
+
 @media only screen and (max-width: 62em) {
   .k-order-details .steps-section {
     margin-left: auto;

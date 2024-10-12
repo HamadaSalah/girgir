@@ -6,6 +6,7 @@ use App\Models\File;
 use App\Models\Service;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ServicesSeeder extends Seeder
 {
@@ -22,9 +23,14 @@ class ServicesSeeder extends Seeder
                 'cost' => '50.5',
             ]);
 
+            DB::table('package_service')->insert([
+                'service_id' => $i,
+                'package_id' => $i,
+            ]);
+
             File::create([
                 'name'=>'file',
-                'path'=>'file.png',
+                'path'=>'service'. $i%4 .'.png',
                 'fileable_type'=>'App\Models\Service',
                 'fileable_id'=> $i,
             ]);

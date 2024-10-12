@@ -20,25 +20,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('', HomeController::class)->name('home');
+Route::get('', [HomeController::class, 'index'])->name('home');
 Route::get('category/{category:uuid}',[CategoryController::class,'show'])->name('category.show')->whereUuid('category');
+Route::get('search', [HomeController::class,'search'])->name('search');
+Route::get('category/{category}', [HomeController::class,'category'])->name('category');
 
-Route::group(['prefix' => 'p'], function(){
-    Route::group(['as' => 'provider.','prefix' => '{provider:uuid}', 'controller' => ServiceProviderController::class] , function()
-    {
-        Route::get('','index')->name('index');
-        Route::get('reviews','reviews')->name('reviews');
-        Route::get('packages','packages')->name('packages');
-        Route::get('services','services')->name('services');
-        Route::get('location','location')->name('location');
-        Route::get('about','about')->name('about');
-    });
-});
 
-Route::get('search', SearchController::class)->name('search');
+Route::get('providers', [HomeController::class,'providers'])->name('providers');
+Route::get('providers/{provider}', [HomeController::class,'showProvider'])->name('provider.show');
+Route::get('providers/{provider}/packages', [HomeController::class,'providerPackage'])->name('provider.packages');
+
+// Route::group(['prefix' => 'p'], function(){
+//     Route::group(['as' => 'provider.','prefix' => '{provider:uuid}', 'controller' => ServiceProviderController::class] , function()
+//     {
+//         Route::get('','index')->name('index');
+//         Route::get('reviews','reviews')->name('reviews');
+//         Route::get('packages','packages')->name('packages');
+//         Route::get('services','services')->name('services');
+//         Route::get('location','location')->name('location');
+//         Route::get('about','about')->name('about');
+//     });
+// });
+
+// Route::get('search', SearchController::class)->name('search');
 
 Route::get('test-view',function()
 {
     $user = App\Models\User::first();
     return view('emails.user-created', compact('user'));
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
