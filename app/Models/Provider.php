@@ -19,7 +19,12 @@ class Provider extends Authenticatable
 
     public function services(): BelongsToMany
     {
-        return $this->belongsToMany(Service::class);
+        return $this->hasMany(Service::class);
+    }
+
+    public function packages()
+    {
+        return $this->hasMany(Package::class);
     }
 
     public function orders(): HasMany

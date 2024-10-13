@@ -24,5 +24,12 @@ class Order extends Model
         'service_ids',
     ];
 
+
+    protected $casts = [
+        'service_ids' => 'array',
+        'date_from' => 'datetime',
+        'date_to' => 'datetime',
+    ];
+
     
 }
