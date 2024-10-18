@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Provider;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('cost');
+            $table->foreignIdFor(Provider::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

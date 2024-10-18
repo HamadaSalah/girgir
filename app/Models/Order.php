@@ -40,4 +40,27 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
     
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'service_ids' => 'array',
+        'date_from' => 'datetime',
+        'date_to' => 'datetime',
+    ];
+
+    public function orderable()
+    {
+        return $this->morphTo();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function provider()
+    {
+        return $this->belongsTo(Provider::class);
+    }
 }

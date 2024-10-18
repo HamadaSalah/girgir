@@ -70,13 +70,7 @@ class User extends Authenticatable implements FilamentUser
     }
     public function getProfilePictureAttribute()
     {
-        if ($this->type == 'individual_provider' || $this->type == 'company_provider') {
-            return $this->serviceProvider && $this->serviceProvider->profile_picture
-                ? url($this->serviceProvider->profile_picture)
-                : 'https://ui-avatars.com/api/?name=' . urlencode($this->first_name . ' ' . $this->last_name) . '&color=7F9CF5&background=EBF4FF';
-        } else {
-            return 'https://ui-avatars.com/api/?name=' . urlencode($this->first_name . ' ' . $this->last_name) . '&color=7F9CF5&background=EBF4FF';
-        }
+        return 'https://ui-avatars.com/api/?name=' . urlencode($this->first_name . ' ' . $this->last_name) . '&color=7F9CF5&background=EBF4FF';
     }
 
     public function getBusinessPictureAttribute()
@@ -86,6 +80,10 @@ class User extends Authenticatable implements FilamentUser
             : 'https://ui-avatars.com/api/?name=' . urlencode($this->business_name) . '&color=7F9CF5&background=EBF4FF';
     }
 
+    public function getCapitalNameArrtibute()
+    {
+        return strtoupper($this->first_name . ' ' . $this->last_name);
+    }
 
     public function isProvider()
     {

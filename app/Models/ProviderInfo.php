@@ -9,7 +9,10 @@ class ProviderInfo extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+    protected $guarded = [];
 
-    ];
+    public function provider()
+    {
+        return $this->belongsTo(Provider::class);
+    }
 }

@@ -31,6 +31,14 @@ class Package extends Model
         return $this->belongsToMany(Service::class);
     }
 
+
+    public function getCoverAttribute()
+    {
+        $firstFile = $this->files->first();
+
+        return $firstFile ? asset($firstFile->path) : asset('imgs/package.png');
+    }
+
     public function provider()
     {
         return $this->belongsTo(Provider::class);
