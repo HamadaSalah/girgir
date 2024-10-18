@@ -45,7 +45,7 @@ class WithdrawalResource extends Resource
                         Forms\Components\Select::make('user_id')
                             ->label('User')
                             ->options(
-                                \App\Models\User::all()->mapWithKeys(function ($user) {
+                                \App\Models\Provider::all()->mapWithKeys(function ($user) {
                                     return [$user->id => $user->name];
                                 })
                             )

@@ -551,16 +551,8 @@ td,table{
   right: 10px;
   height: 15px;
   width: 15px;
+  background-color: red;
   border-radius: 50%;
-}
-.pending-status {
-  background-color: #FF0000;
-}
-.inprogress-status {
-  background-color: #00D02E;
-}
-.cancelled-status {
-  background-color: #E89900;
 }
 .card-footer-custom {
   background-color: #8a125a;
@@ -612,4 +604,82 @@ td,table{
   right: 0;
   top: 40px;
   background-color: #b7b7b7;
+}
+.card-custom .status-dot {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+}
+.pending-status {
+  background-color: #FF0000;
+}
+.inprogress-status {
+  background-color: #00D02E;
+}
+.cancelled-status {
+  background-color: #E89900;
+}
+.account-type-form {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  max-width: 500px;
+  font-family: Arial, sans-serif;
+  width: 50%
+}
+
+h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+h3 span {
+  color: #d22267;
+}
+
+.account-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.account-row img {
+  width: 24px;
+  height: 24px;
+}
+
+.account-row label {
+  flex: 1;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.account-row input {
+  border: none;
+  background-color: transparent;
+  color: #333;
+  font-size: 14px;
+  width: 150px;
+}
+
+.account-row a {
+  flex: 1;
+  color: #d22267;
+  text-decoration: none;
+}
+
+.account-row .edit-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+form a:hover, .edit-btn:hover {
+  color: #b21852;
 }
