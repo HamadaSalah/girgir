@@ -13,6 +13,6 @@ class Withdrawal extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Provider::class, 'user_id');
     }
 }

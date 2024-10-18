@@ -46,6 +46,29 @@ class Provider extends Authenticatable
 
 
 
+    public function info()
+    {
+        return $this->hasOne(ProviderInfo::class);
+    }
+
+
+    public function files()
+    {
+        return $this->morphMany(File::class, 'fileable');
+    }
+
+    public function withdrawals()
+    {
+        return $this->hasMany(Withdrawal::class);
+    }
+
+    public function getAvatarAttribute()
+    {
+        $firstFile = $this->files->first();
+
+        return $firstFile ? asset($firstFile->path) : 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=7F9CF5&background=EBF4FF';
+    }
+
     //Password Mutator for Hashing Password
     public function setPasswordAttribute($value): void
     {

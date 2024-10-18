@@ -138,24 +138,48 @@
                       @if($orders->isEmpty())
                         <p class="text-center p-4 mt-3" style="border-radius: 15px; background-color: #d1a3bc">No orders available for this month.</p>
                       @else
-                        @foreach($orders as $order)
-                          <div class="card mb-3">
-                            <div class="card-body">
-                              <h5 class="card-title">Order #{{ $order->id }}</h5>
-                              <p class="card-text">Site Commission: {{ $order->site_commission }}</p>
-                              <p class="card-text">
-                                Order Date: {{ $order->created_at->format('d M Y, H:i') }}
-                              </p>
-                              <p class="card-text">
-                                Execution Date: {{ $order->executed_at->format('d M Y, H:i') }}
-                              </p>
-                              <p class="card-text">Total Amount: {{ $order->total }}</p>
-                              <a href="{{ route('order.review', $order->id) }}" class="btn btn-primary">
-                                Review Order
-                              </a>
-                            </div>
+                      @foreach($orders as $order)
+                      <div class="card-body">
+                          <h6 class="card-subtitle mb-2 text-muted">Order #{{ $order->id }}</h6>
+                          <div class="d-flex flex-column flex-md-row justify-content-between">
+                              <div style="width:100%" class="mb-3">
+                                  <div class="d-flex justify-content-between mb-1 flex-wrap">
+                                      <div class="flex-fill mb-2">
+                                          <small style="font-size: 0.8rem;">Site Commission:</small>
+                                          <strong style="font-size: 0.9rem;">${{ $order->total * $website_info->withdraw_rate / 100 }}</strong>
+                                      </div>
+                                      <div class="flex-fill mb-2">
+                                          <small style="font-size: 0.8rem;">Order Date:</small>
+                                          <strong style="font-size: 0.9rem;">{{ $order->created_at->format('d/m/Y') }}</strong>
+                                      </div>
+                                      <div class="flex-fill mb-2">
+                                          <small style="font-size: 0.8rem;">Last Execution Date:</small>
+                                          <strong style="font-size: 0.9rem;">{{ $order->updated_at->format('d/m/Y') }}</strong>
+                                      </div>
+                                  </div>
+                  
+                                  <div class="d-flex justify-content-between mb-1 flex-wrap">
+                                      <div class="flex-fill mb-2">
+                                          <small style="font-size: 0.8rem;">Total Amount:</small>
+                                          <strong style="font-size: 0.9rem;">${{ number_format($order->total, 2) }}</strong>
+                                      </div>
+                                      <div class="flex-fill mb-2">
+                                          <small style="font-size: 0.8rem;">Order Time:</small>
+                                          <strong style="font-size: 0.9rem;">{{ $order->created_at->format('H:i') }}</strong>
+                                      </div>
+                                      <div class="flex-fill mb-2">
+                                          <small style="font-size: 0.8rem;">Last Execution Time:</small>
+                                          <strong style="font-size: 0.9rem;">{{ $order->updated_at->format('H:i') }}</strong>
+                                      </div>
+                                  </div>
+                              </div>
+                  
+                              <div class="d-flex justify-content-center align-items-center">
+                                  <a href="" class="btn btn-primary btn-sm mt-md-0" style="padding: 2px 10px;">Review</a>
+                              </div>
                           </div>
-                        @endforeach
+                      </div>
+                  @endforeach                  
                       @endif
                     </div>
                   </div>

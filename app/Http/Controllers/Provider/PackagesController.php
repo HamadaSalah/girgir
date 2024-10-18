@@ -46,6 +46,7 @@ class PackagesController extends Controller
             'description' => 'required|string',
             'cost' => 'required|numeric',
             'category_id' => 'required|exists:categories,id',
+            'services' => 'required',
             'files' => 'required|array',
             'files.*' => 'required|file|mimes:jpg,jpeg,png,pdf,docx,doc',
         ]);

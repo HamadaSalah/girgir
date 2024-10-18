@@ -15,3 +15,8 @@ const splideTrindsTwo = new Splide(".trinds__slider--two", {
   });
 
   splideTrindsTwo.mount();
+
+  function handleFilter() {
+    const selectElement = document.getElementById("filt");
+    selectElement.style.display = (selectElement.style.display === 'none' || selectElement.style.display === '') ? 'block' : 'none';
+  }

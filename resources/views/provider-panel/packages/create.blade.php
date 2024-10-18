@@ -19,24 +19,34 @@
                 
                 <form action="{{ route('provider-panel.packages.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    
 
                     <div class="d-flex" style="justify-content: space-evenly;" id="dflex">
                         <div id="pcard">
-                            <input type="file" class="form-control" id="image1" name="files[]" accept="image/*" required />
+                            <label for="fileInput2" class="custom-file-input">
+                              <img src="{{asset('imgs/plussign.png')}}" width="50px" alt="Add file">
+                            </label>
+                            <input type="file" id="fileInput2" style="display: none;"  name="files[]" accept="image/*" required >
                             @error('files.0')
-                                <div class="text-danger">{{ $message }}</div>
+                            <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div id="pcard">
-                            <input type="file" class="form-control" id="image2" name="files[]" accept="image/*" required />
-                            @error('files.1')
-                                <div class="text-danger">{{ $message }}</div>
+                            <label for="fileInput2" class="custom-file-input">
+                              <img src="{{asset('imgs/plussign.png')}}" width="50px" alt="Add file">
+                            </label>
+                            <input type="file" id="fileInput2" style="display: none;"  name="files[]" accept="image/*" required >
+                            @error('files.0')
+                            <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div id="pcard">
-                            <input type="file" class="form-control" id="image3" name="files[]" accept="image/*" required />
-                            @error('files.2')
-                                <div class="text-danger">{{ $message }}</div>
+                            <label for="fileInput2" class="custom-file-input">
+                              <img src="{{asset('imgs/plussign.png')}}" width="50px" alt="Add file">
+                            </label>
+                            <input type="file" id="fileInput2" style="display: none;"  name="files[]" accept="image/*" required >
+                            @error('files.0')
+                            <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                     </div> 
@@ -73,12 +83,20 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="serviceDescription" class="form-note-label" style="color: #83044a;">Service Description</label>
+                        <label for="serviceDescription" class="form-note-label" style="color: #83044a;">Package Description</label>
                         <textarea class="form-control" id="serviceDescription" name="description" rows="4" required>{{ old('description') }}</textarea>
                         @error('description')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
+
+                    <div class="mb-3">
+                        <label for="services" class="form-note-label" style="color: #83044a;">Service In this package</label>
+                        <textarea class="form-control" id="services" name="services" rows="2" placeholder="Example: DJ,Free Drinks" required>{{ old('services') }}</textarea>
+                        @error('services')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>                    
 
                     <div class="d-flex">
                         <button type="submit" class="btn btn-primary">Create Package</button>
