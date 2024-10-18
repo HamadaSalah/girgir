@@ -355,3 +355,20 @@ select?.addEventListener("change", function (e) {
 
 //////////////////////////////////////////
 /// // payment page
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Select all elements with the class 'yesornow'
+  const yesOrNoButtons = document.querySelectorAll('.yesornow');
+
+  yesOrNoButtons.forEach(function(button) {
+    // Add a click event listener to each button
+    button.addEventListener('click', function() {
+      // Set the background color of all buttons to white
+      yesOrNoButtons.forEach(btn => btn.style.backgroundColor = '#fff');
+      
+      // Set the background color of the clicked button to yellow
+      this.style.backgroundColor = '#931158';
+    });
+  });
+});

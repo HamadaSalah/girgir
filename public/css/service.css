@@ -97,6 +97,7 @@ body {
   left: 302px;
   display: flex;
   justify-content: space-between;
+  z-index: 99999;
 }
 .navservice .nav-link {
   width: 121px;
@@ -106,7 +107,7 @@ body {
   font-family: Cairo;
   font-size: 15px;
   font-weight: 600;
-  line-height: 20px;
+  line-height: 40px;
   letter-spacing: -0.5px;
 }
 .navservice .active {

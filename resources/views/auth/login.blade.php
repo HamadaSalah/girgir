@@ -16,7 +16,7 @@
 
         <div class="col-lg-4 mx-md-auto col-md-6 mx-sm-1 vh-100 mt-4 mb-6">
             <div class="mb-3">
-                <img src="{{ asset('imgs/logo.svg') }}" class="img-fluid" alt="brand logo" />
+                <a href="{{Route('home')}}"><img src="{{ asset('imgs/logo.svg') }}" class="img-fluid" alt="brand logo" /></a>
             </div>
             <!-- Update the form action to the correct route -->
             <form class="form p-2" method="POST" action="">

@@ -17,7 +17,7 @@
                 <img src="{{ asset('imgs') }}/mdi_heart-outline.svg" alt="add to fav"
                     class="p-2 bg-dark bg-opacity-75 rounded-5 position-absolute add__tofav mt-3" />
     
-                <img src="{{ asset('imgs') }}/most1.png" alt="wedding"
+                <img src="{{ asset($shop->files[0]?->path ?? '') }}" alt="wedding"
                     class="card-img-top img-fluid rounded-3" style="width: 50%;float: left;margin-right: 20px;"/>
     
                 <div class="card-body rounded-5 px-4 py-2 bg-white">
@@ -30,15 +30,15 @@
                     <p class="card-text text-black fs-14 ls-5 fm-cairo mb-2">
                         Details :
                         <span class="text-secondary text-black-50">
-                            {{ $shop->description }}
+                            {{ strlen($shop->description) > 100 ? substr($shop->description, 0, 100) . '...' : $shop->description }}
                         </span>
                     </p>
                     <p class="card-text text-black fs-14 ls-5 fm-cairo mb-2">
                         Provider Type :
                         <span class="text-secondary text-black-50"> Company </span>
                     </p>
-                    <div class="d-flex align-items-center justify-content-end gap-2">
-                        <a href="{{ Route('provider.show',  $shop->id) }}" class="btn btn-primary fm-cairo py-1 px-2 rounded-2">Discover now</a>
+                    <div class=" ">
+                        <a href="{{ Route('provider.show',  $shop->id) }}" class="btn btn-primary fm-cairo py-1 px-2 rounded-2" style="wid">Discover now</a>
                     </div>
                 </div>
 

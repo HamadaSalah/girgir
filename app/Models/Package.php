@@ -12,6 +12,9 @@ class Package extends Model
 
     protected $fillable = ['name', 'description', 'cost', 'category_id','provider_id', 'order_count'];
 
+    protected $casts = [
+        'cost' => 'integer'
+    ];
     /*
      |--------------------------------------------------------------------------
      | Relations methods
@@ -43,5 +46,9 @@ class Package extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function carts(): MorphMany
+    {
+        return $this->morphMany(Cart::class, 'cartable');
+    }
 
 }

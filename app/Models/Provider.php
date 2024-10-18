@@ -39,6 +39,9 @@ class Provider extends Authenticatable
         return $this->morphMany(File::class, 'fileable');
     }
 
+    public function info() {
+        return $this->hasOne(ProviderInfo::class);
+    }
 
 
     //Password Mutator for Hashing Password

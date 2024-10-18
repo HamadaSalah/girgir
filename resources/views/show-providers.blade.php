@@ -47,7 +47,7 @@ margin-top: 5px; ">5.0</span>
         <a class="nav-link m-2" href="#">Reviews</a>
         <a class="nav-link m-2" href="#">Services</a>
         <a class="nav-link m-2" href="#">Location</a>
-        <a class="nav-link m-2" href="./aboutProviders.html">About</a>
+        <a class="nav-link m-2" href="{{ Route('provider.about', $provider->id) }}">About</a>
         <a class="nav-link m-2" href="#">Pacckages</a>
     </div>
 </nav>
@@ -78,7 +78,7 @@ margin-top: 5px; ">5.0</span>
                 <p><strong>Provider Type:</strong> Company</p>
                 <p><strong>From:</strong> <span style="color: #931158">{{ $package->cost }}$</span></p>
                 <p>
-                    <strong>You Get:</strong><span style="color: #931158"> 1204 Coin</span>
+                    {{-- <strong>You Get:</strong><span style="color: #931158"> 1204 Coin</span> --}}
                 </p>
                 <div class="package-footer">
                     <span class="rating"><img style="width: 12.6px; height: 12.57px"
@@ -98,32 +98,6 @@ margin-top: 5px; ">5.0</span>
 
 <!-- slider -->
 <main class="main__content sliders ">
-    {{-- <div class="row Pacckages"> --}}
-    {{-- Service --}}
-    {{-- <img class="Pacckagesicons" src="{{asset('imgs/Group 1000004403.png') }}"
-    alt="" />
-    <img class="PacckagesQR" src="{{ asset('imgs/Frame 1321315269.png') }}" alt="" /> --}}
-    {{-- </div> --}}
-    {{-- <div class="col-12">
-        <div class="Group40660" style="
-          width: 638px;
-          height: 0.5px;
-          position: relative;
-          transform: rotate(180deg);
-          transform-origin: 0 0;
-        ">
-            <div class="Line441" style="
-            width: 65.23px;
-            height: 0px;
-            left: -130px;
-            top: 20px;
-            position: absolute;
-            transform: rotate(180deg);
-            transform-origin: 0 0;
-            border: 3px #931158 solid;
-          "></div>
-        </div>
-    </div> --}}
     <section class="most_requested mb-5 position-relative">
         
         <section class="splide trinds__slider--one container" aria-label="Splide Basic HTML Example">
@@ -133,44 +107,45 @@ margin-top: 5px; ">5.0</span>
     
             <div class="splide__track">
                 <ul class="splide__list gap-2">
-                    <li class="splide__slide">
-                        <div class="card mb-5 text-start shadow-sm position-relative border-0 p-0 rounded-5">
-                            <img src="{{ asset('imgs/mdi_heart-outline.svg') }}" alt="add to fav"
-                                class="p-2 bg-dark bg-opacity-75 rounded-5 position-absolute end-0 me-3 mt-3" />
+                    @foreach ($services as $service)
+                        <li class="splide__slide">
+                            <div class="card mb-5 text-start shadow-sm position-relative border-0 p-0 rounded-5">
+                                <img src="{{ asset('imgs/mdi_heart-outline.svg') }}" alt="add to fav"
+                                    class="p-2 bg-dark bg-opacity-75 rounded-5 position-absolute end-0 me-3 mt-3" />
 
-                            <img src="{{ asset('imgs/Rectangle 3463357.png') }}" alt="wedding"
-                                class="card-img-top" />
+                                <img src="{{ asset('imgs/Rectangle 3463357.png') }}" alt="wedding"
+                                    class="card-img-top" />
 
-                            <div class="card-body px-2 py-4">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <h3 class="card-title h6 fw-bold mb-0">
-                                        Pink Theme Wedding
-                                    </h3>
-                                    <span class="d-block"><img src="{{ asset('imgs/rating.svg') }}"
-                                            alt="rating" /></span>
-                                </div>
-                                <p class="card-text text-black-50 fs-12">
-                                    <span class="text-black text-opacity-25 fs-14">
-                                        <img style="margin-bottom: 5px;"
-                                            src="{{ asset('imgs/houseico.svg') }}" alt="icon" />
-                                        <strong>Shop:</strong> kareem evee <br>
-                                        <strong> Provider Type :</strong> Company <br>
-                                        You Get <img style="width: 16px;height: 16px; margin-bottom: 5px;"
-                                            src="{{ asset('imgs/openmoji_coin.png"') }} alt=""><span style="
-                                            color: #931158;"> 120 Coin </span>
-                                    </span>
+                                <div class="card-body px-2 py-4">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <h3 class="card-title h6 fw-bold mb-0">
+                                            {{ $service->name }}
+                                        </h3>
+                                        <span class="d-block"><img src="{{ asset('imgs/rating.svg') }}"
+                                                alt="rating" /></span>
+                                    </div>
+                                    <p class="card-text text-black-50 fs-12">
+                                        <span class="text-black text-opacity-25 fs-14">
+                                            <img style="margin-bottom: 5px;"
+                                                src="{{ asset('imgs/houseico.svg') }}" alt="icon" />
+                                            <strong> Provider Type :</strong> {{ $provider->type }} <br>
+                                            You Get <img style="width: 16px;height: 16px; margin-bottom: 5px;"
+                                                src="{{ asset('imgs/openmoji_coin.png') }}" alt=""><span style="
+                                                color: #931158;"> 120 Coin </span>
+                                        </span>
 
-                                </p>
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <a href="#" class="btn btn-primary fm-cairo py-1 px-2 rounded-2">Discover now</a>
-                                    <p class="fm-cairo mb-0">
-                                        <span class="text-primary fw-medium " style="font-family: Cairo;font-size: 19px;font-weight: 500;line-height: 20px;letter-spacing: -0.5px;
-                      ">100.2$</span>
                                     </p>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <a href="#" class="btn btn-primary fm-cairo py-1 px-2 rounded-2">Discover now</a>
+                                        <p class="fm-cairo mb-0">
+                                            <span class="text-primary fw-medium " style="font-family: Cairo;font-size: 19px;font-weight: 500;line-height: 20px;letter-spacing: -0.5px;
+                        ">100.2$</span>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>                        
+                    @endforeach
 
                 </ul>
             </div>
@@ -248,7 +223,7 @@ alt=""></buttton>
           "></div>
         </div>
     </div> --}}
-    <section class="most_requested mb-5 position-relative">
+    <section class="most_requested mb-5 position-relative" style="display: none">
         <section class="splide trinds__slider--two container" aria-label="Splide Basic HTML Example">
             <div class="Pacckages" style="display: block;width: 100%;">
                 <h3>BEST CHOISES</h3>

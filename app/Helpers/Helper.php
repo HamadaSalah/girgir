@@ -42,7 +42,7 @@ if (!function_exists('getModelKey')) {
 if (!function_exists('categories')) {
     function categories()
     {
-       return Category::take(5)->get();
+       return Category::take(6)->get();
     }
 }
 

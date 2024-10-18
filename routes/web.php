@@ -29,6 +29,14 @@ Route::get('category/{category}', [HomeController::class,'category'])->name('cat
 Route::get('providers', [HomeController::class,'providers'])->name('providers');
 Route::get('providers/{provider}', [HomeController::class,'showProvider'])->name('provider.show');
 Route::get('providers/{provider}/packages', [HomeController::class,'providerPackage'])->name('provider.packages');
+Route::get('providers/{provider}/about', [HomeController::class,'aboutProvider'])->name('provider.about');
+Route::get('packages/{package}', [HomeController::class,'showPackage'])->name('package');
+Route::post('addToCard', [HomeController::class,'addToCard'])->name('addToCard');
+Route::get('mycart', [HomeController::class,'myCart'])->name('myCart');
+Route::delete('deleteCart/{cart}', [HomeController::class,'deleteMyCart'])->name('deleteMyCart');
+Route::post('checkout', [HomeController::class,'checkout'])->name('checkout');
+Route::get('orders', [HomeController::class,'orders'])->name('orders');
+Route::get('orderDetails/{order}', [HomeController::class,'orderDetails'])->name('orderDetails');
 
 // Route::group(['prefix' => 'p'], function(){
 //     Route::group(['as' => 'provider.','prefix' => '{provider:uuid}', 'controller' => ServiceProviderController::class] , function()
@@ -53,3 +61,4 @@ Route::get('test-view',function()
 // Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');

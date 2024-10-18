@@ -49,10 +49,8 @@ class Category extends Model
         return $this->hasMany(Package::class);
     }
 
-    /**
-     * @return MorphMany
-     */
-    public function files(): MorphMany
+    
+    public function files()
     {
         return $this->morphMany(File::class, 'fileable')->first();
     }

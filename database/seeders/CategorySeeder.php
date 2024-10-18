@@ -42,12 +42,12 @@ class CategorySeeder extends Seeder
         ]);
 
 
-        for($i=1; $i<=4; $i++){
+        for($i=1; $i<=6; $i++){
             File::create([
                 'name'=>'file',
                 'path'=>'cat'. $i+1 .'.png',
                 'fileable_type'=>'App\Models\Category',
-                'fileable_id'=> 1,
+                'fileable_id'=> $i,
             ]);
         }
 

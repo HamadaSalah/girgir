@@ -44,9 +44,15 @@
                 with exclusive venues, vendors, and inspiration you won't find
                 anywhere else.
             </p>
-            <button class="btn btn-primary fw-light text-uppercase fs-6 py-1 px-3 start__planning">
+            {{-- <button class="btn btn-primary fw-light text-uppercase fs-6 py-1 px-3 start__planning">
                 start planning &rarr;
-            </button>
+            </button> --}}
+            <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary startplan" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    START PLANING &#8594;	
+  </button>
+  
+  
         </div>
     </section>
 
@@ -68,16 +74,15 @@
                 <div class="splide__track">
                     <ul class="splide__list gap-2">
                         {{-- (LOOPING) Most requested packages --}}
-
                       @foreach ($most_requested_packages as $package)
                       <li class="splide__slide">
                         <div
-                          class="card mb-5 text-start shadow-sm position-relative border-0 p-0 rounded-5"
+                          class="card mb-5 text-start shadow-sm position-relative border-0 p-0 rounded-3"
                         >
                           <img
                             src="{{ asset('') }}/imgs/mdi_heart-outline.svg"
                             alt="add to fav"
-                            class="p-2 bg-dark bg-opacity-75 rounded-5 position-absolute end-0 me-3 mt-3"
+                            class="p-2 bg-dark bg-opacity-75 rounded-2 position-absolute end-0 me-3 mt-3"
                           />
     
                            <img
@@ -86,12 +91,12 @@
                             class="card-img-top"
                           />
     
-                          <div class="card-body px-2 py-4">
+                          <div class="card-body px-2 py-1 pb-4 px-2">
                             <div
-                              class="d-flex align-items-center justify-content-between mb-2"
+                              class="d-flex align-items-center justify-content-between mb-1 "
                             >
                               <h3 class="card-title h6 fw-bold mb-0">
-                                {{ strlen($package->title) > 20 ? substr($package->title, 0, 20) . '...' : $package->title }}
+                                {{ strlen($package->name) > 20 ? substr($package->name, 0, 20) . '...' : $package->name }}
                               </h3>
                               <span
                                 class="d-flex align-items-center bg_rating p-1 rounded-5"
@@ -108,20 +113,20 @@
                               </span>
                             </div>
                             <div>
-                              <img src="{{ asset('') }}/imgs/houseico.svg" alt="icon" class="myiconn" />
-                              <span class="text-black text-opacity-25 fs-14"
-                                > Shop :
-                                {{ $package->provider->name }}</span
-                              >
-                              <br />
+                                <div class="shopnames">
+                                    <img src="{{ asset('') }}/imgs/houseico.svg" alt="icon" class="myiconn" />
+                                    <span class="text-black text-opacity-25 fs-14"> Shop :
+                                      {{ $package->provider->name }}
+                                    </span>
+                                </div>
                               <p class="card-text text-black-50 fs-12"> {{ $package->description }}</p>
                             </div>
                             <div
                               class="d-flex align-items-center justify-content-between"
                             >
                               <a
-                                href="#"
-                                class="btn btn-primary fm-cairo py-1 px-2 rounded-2"
+                                href="{{ Route('package', $package->id) }}"
+                                class="btn btn-primary fm-cairo py-1 px-2 rounded-2 mt-2"
                                 >Discover now</a
                               >
                               <p class="fm-cairo mb-0">
@@ -233,7 +238,7 @@
                 Here are the best-selling stores for wedding and birthday packages
             </p>
 
-            <section class="splide trinds__slider--three container" aria-label="Splide Basic HTML Example">
+            <section class="splide bestShops trinds__slider--three container" aria-label="Splide Basic HTML Example">
                 <div class="splide__track">
                     <ul class="splide__list gap-2">
                         {{-- (LOOPING) Best shops --}}
@@ -249,58 +254,48 @@
                               />
         
                               <img
-                                src="{{ asset($package->files()->first()->path) }}"
+                                src="{{ asset($shop->files()->first()?->path) }}"
                                 alt="wedding"
                                 class="card-img-top"
                               />
         
                               <div class="card-body d-flex flex-column px-2 py-2">
                                 <div
-                                  class="d-flex align-items-center justify-content-between mb-2"
+                                  class="d-flex align-items-center justify-content-between mb-1"
                                 >
-                                  <h3 class="card-title h6 fw-bold mb-0 mt-4">
-                                    {{ strlen($shop->business_name) > 15 ? substr($shop->business_name, 0, 15) . '...' : $shop->business_name }}
-                                  </h3>
-                                  <span
-                                    class="d-flex align-items-center bg_rating p-1 rounded-5"
-                                    ><img
-                                      src="{{ asset('') }}/imgs/Star_1.svg"
-                                      alt="rating"
-                                      class="me-1"
-                                    />
-                                    <span class="rating__number text-white fs-12 fw-light"
+                                
+                                <div class="shopnames">
+                                    <img src="http://girgir.test//imgs/houseico.svg" alt="icon" class="myiconn">
+                                    <span class="text-black  fs-14"> Shop :
+                                        {{ strlen($shop->name) > 15 ? substr($shop->name, 0, 15) . '...' : $shop->name }}
+                                    </span>
+                                </div>
+                                <span class="d-flex align-items-center bg_rating p-1 rounded-5"><img src="imgs/Star_1.svg" alt="rating" class="me-1">
+                                    <span class="rating__number text-white fs-12 fw-light">4.9</span>
+                                  </span>
+                                    {{-- <span class="rating__number text-white fs-12 fw-light"
                                       >
                                       5
-                                      {{-- {{ number_format($shop->averageRating(),1) }} --}}
+                                      {{ number_format($shop->averageRating(),1) }}
                                       </span
-                                    >
+                                    > --}}
                                   </span>
                                 </div>
-                                <p class="card-text text-black-50 fs-12">
-                                  <span class="text-black fs-6"
-                                    ><img src="{{ asset('') }}/imgs/houseico.svg" alt="icon" class="myiconn" /> Shop :
-                                    {{ $shop->name }}</span
-                                  >
-                                </p>
                                 <div class="d-flex justify-content-between">
-                                  <p class="fs-10">
-                                    <span
-                                      ><img src="{{ asset('') }}/imgs/clockico.svg" alt="clock icon"
-                                    /></span>
-                                    <span class="text-primary fm-cairo">Closed now</span>
-                                  </p>
-                                  <p class="fs-10">
-                                    <span
-                                      ><img src="{{ asset('') }}/imgs/mapico.svg" alt="map icon"
-                                    /></span>
-                                    <span class="text-black fm-cairo"
-                                      >{{ $shop->address ?? "Address not available" }}</span
-                                    >
-                                  </p>
+                                    <div class="closed_srounder fs-10">
+                                          <span
+                                            ><img src="{{ asset('') }}/imgs/clockico.svg" alt="clock icon"
+                                          /></span>
+                                          <span class="text-primary fm-cairo">Closed now</span>
+                                    </div>
+                                    <div class="closed_srounder fs-10">
+                                        <span><img src="{{ asset('') }}/imgs/mapico.svg" alt="map icon"/></span>
+                                        <span class="text-black fm-cairo"> {{ $shop->address ?? "Address not available" }}</span>
+                                    </div>
                                 </div>
                                 <a
-                                  href="#"
-                                  class="btn btn-primary fm-cairo py-1 px-2 rounded-3 align-self-center"
+                                  href="{{Route('provider.show', $shop->id)}}" style="border-radius: 25px!important;width:70%"
+                                  class="btn btn-primary fm-cairo mt-3 mb-2 py-1 px-2 rounded-3 align-self-center"
                                   >Browse now</a
                                 >
                               </div>
@@ -321,84 +316,61 @@
 
     <section class="trinds mb-6 position-relative">
         <div class="container text-center">
-            <h2 class="heading position-relative">Trinds</h2>
-            <p class="text-black-50">
-                Best Birthday and Graduation Package Themes
-            </p>
-            <section class="splide trinds__slider--one container" aria-label="Splide Basic HTML Example">
-                <div class="splide__track">
-                    <ul class="splide__list gap-2">
-                        {{-- (LOOPING) Trinds --}}
-                        @foreach ($trendy_packages as $package)
-                        <li class="splide__slide">
-                            <div class="mb-3 position-relative">
-                              <img
-                                src="{{ asset($package->files()->first()->path) }}"
-                                alt="birthday party"
-                                class="img-fluid"
-                              />
-                              <div
-                                class="bg-white mb-3 rounded-2 p-2 position-absolute start-50 bottom-0 translate-middle-x w-90"
-                              >
-                                <h5 class="text-black fw-medium fm-cairo ls-5 text-start">
-                                    {{ strlen($package->title) > 20 ? substr($package->title, 0, 20) . '...' : $package->title }}
-                                </h5>
-                                <div class="d-flex justify-content-between">
-                                  <div class="d-flex align-items-center">
-                                    <span class="fm-cairo fs-10"
-                                      ><img
-                                        src="{{ asset('') }}/imgs/union-1.svg"
-                                        alt="union icon"
-                                        class="me-1"
-                                      />providers:</span
-                                    >
-                                    <a
-                                      href="#"
-                                      class="btn text-black p-1 text-decoration-underline fs-10 fw-medium fm-cairo"
-                                      >{{ strlen($package->provider->name) > 10 ? substr($package->provider->name, 0, 8) . '...' : $package->provider->name }}</a
-                                    >
-                                  </div>
-                                  <div class="d-flex align-items-center">
-                                    <span class="fm-cairo fs-10"
-                                      ><img
-                                        src="{{ asset('') }}/imgs/solar_dollar-bold.svg"
-                                        alt="union icon"
-                                        class="me-1"
-                                    /></span>
-                                    <p class="cost fm-cairo fs-12 fw-light mb-0">
-                                      Cost {{number_format($package->cost,1) }}
-                                    </p>
-                                  </div>
-                                  <div class="d-flex align-items-center">
-                                    <span class="fm-cairo fs-10"
-                                      ><img
-                                        src="{{ asset('') }}/imgs/star.svg"
-                                        alt="union icon"
-                                        class="me-1 rounded-5 bg-black p-1"
-                                    /></span>
-                                    <p class="cost fm-cairo fs-12 fw-light mb-0">
-                                      rating 5
-                                      {{-- {{ number_format($package->averageRating(),1) }} --}}
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
+          <h2 class="heading position-relative">Trinds</h2>
+          <p class="text-black-50">
+            Best Birthday and Graduation Package Themes
+          </p>
+          <section class="splide trinds__slider--one container" aria-label="Splide Basic HTML Example">
+            <div class="splide__track">
+              <ul class="splide__list gap-2">
+                @foreach ($trendy_packages as $trend)
+                    <li class="splide__slide">
+                    <div class="mb-3 position-relative">
+                        <img src="{{ asset($trend->files[0]?->path) }}" style="height: 260px;border-radius: 5px" alt="birthday party" class="img-fluid"/>
+                        <div class="bg-white mb-3 rounded-2 p-2 position-absolute start-50 bottom-0 translate-middle-x w-90">
+                        <h5 class="text-black fw-medium fm-cairo ls-5 text-start" style="margin-bottom: 5px">
+                            {{ $trend->name }}
+                        </h5>
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex align-items-center">
+                            <span class="fm-cairo fs-10"><img src="imgs/union-1.svg" alt="union icon"  style="width: 15px"
+                                class="me-1" /></span>
+                            <a href="#" class="btn text-black p-1 text-decoration-underline fs-14 fw-medium fm-cairo">sick
+                                {{ $trend->provider->name }}</a>
                             </div>
-                          </li>
-                        @endforeach
-        
-                        {{-- end of Trinds --}}
-                    </ul>
-                </div>
-            </section>
-            <div class="d-flex justify-content-end">
-                <button class="btn btn-primary fw-light py-1 px-3 mt-4">
-                    Find out more &rarr;
-                </button>
-            </div>
-        </div>
-    </section>
+                            <div class="d-flex align-items-center">
+                            <span class="fm-cairo fs-10"><img src="imgs/solar_dollar-bold.svg" alt="union icon"  style="width: 20px"
+                                class="me-1" /></span>
+                            <p class="cost fm-cairo fs-12 fw-light mb-0">
+                                 {{ $trend->cost }}
+                            </p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                            <span class="fm-cairo fs-10"><img src="imgs/star.svg" alt="union icon"   style="width: 20px"
+                                class="me-1 rounded-5 bg-black p-1" /></span>
+                            <p class="cost fm-cairo fs-12 fw-light mb-0">
+                                 4.9
+                            </p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </li>
+                    
+                @endforeach
 
+              </ul>
+            </div>
+          </section>
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-primary fw-light py-1 px-3 mt-4">
+              Find out more &rarr;
+            </button>
+          </div>
+        </div>
+      </section>
+  
+  
     <section class="robot">
         <div class="container d-flex flex-column align-items-center">
             <h2 class="text-black mt-7 mb-5">
@@ -694,6 +666,160 @@
         </div>
     </div>
 </section>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog mw-100 w-50">
+      <div class="modal-content">
+         <div class="modal-body">
+            <form id="eventForm" method="GET" action="{{ Route('search') }}">
+                @csrf
+                <!-- Step 1: Select Categories -->
+                <div class="step active">
+                    <div class="stepHeader">
+                        <h2>What type of event are you hosting?</h2>
+                    </div>
+
+                    @foreach (categories() as $categ)
+                    <label style="text-align: center;width: 32%;margin: auto;margin-bottom: 20px">
+                        <input type="checkbox" name="cat_ids[]" value="{{ $categ->id }}">  
+                        <div class="col-3 events d-flex flex-column align-items-center bg-gray SelectCateg">
+                            <img src="{{ asset($categ->files()?->path) }}" alt="birthday icon" />
+                            <span>{{ $categ->name }}</span>
+                        </div>
+                    </label>
+
+                    @endforeach
+                    <div style="text-align: center;margin: auto; margin-top: 50px">
+                        <button style="" class="btn btn-primary" type="button" onclick="nextStep()">Next</button>
+                    </div>
+                </div>
+            
+                <!-- Step 2: Budget and Guest Count -->
+                <div class="step">
+                    <div class="stepHeader">
+                        <h2>Estimate the number of guests</h2>
+                    </div>
+                  <div class="container-range--1 position-relative">
+                    <div class="range-wrapper position-relative">
+                      <output type="number" class="circle" id="output">1</output>
+                      <input data-value="1" type="range" min="1" max="500" value="1" class="form-range" id="range" oninput="output.value = this.value" tabindex="-1">
+                    </div>
+                  </div>
+                  {{-- <input type="range" name="guests" min="1" max="500" value="100" id="guestCount">
+                  <p>Guests: <span id="guestValue">100</span></p> --}}
+                  <div class="stepHeader">
+                      <h2>What is your budget?</h2>  
+                  </div>
+                  <div class="container-range--2 position-relative">
+                    <div class="range-wrapper position-relative">
+                      <output type="number" class="circle circle--2" id="output2" style="transform: translateX(62.6844px);">264$</output>
+                      <input name="cost" type="range" min="100" max="1000" value="100" id="range2" class="form-range range--2" oninput="output2.value = this.value + '$'" tabindex="-1">
+                    </div>
+                  </div>
+                  {{-- <input type="range" name="budget" min="100" max="5000" step="50" value="1000" id="budgetRange">
+                  <p>Budget: $<span id="budgetValue">1000</span></p> --}}
+                  <div style="text-align: center;margin: auto; margin-top: 50px">
+                  <button type="button" class="btn btn-primary" onclick="prevStep()">Back</button>
+                  <button type="button" class="btn btn-primary" onclick="nextStep()">Next</button>
+                  </div>
+                </div>
+                <!-- Step 3: Do You Have a Hall? -->
+                <div class="step">
+                    <div class="stepHeader">
+                    <h2>Do you have a hall?</h2>
+                    </div>
+                    <label class="yesornow"><input type="radio" name="hall" value="Yes" required> Yes</label>
+                    <label class="yesornow"><input type="radio" name="hall" value="No" required> No</label>
+                    <div style="text-align: center;margin: auto; margin-top: 50px">
+                        <button type="button"  class="btn btn-primary"  onclick="prevStep()">Back</button>
+                        <button type="button"  class="btn btn-primary"  onclick="nextStep()">Next</button>
+                    </div>
+                </div>
+  
+  
+                <!-- Step 3: Select Vendors -->
+                <div class="step">
+                    <div class="stepHeader">
+                        <h2>What vendors are you looking to hire?</h2>
+                    </div>
+                  <div class="row gap-2 px-2 mt-5 w-75 vendours">
+                    <input style="display: none;" type="checkbox" name="vendors" value="DJ Music" id="vendor-dj" tabindex="-1">
+                    <label for="vendor-dj" class="btn rounded-5 col border py-1 px-2 text-nowrap" style="line-height: 31px;">DJ Music</label>
+          
+                    <input style="display: none;" type="checkbox" name="vendors" value="Cook" id="vendor-cook" tabindex="-1">
+                    <label style="width: 133px; height: 43px;" for="vendor-cook" class="btn py-1 px-2 rounded-5 col border text-nowrap"  style="line-height: 31px;">a cook</label>
+          
+                    <input style="display: none;" type="checkbox" name="vendors" value="Chairs" id="vendor-chairs" tabindex="-1">
+                    <label style="width: 133px; height: 43px;" for="vendor-chairs" class="btn py-1 px-2 rounded-5 col border text-nowrap"  style="line-height: 31px;">Chairs</label>
+          
+                    <input style="display: none;" type="checkbox" name="vendors" value="Photographer" id="vendor-photographer" tabindex="-1">
+                    <label style="width: 133px; height: 43px;" for="vendor-photographer" class="btn py-1 px-2 rounded-5 col border text-nowrap"  style="line-height: 31px;">Photographer</label>
+          
+                    <input style="display: none;" type="checkbox" name="vendors" value="Decorations" id="vendor-decorations" tabindex="-1">
+                    <label style="width: 133px; height: 43px;" for="vendor-decorations" class="btn py-1 px-2 rounded-5 col border text-nowrap"  style="line-height: 31px;">Decorations</label>
+          
+                    <input style="display: none;" type="checkbox" name="vendors" value="Flowers" id="vendor-flowers" tabindex="-1">
+                    <label style="width: 133px; height: 43px;" for="vendor-flowers" class="btn py-1 px-2 rounded-5 col border text-nowrap"  style="line-height: 31px;">Flowers</label>
+
+                    <input style="display: none;" type="checkbox" name="vendors" value="Flowers" id="vendor-flowers" tabindex="-1">
+                    <label style="width: 133px; height: 43px;" for="vendor-flowers" class="btn py-1 px-2 rounded-5 col border text-nowrap"  style="line-height: 31px;">Invitation cards</label>
+
+                    <input style="display: none;" type="checkbox" name="vendors" value="Flowers" id="vendor-flowers" tabindex="-1">
+                    <label style="width: 133px; height: 43px;" for="vendor-flowers" class="btn py-1 px-2 rounded-5 col border text-nowrap"  style="line-height: 31px;">Balloons</label>
+
+                    <input style="display: none;" type="checkbox" name="vendors" value="Flowers" id="vendor-flowers" tabindex="-1">
+                    <label style="width: 133px; height: 43px;" for="vendor-flowers" class="btn py-1 px-2 rounded-5 col border text-nowrap"  style="line-height: 31px;">Cake</label>
+
+                    <input style="display: none;" type="checkbox" name="vendors" value="Flowers" id="vendor-flowers" tabindex="-1">
+                    <label style="width: 133px; height: 43px;" for="vendor-flowers" class="btn py-1 px-2 rounded-5 col border text-nowrap"  style="line-height: 31px;">Other</label>
+                  </div>                  
+                  <div style="text-align: center;margin: auto; margin-top: 50px" class="subbuttons">
+                    <button type="button"  onclick="prevStep()">Back</button>
+                    <button type="submit" >Submit</button>
+                  </div>
+                </div>
+              </form>
+            
+              <script>
+                let currentStep = 0;
+                const steps = document.querySelectorAll(".step");
+            
+                function showStep(step) {
+                  steps.forEach((el, index) => {
+                    el.classList.toggle("active", index === step);
+                  });
+                }
+            
+                function nextStep() {
+                  if (currentStep < steps.length - 1) {
+                    currentStep++;
+                    showStep(currentStep);
+                  }
+                }
+            
+                function prevStep() {
+                  if (currentStep > 0) {
+                    currentStep--;
+                    showStep(currentStep);
+                  }
+                }
+            
+                document.getElementById("guestCount").addEventListener("input", function() {
+                  document.getElementById("guestValue").textContent = this.value;
+                });
+            
+                document.getElementById("budgetRange").addEventListener("input", function() {
+                  document.getElementById("budgetValue").textContent = this.value;
+                });
+              </script>
+                    </div>
+        {{-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> --}}
+      </div>
+    </div>
+  </div>
 
 
 @endsection

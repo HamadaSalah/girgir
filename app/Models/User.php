@@ -110,6 +110,10 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->favourites()->where('package_id', $package->id)->exists();
     }
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
 
 
 }

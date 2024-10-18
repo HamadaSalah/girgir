@@ -20,7 +20,7 @@ class ServiceProviderController extends Controller
         }
 
 
-        dd($provider , $is_featured_packages);
+        // dd($provider , $is_featured_packages);
     }
 
     public function reviews(ServiceProvider $provider)

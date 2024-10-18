@@ -22,7 +22,22 @@ class Order extends Model
         'delivery_status',
         'orderable',
         'service_ids',
+        'user_id',
+        'provider_id'
     ];
+    protected static function boot()
+    {
+        parent::boot();
 
+        static::creating(function ($model) {
+            // Set static value on model creation
+            $model->invoice_number = uniqid();
+        });
+    }
+
+
+    public function items() {
+        return $this->hasMany(OrderItem::class);
+    }
     
 }

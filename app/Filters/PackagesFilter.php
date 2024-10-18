@@ -17,12 +17,12 @@ class PackagesFilter
         }
 
         if(!empty(request('cost'))) {
-            $query->where('cost', '>=', request('cost'));
+            $query->where('cost', '<=', (int)request('cost'));
         }
 
-        if(!empty(request('description'))) {
-            $query->whereIn('description', 'LIKE', '%' . request('description') . '%');
-        }
+        // if(!empty(request('description'))) {
+        //     $query->whereIn('description', 'LIKE', '%' . request('description') . '%');
+        // }
 
         return $query;
     }

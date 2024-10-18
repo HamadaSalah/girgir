@@ -67,7 +67,7 @@
                         <img src="{{ asset('imgs') }}/messagesnavico.svg" alt="messages icon">
                     </button>
                     <button class="btn btn-outline-primary border-0 py-1 px-2 mb-1">
-                        <img src="{{ asset('imgs') }}/cartnavico.svg" alt="cart icon">
+                       <a href="{{Route('myCart')}}"> <img src="{{ asset('imgs') }}/cartnavico.svg" alt="cart icon"></a>
                     </button>
                     <button class="btn btn-outline-primary border-0 py-1 px-2 mb-1 settings__btn">
                         <img src="{{ asset('imgs') }}/settingnavico.svg" alt="settings icon">

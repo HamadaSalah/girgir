@@ -45,44 +45,42 @@
                 </ul>
             </button>
         </div>
-        <div class="row gap-5 justify-content-center">
+        <div class="row">
             @foreach($packages as $package)
-                <div
-                    class="col-lg-5 flex-column flex-lg-row card mb-5 text-start shadow-sm position-relative border-0 p-0 rounded-5 flex-row">
-                    <img src="{{ asset('imgs') }}/mdi_heart-outline.svg" alt="add to fav"
-                        class="p-2 bg-dark bg-opacity-75 rounded-5 position-absolute add__tofav mt-3" />
-
-                    <img src="{{ asset('imgs') }}/most1.png" alt="wedding"
-                        class="card-img-top img-fluid rounded-3" />
-
-                    <div class="card-body rounded-5 px-4 py-2 bg-white">
-                        <div class="d-flex align-items-center justify-content-between mb-2">
-                            <h3 class="card-title h6 fw-bold mb-0">{{ $package->name }}</h3>
-                            <span class="d-flex align-items-center bg_rating p-1 rounded-5"><img
-                                    src="{{ asset('imgs') }}/Star_1.svg" alt="rating" class="me-1" />
-                                <span class="rating__number text-white fs-12 fw-light">4.9</span>
-                            </span>
-                        </div>
-                        <p class="card-text text-black fs-14 ls-5 fm-cairo mb-2">
-                            Name shop :
-                            <span class="text-secondary text-black-50"> {{ $package->provider?->name }} </span>
-                        </p>
-                        <p class="card-text text-black fs-14 ls-5 fm-cairo mb-2">
-                            Details :
-                            <span class="text-secondary text-black-50">
-                                {{ $package->description }}
-                            </span>
-                        </p>
-                        <p class="card-text text-black fs-14 ls-5 fm-cairo mb-2">
-                            Provider Type :
-                            <span class="text-secondary text-black-50"> Company </span>
-                        </p>
-                        <p class="fm-cairo mb-0">
-                            from/<span class="text-primary fw-medium">{{ $package->cost }}$</span>
-                        </p>
-                        <div class="d-flex align-items-center justify-content-end gap-2">
-                            <a href="#" class="btn btn-primary fm-cairo py-1 px-5 rounded-2">Edit</a>
-                            <a href="#" class="btn btn-primary fm-cairo py-1 px-2 rounded-2">Discover now</a>
+                <div class="col-lg-6">
+                    <div style="background: #fff;padding: 10px;border-radius: 20px;box-shadow: 0 0 5px #CCC;" class="mb-4">
+                        <img src="{{ asset('imgs') }}/mdi_heart-outline.svg" alt="add to fav" class="p-2 bg-dark bg-opacity-75 rounded-5 position-absolute add__tofav mt-3" />
+                        <img src="{{ asset('imgs') }}/most1.png" alt="wedding" class="card-img-top img-fluid rounded-3 leftImgcard" />
+                        <div class="card-body ">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <h3 class="card-title h6 fw-bold mb-0">{{ $package->name }}</h3>
+                                <span class="d-flex align-items-center bg_rating p-1 rounded-5"><img
+                                        src="{{ asset('imgs') }}/Star_1.svg" alt="rating" class="me-1" />
+                                    <span class="rating__number text-white fs-12 fw-light">4.9</span>
+                                </span>
+                            </div>
+                            <p class="card-text text-black fs-14 ls-5 fm-cairo mb-1">
+                                Name shop :
+                                <span class="text-secondary text-black-50"> 
+                                    {{ strlen($package->provider?->name) > 15 ? substr($package->provider?->name, 0, 15) . '...' : $package->provider?->name }}
+                                </span>
+                            </p>
+                            <p class="card-text text-black fs-14 ls-5 fm-cairo mb-1">
+                                Details :
+                                <span class="text-secondary text-black-50">
+                                    {{ strlen($package->description) > 70 ? substr($package->description, 0, 70) . '...' : $package->description }}
+                                </span>
+                            </p>
+                            <p class="card-text text-black fs-14 ls-5 fm-cairo mb-1">
+                                Provider Type :
+                                <span class="text-secondary text-black-50"> Company </span>
+                            </p>
+                            <p class="fm-cairo mb-0">
+                                from/<span class="text-primary fw-medium">{{ $package->cost }}$</span>
+                            </p>
+                            <div class="d-flex align-items-center justify-content-end gap-2">
+                                <a href="{{ Route('package', $package->id) }}" class="btn btn-primary fm-cairo py-1 px-2 rounded-2">Discover now</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -116,9 +114,10 @@
                 aria-atomic="true">
                 <ul class="splide__list gap-2" id="splide04-list" role="presentation"
                     style="transform: translateX(-2615.91px);">
-                    @foreach ($services as $service)
+                    @foreach($services as $service)
                         <li class="splide__slide splide__slide--clone is-active" id="splide04-clone01" role="tabpanel"
-                            aria-roledescription="slide" aria-label="1 of 1" style="width: calc(20%);" aria-hidden="true">
+                            aria-roledescription="slide" aria-label="1 of 1" style="width: calc(20%);"
+                            aria-hidden="true">
                             <div class="card mb-5 text-start shadow-sm position-relative border-0 p-0 rounded-5">
                                 <img src="http://girgir.test/imgs/mdi_heart-outline.svg" alt="add to fav"
                                     class="p-2 bg-dark bg-opacity-75 rounded-5 position-absolute end-0 me-3 mt-3">
@@ -135,7 +134,8 @@
                                     </div>
                                     <p class="card-text text-black-50 fs-12 d-flex align-items-center mb-2">
                                         <span class="text-black text-opacity-25 fs-14 d-flex align-items-center"><img
-                                                src="http://girgir.test/imgs/houseico.svg" alt="icon" class="myiconn"> Shop
+                                                src="http://girgir.test/imgs/houseico.svg" alt="icon" class="myiconn">
+                                            Shop
                                             :
                                         </span>
                                         {{ $service->packages[0]?->provider?->name }}
@@ -147,7 +147,8 @@
                                         </span>
                                     </p>
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <a href="#" class="btn btn-primary fm-cairo py-1 px-2 rounded-2" tabindex="-1">+ add
+                                        <a href="#" class="btn btn-primary fm-cairo py-1 px-2 rounded-2" tabindex="-1">+
+                                            add
                                             your
                                             package</a>
                                         <p class="fm-cairo mb-0">
@@ -156,7 +157,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </li>                        
+                        </li>
                     @endforeach
                 </ul>
             </div>

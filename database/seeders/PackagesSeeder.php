@@ -17,11 +17,46 @@ class PackagesSeeder extends Seeder
     {
 
 
-        Provider::create([
+        $provider = Provider::create([
             'name'=>'Hamada Shops',
             'address' => '35 amman, Jordan',
             'email'=>'hamada@shops.com',
             'password'=>'Password',
+            'logo' => 'provider-logo.png'
+        ]);
+        $provider->info()->create([
+            'email'=>'hamada@shops.com',
+            'telegram' => 'telegram',
+            'instagram' => 'instagram',
+            'whatsapp' => 'whatsapp',
+            'twitter' => 'twitter',
+            'facebook' => 'facebook',
+            'youtube' => 'youtube',
+            // 'phones' => ['9719444444444', '9719444444444'],
+            'wechat' => 'wechat',
+            'license_number' => 'license_number',
+            'license_expire_date' => now(),
+            'country' => 'country',
+            'city' => 'city',
+            'address' => 'address',
+            'province' => 'province',
+            'zip_code' => 'zip_code',
+            'lat' => 'lat',
+            'lng' => 'lng',
+            // 'location' => [' Location 1: Downtown Dubai, near Burj Khalifa, Dubai, United Arab Emirates.', ' Location 1: Downtown Dubai, near Burj Khalifa, Dubai, United Arab Emirates.'],
+            'mission' => 'Our store organizes all types of parties with creative touches that give your event a unique flair',
+            'vision' => 'Our store organizes all types of parties with creative touches that give your event a unique flair',
+            'values' => 'Our store organizes all types of parties with creative touches that give your event a unique flair',
+            'about' => 'Our store organizes all types of parties with creative touches that give your event a unique flair. Enjoy parties tailored to your preferences and budget, with our meticulous attention to detail.',
+        ]);
+
+
+        Provider::create([
+            'name'=>'test',
+            'address' => '35 amman, Jordan',
+            'email'=>'test@shops.com',
+            'password'=>'Password',
+            'logo' => 'provider-logo.png'
         ]);
 
         File::create([
@@ -29,6 +64,13 @@ class PackagesSeeder extends Seeder
             'path'=>'provider1.png',
             'fileable_type'=>'App\Models\Provider',
             'fileable_id'=> 1,
+        ]);
+
+        File::create([
+            'name'=>'file',
+            'path'=>'provider1.png',
+            'fileable_type'=>'App\Models\Provider',
+            'fileable_id'=> 2,
         ]);
 
 

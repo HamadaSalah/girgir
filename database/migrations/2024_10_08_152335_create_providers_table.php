@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('tag')->nullable();
+            $table->string('logo')->nullable();
             $table->enum('type',allowed: ['individual','company'])->default('individual');
             $table->text('description')->nullable();
             $table->string('phone')->nullable()->unique();

@@ -12,10 +12,17 @@
     <div class="container-fluid border-bottom">
       <div class="row align-items-center">
         <nav class="navbar navbar-expand-lg col-md-12 col-lg-6">
+          <a href="{{ Route('home') }}" class="navbar-brand ps-5">
+            <img src="{{ asset('imgs') }}/logo.svg" alt="brand logo" />
+          </a>
           <button
             class="navbar-toggler border-0 ms-auto"
+            type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
           >
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -23,9 +30,6 @@
             class="collapse navbar-collapse text-center text-lg-start"
             id="navbarNav"
           >
-            <a href="{{ Route('home') }}" class="navbar-brand ps-5">
-              <img src="{{ asset('imgs') }}/logo.svg" alt="brand logo"
-            /></a>
             <ul class="navbar-nav align-items-center">
               <li class="nav-item active px-4 text-nowrap">
                 <a class="nav-link home__main p-0" href="{{ Route('home') }}">Home</a>
@@ -36,16 +40,14 @@
               <li class="nav-item px-4 text-nowrap">
                 <a class="nav-link p-0" href="{{ Route('providers') }}">Best shops</a>
               </li>
-              {{-- <li class="nav-item px-4 text-nowrap">
-                <a class="nav-link p-0" href="#vip">Vip</a>
-              </li> --}}
               <li class="nav-item px-4 text-nowrap">
                 <a class="nav-link p-0" href="{{ Route('providers') }}">Providers</a>
               </li>
             </ul>
           </div>
         </nav>
-        <div class="col-md-12 col-lg-4 ms-lg-auto text-center text-lg-start">
+        
+        <div class="col-md-12 col-lg-4 ms-lg-auto text-center text-lg-start menusm" style="text-align: right !important;">
           <a
             href="#contactus"
             class="text-decoration-none text-black text-opacity-75"
@@ -59,7 +61,7 @@
             Login</a
             >
             <a
-            href="signupuser.html"
+            href="{{ Route('register') }}"
             class="fm-cairo btn text-bg-light py-1 px-3"
             >
             <span><img src="{{ asset('imgs') }}/signupico.svg" alt="sign up icon" /></span>
@@ -67,17 +69,17 @@
             >
           @endguest
           @auth
-            <button class="btn btn-outline-primary border-0 py-1 px-2">
+            {{-- <button class="btn btn-outline-primary border-0 py-1 px-2">
               <img src="{{ asset('imgs') }}/Bell_pin_light.svg" alt="bell pin light">
-            </button>
-            <button class="btn btn-outline-primary border-0 py-1 px-2">
+            </button> --}}
+            {{-- <button class="btn btn-outline-primary border-0 py-1 px-2">
               <img src="{{ asset('imgs') }}/fav_icon.svg" alt="add to icon">
             </button>
-            <button class="btn btn-outline-primary border-0 py-1 px-2">
+            <button class="btn btn-outline-primary border-0 py-1 px-2"> --}}
               <img src="{{ asset('imgs') }}/messagesnavico.svg" alt="messages icon">
             </button>
             <button class="btn btn-outline-primary border-0 py-1 px-2 mb-1">
-              <img src="{{ asset('imgs') }}/cartnavico.svg" alt="cart icon">
+              <a href="{{Route('myCart')}}"><img src="{{ asset('imgs') }}/cartnavico.svg" alt="cart icon"></a>
             </button>
             <button class="btn btn-outline-primary border-0 py-1 px-2 mb-1 settings__btn">
               <img src="{{ asset('imgs') }}/settingnavico.svg" alt="settings icon">

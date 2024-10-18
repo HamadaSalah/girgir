@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('provider_infos', function (Blueprint $table) {
             $table->id();
+            $table->string('email')->nullable();
             $table->string('telegram')->nullable();
             $table->string('instagram')->nullable();
             $table->string('whatsapp')->nullable();
@@ -20,6 +21,7 @@ return new class extends Migration
             $table->string('facebook')->nullable();
             $table->string('youtube')->nullable();
             $table->json('phones')->nullable();
+            $table->json('location')->nullable();
             $table->string('wechat')->nullable();
             $table->string('license_number')->nullable();
             $table->date('license_expire_date')->nullable();
@@ -33,6 +35,7 @@ return new class extends Migration
             $table->longText('mission')->nullable();
             $table->longText('vision')->nullable();
             $table->longText('values')->nullable();
+            $table->longText('about')->nullable();
             $table->foreignId('provider_id')->constrained('providers')->cascadeOnDelete();
             $table->timestamps();
         });
