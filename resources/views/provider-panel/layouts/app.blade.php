@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet"/>
     <style>
         body {
-            font-family: 'Cairo', sans-serif;
+            font-family: 'Cairo', sans-serif !important;
         }
     </style>
   </head>
@@ -43,7 +43,7 @@
                 <a class="nav-link" href="{{ route('provider-panel.orders.index') }}">Orders</a>
               </li>
               <li class="nav-item px-4">
-                <a class="nav-link" href="#bestshops">Services</a>
+                <a class="nav-link" href="{{ route('provider-panel.services.index') }}">Services</a>
               </li>
               <li class="nav-item px-4">
                 <a class="nav-link" href="{{ route('provider-panel.location') }}">Location</a>
@@ -55,7 +55,7 @@
                 <a class="nav-link" href="{{ route('provider-panel.packages.index') }}">Packages</a>
               </li>
               <li class="nav-item px-4">
-                <a class="nav-link" href="{{ route('provider-panel.withdrawal.create') }}">Withdrawal({{ auth()->user()->balance }})</a>
+                <a class="nav-link" href="{{ route('provider-panel.withdrawal.create') }}">Withdrawal</a>
               </li>
             </ul>
           </div>
@@ -73,6 +73,7 @@
             <!-- User Image -->
             <img src="{{ auth()->user()->avatar }}" alt="User Image" class="rounded-circle" style="width: 40px; height: 40px; margin-right: 10px;">
             <span>{{ auth()->user()->name }}</span>
+            <span class="text-center" style="margin-left: 10px;">(${{ number_format(auth()->user()->balance,2) }})</span>
         </div>
         <div class="col text-end">
             <a href="{{ route('provider-panel.signout') }}">Logout</a>

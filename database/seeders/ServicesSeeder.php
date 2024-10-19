@@ -21,6 +21,7 @@ class ServicesSeeder extends Seeder
                 'name' => '100 Ballons',
                 'description' => '100 Ballons',
                 'cost' => '50.5',
+                'provider_id' => 1
             ]);
 
             DB::table('package_service')->insert([

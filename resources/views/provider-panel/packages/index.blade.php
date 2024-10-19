@@ -20,7 +20,7 @@
             </li>
             <li class="nav-item d-flex justify-content-between">
               <a class="nav-link" href="{{ route('provider-panel.packages.create') }}">
-                Create Packages
+                Create Package
               </a>
             </li>
           </ul>
@@ -31,13 +31,18 @@
 @section('content')
 <main class="col-md-9 ms-sm-auto col-lg-10 px-4">
     @foreach ($categories as $category)
-    <div class="container mt-5">
-        <div>
-            <strong style="font-size: 20px;">{{ $category->name }} <button style="border: none;" type="button" data-bs-toggle="collapse" data-bs-target="#newBorn" aria-expanded="false" aria-controls="newBorn"><img src="{{ asset('') }}imgs/plus.png" alt="" width="20px"></button></strong><br>
-            <img src="{{ asset('') }}imgs/line.png" width="250px" alt="">
-            <div id="newBorn">
-              <div class="row">
-                @foreach ($category->packages as $package)
+        <div class="container mt-5">
+            <div>
+                <strong style="font-size: 20px;">
+                    {{ $category->name }} ({{ $category->packages_count }} packages)
+                    <button style="border: none;" type="button" data-bs-toggle="collapse" data-bs-target="#category-{{ $category->id }}" aria-expanded="false" aria-controls="category-{{ $category->id }}">
+                        <img src="{{ asset('imgs/plus.png') }}" alt="" width="20px">
+                    </button>
+                </strong><br>
+                <img src="{{ asset('imgs/line.png') }}" width="250px" alt="">
+                <div id="category-{{ $category->id }}">
+                <div class="row">
+                    @foreach ($category->packages as $package)
                     <div class="col-md-6 mt-2">
                     <div class="card custom-card">
                         <div class="row g-0">
@@ -80,17 +85,10 @@
                     </div>
                     </div>
                 @endforeach
-                
+                </div>
+                </div>
             </div>
-            <div class="d-flex justify-content-end mt-3">
-              <a href="./packagename.html" class="btn btn-primary btn-sm" style="font-size: 12px; padding: 2px 10px; margin-right: 10px;">Find Out More <img src="{{ asset('') }}imgs/arrow.png" width="20px" style="margin-left: 5px;" alt=""></a>
-
-            </div>
-
         </div>
-    </div>
-    @endforeach
-
-         
+    @endforeach  
 </main>
 @endsection

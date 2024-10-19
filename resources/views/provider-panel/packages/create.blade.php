@@ -11,15 +11,15 @@
 @section('content')
     <!-- Sidebar and Main Content -->
     <main class="mt-5" id="pmain">
-        <h3 class="text-center">Create New Package</h3>      
+        <h3 class="text-center">Create New Package</h3>
 
-        <div class="d-flex justify-content-start" id="description">
+        <div class="d-flex justify-content-center align-items-center" id="description">
             <!-- Form Section -->
             <div id="form">
-                
+
                 <form action="{{ route('provider-panel.packages.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    
+
 
                     <div class="d-flex" style="justify-content: space-evenly;" id="dflex">
                         <div id="pcard">
@@ -49,7 +49,7 @@
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                    </div> 
+                    </div>
 
                     <div class="mb-3">
                         <label for="packageName" class="form-note-label" style="color: #83044a;">Name of the Package</label>
@@ -96,7 +96,7 @@
                         @error('services')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
-                    </div>                    
+                    </div>
 
                     <div class="d-flex">
                         <button type="submit" class="btn btn-primary">Create Package</button>

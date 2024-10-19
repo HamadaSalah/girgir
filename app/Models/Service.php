@@ -40,5 +40,17 @@ class Service extends Model
     {
         return $this->belongsToMany(Package::class)->limit(1)->first();
     }
-    
+
+    public function provider()
+    {
+        return $this->belongsTo(Provider::class);
+    }
+
+    public function getCoverAttribute()
+    {
+        $firstFile = $this->files->first();
+
+        return $firstFile ? asset($firstFile->path) : asset('imgs/package.png');
+    }
+
 }

@@ -25,6 +25,16 @@ class OrderPolicy
         return $user->id == $order->user_id || $user->role == 'admin';
     }
 
+
+
+    /**
+     * Determine whether the user can view the model.
+     */
+    public function viewforProvider(Provider $provider, Order $order): bool
+    {
+        return $provider->id == $order->provider_id;
+    }
+
     /**
      * Determine whether the user can create models.
      */

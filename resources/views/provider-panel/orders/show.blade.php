@@ -1,11 +1,5 @@
 @extends('provider-panel\layouts\app')
 
-@push('css')
-    <link rel="stylesheet" href="{{ asset('') }}provider-panel/css/bootstrap.css" />
-    <link rel="stylesheet" href="{{ asset('') }}provider-panel/css/service.css" />
-    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet"/>
-@endpush
-
 @section('title', 'Orders')
 
 @section('content')
@@ -57,28 +51,40 @@
                     </div>
                   </div>
 
-                  <!-- Red status dot -->
-                  <div class="status-dot"></div>
+                  <div class="status-dot
+                    @if($order->status == 'received')
+                        pending-status
+                    @elseif($order->status == 'cancelled')
+                        cancelled-status
+                    @else
+                        inprogress-status
+                    @endif
+                "></div>
                 </div>
 
                 <!-- Footer with buttons -->
-                <div class="card-footer-custom mt-3" style="border-radius: 30px;">
-                  <button disabled >inProgress</button>
-                  <div style="border-left: 1px solid #ccc; height: 40px; margin: 0 10px;"></div>
-                  <button>Edit Tracking</button>
+                <div class="card-footer-custom mt-3" style="border-radius: 30px; display: flex; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; align-items: center;">
+                        <button disabled>{{ $order->readable_status }}</button>
+                        <div style="border-left: 1px solid #ccc; height: 40px; margin: 0 10px;"></div>
+                        <button onclick="scrollToUpdateForm()">Edit Tracking</button>
+                    </div>
                 </div>
               </div>
               <div class="d-flex justify-content-center mt-5" style="width: 100%;">
                 <div style="width: 40%;">
                     <strong style="font-size: 1rem;">Order Details:</strong><br>
-                    <div>
-                        <strong style="font-size: 0.8rem;">Package Name:</strong>
-                        <strong style="font-size: 0.8rem; margin-left: 5px;">{{ $order->orderable->name }}</strong><br>
-                        <strong style="font-size: 0.8rem;">Package No:</strong>
-                        <strong style="font-size: 0.8rem; margin-left: 5px;">{{ $order->orderable->id }}</strong>
-                    </div>
-                    <strong style="font-size: 0.8rem;">Package Details:</strong><br>
-                    <small style="font-size: 0.8rem">{{ $order->orderable->description }}</small><br>
+                    @foreach ($order->items as $item)
+                        <div>
+                            <strong style="font-size: 0.8rem;">Package Name:</strong>
+                            <strong style="font-size: 0.8rem; margin-left: 5px;">{{ $item->orderable->name }}</strong><br>
+                            <strong style="font-size: 0.8rem;">Package No:</strong>
+                            <strong style="font-size: 0.8rem; margin-left: 5px;">{{ $item->orderable->id }}</strong><br>
+                            <strong style="font-size: 0.8rem;">Package Details:</strong><br>
+                            <small style="font-size: 0.8rem">{{ $item->orderable->description }}</small><br>
+                            <hr>
+                        </div>
+                    @endforeach
                 </div>
                 <div style="width: 1px; background-color: #ccc; margin: 0 15px;"></div>
                 <div style="text-align: left;width: 40%;">
@@ -144,23 +150,28 @@
                 <div>
                     <small style="font-size: 0.8rem;">Execution Date:</small>
                     <small style="font-size: 0.8rem; margin-left: 5px;">{{ $order->date_from->format('d-m-Y') }}</small>
-                <br>
-                    <small style="font-size: 0.8rem;">Executoion Time:</small>
+                    <br>
+                    <small style="font-size: 0.8rem;">Execution Time:</small>
                     <small style="font-size: 0.8rem; margin-left: 5px;">{{ $order->date_from->format('H:i') }}</small><br>
-                    <small style="font-size: 0.8rem;">Package Name:</small>
-                    <small style="font-size: 0.8rem; margin-left: 5px;">{{ $order->orderable->name }}</small><br>
-                    <small style="font-size: 0.8rem;">Package No:</small>
-                    <small style="font-size: 0.8rem; margin-left: 5px;">{{ $order->orderable->id }}</small>
+
+                    @foreach ($order->items as $item)
+                        <small style="font-size: 0.8rem;">Package Name:</small>
+                        <small style="font-size: 0.8rem; margin-left: 5px;">{{ $item->orderable->name }}</small><br>
+                        <small style="font-size: 0.8rem;">Package No:</small>
+                        <small style="font-size: 0.8rem; margin-left: 5px;">{{ $item->orderable->id }}</small>
+                        <br>
+                        <strong style="font-size: 0.8rem;">Package Details:</strong><br>
+                        <small style="font-size: 0.8rem">{{ $item->orderable->description }}</small><br>
+                    @endforeach
                 </div>
-                <strong style="font-size: 0.8rem;">Package Details:</strong><br>
-                <small style="font-size: 0.8rem">{{ $order->orderable->description }}</small><br>
+                <strong style="font-size: 0.8rem;">Order Location</strong><br>
+                <small style="font-size: 0.8rem">{{ $order->location }}</small><br>
             </div>
             <div style="width: 1px; background-color: #ccc; margin: 0 15px;"></div>
             <div style="text-align: left;">
                 <strong style="font-size: 0.8rem;">Order Location</strong><br>
                 <small style="font-size: 0.8rem">{{ $order->location }}</small><br>
             </div>
-
         </div>
 
         <div class="d-flex justify-content-between" style="width: 100%;">
@@ -181,9 +192,70 @@
 
 
     </div>
-    <div class="mt-5" style="width: 70%;display: flex;align-items: center; justify-content: space-evenly;" id="btns">
-      <div>  <a href="#" class="btn btn-secondary btn-sm" style="font-size: 12px; padding: 5px 15px; margin-right: 10px;border:1px solid #83044a">Cancel Request</a></div>
-      <div>  <a href="#" class="btn btn-primary btn-sm" style="font-size: 12px; padding:5px 15px; margin-right: 10px;border:1px solid #83044a">Approve Request</a></div>
-      <div>  <a href="#" class="btn btn-secondary btn-sm" style="font-size: 12px; padding: 5px 15px; margin-right: 10px;border:1px solid #83044a">Chat to Applicant</a></div>
+    @if($order->status == 'received')
+    <div id="updateForm" class="flex items-center justify-evenly" style="width: 70%;">
+        <div>
+            <a href="{{ route('provider-panel.orders.response', ['order' => $order->id, 'response' => 'cancelled']) }}" class="btn btn-secondary btn-sm" style="font-size: 12px; padding: 5px 15px; margin-right: 10px; border:1px solid #83044a">Cancel Request</a>
+        </div>
+        <div>
+            <a href="{{ route('provider-panel.orders.response', ['order' => $order->id, 'response' => 'approved']) }}" class="btn btn-primary btn-sm" style="font-size: 12px; padding: 5px 15px; margin-right: 10px; border:1px solid #83044a">Approve Request</a>
+        </div>
+        <div>
+            <a href="#" class="btn btn-secondary btn-sm" style="font-size: 12px; padding: 5px 15px; margin-right: 10px; border:1px solid #83044a">Chat to Applicant</a>
+        </div>
     </div>
+    @elseif($order->status == 'cancelled')
+    <h3 class="text-center">The order has been cancelled.</h3>
+    @else
+    <div class="flex items-start justify-center" style="width: 100%; margin-right: 30%;">
+        <section class="col-12 col-lg-12 track-order">
+            <h3 class="track-title text-lg font-semibold text-xl mb-4">Track Order</h3>
+            <div class="track-status flex flex-wrap justify-between">
+
+                @php
+                    // Define the statuses in order
+                    $statuses = [
+                        'requested' => ['title' => 'Received request', 'description' => 'Your request has been successfully received and is being reviewed.'],
+                        'approved' => ['title' => 'Approved', 'description' => 'Your request has been approved.'],
+                        'set_the_installation' => ['title' => 'Set the installation', 'description' => 'A worker has been assigned to install or deliver the decorations and ornaments to you.'],
+                        'the_visit_has_been_scheduled' => ['title' => 'The visit has been scheduled', 'description' => 'The appointment is scheduled.'],
+                        'worker_on_the_road' => ['title' => 'Worker on the road', 'description' => 'Technician on the way to your location.'],
+                        'get_started' => ['title' => 'Get started', 'description' => 'The worker has started working on your order.'],
+                        'work_completed' => ['title' => 'Work completed', 'description' => 'Your order has been completed, please rate the service and provide your feedback.'],
+                    ];
+
+                    // Get the current order status
+                    $currentStatusIndex = array_search($order->status, array_keys($statuses));
+                @endphp
+
+                @foreach ($statuses as $key => $status)
+                    <div class="step mb-4 flex items-start w-1/6 {{ $currentStatusIndex >= array_search($key, array_keys($statuses)) ? 'active' : '' }}">
+                        <div class="icon mr-3">
+                            <img src="{{ asset('provider-panel/imgs/k-track-order' . (array_search($key, array_keys($statuses)) + 1) . '.svg') }}" alt="track" loading="lazy" class="w-8 h-8">
+                        </div>
+                        <div class="content">
+                            <h3 class="font-semibold text-lg">{{ $status['title'] }}</h3>
+                            <p>{{ $status['description'] }}</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <!-- Form to move to the next step -->
+            <form id="next-step-form" class="mt-4" method="POST" action="{{ route('provider-panel.orders.update' , $order) }}">
+                @csrf
+                @method('PUT')
+                <button type="submit" class="btn btn-primary btn-sm" style="font-size: 12px; padding: 5px 15px; border: 1px solid #83044a;">Move to Next Step</button>
+            </form>
+        </section>
+    </div>
+@endif
+
+
+    <script>
+        function scrollToUpdateForm() {
+            const updateForm = document.getElementById('updateForm');
+            updateForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
 @endsection

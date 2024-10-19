@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\Provider\{AboutController, HomeController, LocationController, OrdersController, PackagesController , ProfileController, ReviewsController, SignOutController, WithdrawalController};
-use App\Models\Package;
+use App\Http\Controllers\Provider\{AboutController, HomeController, LocationController, OrdersController, PackagesController , ProfileController, ReviewsController, ServicesController, SignOutController, WithdrawalController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,13 +31,25 @@ Route::group(['prefix' => 'packages', 'as' => 'packages.', 'controller' => Packa
     Route::delete('package/{package}', 'destroy')->name('destroy');
 });
 
+Route::group(['prefix' => 'services' , 'as' => 'services.', 'controller' => ServicesController::class],function(){
+    Route::get('', 'index')->name('index');
+    Route::get('create', 'create')->name('create');
+    Route::post('store', 'store')->name('store');
+    Route::get('service/{service}', 'show')->name('show');
+    Route::get('edit/{service}', 'edit')->name('edit');
+    Route::put('update/{service}', 'update')->name('update');
+    Route::delete('service/{service}', 'destroy')->name('destroy');
+});
+
 Route::group(['prefix' => 'orders', 'as' => 'orders.', 'controller' => OrdersController::class],function(){
     Route::get('', 'index')->name('index');
     Route::get('order/{order}', 'show')->name('show');
+    Route::get('response/{order}', 'response')->name('response');
     Route::put('update/{order}', 'update')->name('update');
-    Route::get('order/{order}/assign', 'assign')->name('assign');
-    Route::post('order/{order}/assign', 'assignEmployee')->name('assignEmployee');
+    Route::get('order/{order}/assign', 'assign')->name('assign')->middleware('companyProvider');
+    Route::post('order/{order}/assign', 'assignEmployee')->name('assignEmployee')->middleware('companyProvider');
 });
+
 
 
 Route::group(['prefix' => 'withdrawal' , 'as' => 'withdrawal.', 'controller' => WithdrawalController::class],function(){

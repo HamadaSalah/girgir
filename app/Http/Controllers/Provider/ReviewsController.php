@@ -10,10 +10,12 @@ class ReviewsController extends Controller
 {
     public function index()
     {
-        $reviews = Rate::where('order_id', auth()->user()->orders->pluck('id'))
+        $orderIds = auth()->user()->orders->pluck('id');
+        $reviews = Rate::whereIn('order_id', $orderIds)
             ->with('order', 'user')
             ->paginate(10);
 
         return view('provider-panel.reviews', compact('reviews'));
     }
+
 }

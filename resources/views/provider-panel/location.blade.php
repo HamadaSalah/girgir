@@ -12,37 +12,58 @@
 
                 <div class="account-row">
                     <label>Country</label>
-                    <input type="text" name="country" value="{{ auth()->user()->info->country ?? '' }}" placeholder="Enter your country">
+                    <input type="text" name="country" value="{{ old('country', auth()->user()->info->country ?? '') }}" placeholder="Enter your country">
+                    @error('country')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="account-row">
                     <label>City</label>
-                    <input type="text" name="city" value="{{ auth()->user()->info->city ?? '' }}" placeholder="Enter your city">
+                    <input type="text" name="city" value="{{ old('city', auth()->user()->info->city ?? '') }}" placeholder="Enter your city">
+                    @error('city')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="account-row">
                     <label>Address</label>
-                    <input type="text" name="address" value="{{ auth()->user()->info->address ?? '' }}" placeholder="Enter your address">
+                    <input type="text" name="address" value="{{ old('address', auth()->user()->info->address ?? '') }}" placeholder="Enter your address">
+                    @error('address')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="account-row">
                     <label>Province</label>
-                    <input type="text" name="province" value="{{ auth()->user()->info->province ?? '' }}" placeholder="Enter your province">
+                    <input type="text" name="province" value="{{ old('province', auth()->user()->info->province ?? '') }}" placeholder="Enter your province">
+                    @error('province')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="account-row">
                     <label>Zip Code</label>
-                    <input type="text" name="zip_code" value="{{ auth()->user()->info->zip_code ?? '' }}" placeholder="Enter your zip code">
+                    <input type="text" name="zip_code" value="{{ old('zip_code', auth()->user()->info->zip_code ?? '') }}" placeholder="Enter your zip code">
+                    @error('zip_code')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="account-row">
                     <label>Latitude</label>
-                    <input type="text" name="lat" value="{{ auth()->user()->info->lat ?? '' }}" placeholder="Enter latitude">
+                    <input type="text" name="lat" value="{{ old('lat', auth()->user()->info->lat ?? '') }}" placeholder="Enter latitude">
+                    @error('lat')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="account-row">
                     <label>Longitude</label>
-                    <input type="text" name="lng" value="{{ auth()->user()->info->lng ?? '' }}" placeholder="Enter longitude">
+                    <input type="text" name="lng" value="{{ old('lng', auth()->user()->info->lng ?? '') }}" placeholder="Enter longitude">
+                    @error('lng')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="submit-row" style="text-align: center; margin-top: 20px;">

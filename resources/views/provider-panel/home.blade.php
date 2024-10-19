@@ -157,7 +157,7 @@
                                           <strong style="font-size: 0.9rem;">{{ $order->updated_at->format('d/m/Y') }}</strong>
                                       </div>
                                   </div>
-                  
+
                                   <div class="d-flex justify-content-between mb-1 flex-wrap">
                                       <div class="flex-fill mb-2">
                                           <small style="font-size: 0.8rem;">Total Amount:</small>
@@ -173,13 +173,13 @@
                                       </div>
                                   </div>
                               </div>
-                  
+
                               <div class="d-flex justify-content-center align-items-center">
-                                  <a href="" class="btn btn-primary btn-sm mt-md-0" style="padding: 2px 10px;">Review</a>
+                                  <a href="{{ route('provider-panel.orders.show' , $order ) }}" class="btn btn-primary btn-sm mt-md-0" style="padding: 2px 10px;">Review</a>
                               </div>
                           </div>
                       </div>
-                  @endforeach                  
+                  @endforeach
                       @endif
                     </div>
                   </div>
