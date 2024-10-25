@@ -55,6 +55,19 @@
             <img src="{{ asset('imgs') }}/call-calling.svg" alt="contact us" />
             <span>Contact Us</span>
           </a>
+          @auth
+          <div class="dropdown" style="display: inline-block; margin:0 10px">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{auth()->user()->name}}
+            </a>
+          
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{{Route('orders')}}">Order Histroy</a></li>
+            </ul>
+          </div>
+
+          @endauth
+
           @guest
             <a href="{{ route('users.login') }}" class="fm-cairo btn btn-primary py-1 px-3 mx-3"
             ><span><img src="{{ asset('imgs') }}/loginico.svg" alt="login icon" /></span>
@@ -68,6 +81,7 @@
             Sign Up</a
             >
           @endguest
+           
           @auth
             {{-- <button class="btn btn-outline-primary border-0 py-1 px-2">
               <img src="{{ asset('imgs') }}/Bell_pin_light.svg" alt="bell pin light">
@@ -78,8 +92,8 @@
             <button class="btn btn-outline-primary border-0 py-1 px-2"> --}}
               <img src="{{ asset('imgs') }}/messagesnavico.svg" alt="messages icon">
             </button>
-            <button class="btn btn-outline-primary border-0 py-1 px-2 mb-1">
-              <a href="{{Route('myCart')}}"><img src="{{ asset('imgs') }}/cartnavico.svg" alt="cart icon"></a>
+            <button class="btn btn-outline-primary border-0 py-1 px-2 mb-1" style="position: relative">
+              <a href="{{Route('myCart')}}"><img src="{{ asset('imgs') }}/cartnavico.svg" alt="cart icon"><span class="cartCount">{{ cartCount() }}</span></a>
             </button>
             <button class="btn btn-outline-primary border-0 py-1 px-2 mb-1 settings__btn">
               <img src="{{ asset('imgs') }}/settingnavico.svg" alt="settings icon">

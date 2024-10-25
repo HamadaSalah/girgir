@@ -36,7 +36,7 @@ Route::get('mycart', [HomeController::class,'myCart'])->name('myCart');
 Route::delete('deleteCart/{cart}', [HomeController::class,'deleteMyCart'])->name('deleteMyCart');
 Route::post('checkout', [HomeController::class,'checkout'])->name('checkout');
 Route::get('orders', [HomeController::class,'orders'])->name('orders');
-Route::get('orderDetails/{order}', [HomeController::class,'orderDetails'])->name('orderDetails');
+Route::get('orderDetails/{invoice_number}', [HomeController::class,'orderDetails'])->name('orderDetails');
 
 // Route::group(['prefix' => 'p'], function(){
 //     Route::group(['as' => 'provider.','prefix' => '{provider:uuid}', 'controller' => ServiceProviderController::class] , function()

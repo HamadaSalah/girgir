@@ -213,7 +213,7 @@
         <p style="padding-left: 25px">{{$service->description}}</p>
       </div>
       @endforeach
-      {{-- <div class="btnmore">
+      <div class="btnmore">
         <div class="btn1">
             <a href=""><img src="{{asset('imgs/ic_round-plus.png')}}" alt=""> Choose more packages from other providers</a>
 
@@ -221,7 +221,7 @@
         <div class="btn2">
             <a href=""><img src="{{asset('imgs/ic_round-plus.png')}}" alt=""> Choose more packages from here</a>
         </div>
-      </div> --}}
+      </div>
     </div>
 
     <!-- delivery section -->
@@ -335,10 +335,10 @@
           @else
           <div class="btns" style="width: 100%">
             <input class="btn btn-primary" style="display: inline-block;
-    width: 40%;float: left;" name="add_to_card" type="submit" value="Add to cart">
-            <input class="btn btn-primary" style="display: inline-block;
+    width: 100%;float: left;" name="add_to_card" type="submit" value="Add to cart">
+            {{-- <input class="btn btn-primary" style="display: inline-block;
     width: 40%;float: right;"   name="pay_now" type="submit" value="pay now">
-          </div>
+          </div> --}}
           @endguest
 
         </div>

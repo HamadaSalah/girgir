@@ -19,13 +19,9 @@ class Provider extends Authenticatable
 
     public function services(): BelongsToMany
     {
-        return $this->hasMany(Service::class);
+        return $this->belongsToMany(Service::class);
     }
 
-    public function packages()
-    {
-        return $this->hasMany(Package::class);
-    }
 
     public function orders(): HasMany
     {
@@ -46,18 +42,6 @@ class Provider extends Authenticatable
 
     public function info() {
         return $this->hasOne(ProviderInfo::class);
-    }
-
-
-    public function info()
-    {
-        return $this->hasOne(ProviderInfo::class);
-    }
-
-
-    public function files()
-    {
-        return $this->morphMany(File::class, 'fileable');
     }
 
     public function withdrawals()

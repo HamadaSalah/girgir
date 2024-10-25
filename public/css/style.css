@@ -1481,6 +1481,17 @@ footer {
     height: 100%;
     margin-right: 20px;
 }
+.cartCount {
+  text-decoration: none;
+  position: absolute;
+  background: red;
+  padding: 0 5px;
+  border-radius: 15px;
+  color: #fff;
+  top: 0;
+  right: 0;
+  line-height: 19px;
+}
 
 @media only screen and (max-width: 62em) {
   .k-order-details .steps-section {

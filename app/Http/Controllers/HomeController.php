@@ -169,9 +169,16 @@ class HomeController extends Controller
     }
 
     public function myCart() {
-        $carts = Cart::with('cartable')->where('user_id', auth()->user()?->id)->get();
 
-        return view('carts', compact('carts'));
+        $carts = Cart::with('cartable')->where('user_id', auth()->user()?->id)->get();
+        $totalCost = Cart::with('cartable')
+        ->where('user_id', auth()->user()?->id)
+        ->get()
+        ->sum(function($cart) {
+            return $cart->cartable->cost;
+        });
+
+        return view('carts', compact('carts', 'totalCost'));
     }
 
     public function deleteMyCart(Cart $cart) {
@@ -224,8 +231,9 @@ class HomeController extends Controller
         return view('orders', compact('orders'));
     }
 
-    public function orderDetails(Order $order) {
-         
+    public function orderDetails($invoice_number) {
+
+        $order =  Order::where('user_id', auth()->user()->id)->where('invoice_number', $invoice_number)->first();
         return view('order_details', compact('order'));
     }
 

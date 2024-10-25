@@ -8,11 +8,15 @@
 
 @section('content')
 
-<div class="container">
+<div class="container" style="padding: 50px 100px">
     <div class="row">
         <h1>All Orders</h1>
         
-        <table class="table">
+        <table class="table" style="border: 1px solid #ccc;
+    border-radius: 15px;
+    box-shadow: 0 0 5px #ccc;
+    padding: 10px;
+    text-align: center;">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -29,7 +33,7 @@
                     <td>{{ $order->invoice_number  }}</td>
                     <td>{{ $order->total  }} $</td>
                     <td>{{ $order->status  }}</td>
-                    <td><a href="{{ Route('orderDetails', $order->id) }}"><button class="btn btn-primary">Show Details</button></a></td>
+                    <td><a href="{{ Route('orderDetails', $order->invoice_number) }}"><button class="btn btn-primary">Show Details</button></a></td>
                     </tr>            
                 @endforeach
             </tbody>

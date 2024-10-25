@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Cart;
 use App\Models\Category;
 use Illuminate\Support\Str;
 
@@ -43,6 +44,15 @@ if (!function_exists('categories')) {
     function categories()
     {
        return Category::take(6)->get();
+    }
+}
+if (!function_exists('cartCount')) {
+    function cartCount()
+    {
+        if(auth()->user()) {
+            return Cart::where('user_id', auth()->user()->id)->count();
+        }
+        return 0;
     }
 }
 

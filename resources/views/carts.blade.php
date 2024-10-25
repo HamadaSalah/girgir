@@ -95,8 +95,8 @@
             margin-left: 25px;
           "></div>
         <div class="text2">
-            <p>Sub-fee &nbsp; 2000.2 $</p>
-            <p>Service Fee&nbsp;&nbsp; :22.3 $</p>
+            <p>Sub-fee &nbsp; 0 $</p>
+            <p>Service Fee&nbsp;&nbsp; :{{ $totalCost/10 }} $</p>
         </div>
         <div class="columtext" class="Line461" style="
             width: 61px;
@@ -108,8 +108,8 @@
             margin-left: 25px;
           "></div>
         <div class="text3">
-            <p>Promo discount &nbsp; 33.33$</p>
-            <p> Total amount &nbsp;&nbsp; 2000.2 $</p>
+            <p>Promo discount &nbsp; 0$</p>
+            <p> Total amount &nbsp;&nbsp; {{ $totalCost+$totalCost/10 }} $</p>
         </div>
 
         <div class="columtext" class="Line461" style="
