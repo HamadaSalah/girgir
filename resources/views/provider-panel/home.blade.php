@@ -16,7 +16,7 @@
               <a class="nav-link active" href="#home">Control Panel</a>
             </li>
             <li class="nav-item d-flex justify-content-between">
-              <a class="nav-link" href="./orders.html">
+              <a class="nav-link" href="{{ route('provider-panel.orders.index') }}">
                 Orders ({{ $overall_orders }})
                 <img src="./imgs/order.png" width="20px" style="margin-left: 20px;" />
               </a>

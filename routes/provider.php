@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Provider\{AboutController, HomeController, LocationController, OrdersController, PackagesController , ProfileController, ReviewsController, ServicesController, SignOutController, WithdrawalController};
+use App\Http\Controllers\Provider\{AboutController, HomeController, LocationController, OrdersController, PackagesController , ProfileController, ReviewsController, ServicesController, SignOutController, WithdrawalController , EmployeesController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,7 +50,15 @@ Route::group(['prefix' => 'orders', 'as' => 'orders.', 'controller' => OrdersCon
     Route::post('order/{order}/assign', 'assignEmployee')->name('assignEmployee')->middleware('companyProvider');
 });
 
-
+Route::group(['prefix' => 'employees' , 'as' => 'employees.', 'controller' => EmployeesController::class , 'middleware' => 'companyProvider'],function()
+{
+    Route::get('','index')->name('index');
+    Route::get('create','create')->name('create');
+    Route::post('create','store')->name('store');
+    Route::get('edit/{employee}', 'edit')->name('edit');
+    Route::put('update/{employee}', 'update')->name('update');
+    Route::delete('employee/{employee}', 'destroy')->name('destroy');
+});
 
 Route::group(['prefix' => 'withdrawal' , 'as' => 'withdrawal.', 'controller' => WithdrawalController::class],function(){
     Route::get('', 'create')->name('create');
@@ -67,3 +75,4 @@ Route::post('location', [LocationController::class, 'update'])->name('location.u
 Route::get('reviews', [ReviewsController::class, 'index'])->name('reviews');
 
 Route::get('signout', SignOutController::class)->name('signout');
+

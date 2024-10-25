@@ -32,9 +32,6 @@
                     <strong>Email:</strong> {{ auth()->user()->email }}
                 </div>
                 <div class="mb-3">
-                    <strong>Balance:</strong> $0.00
-                </div>
-                <div class="mb-3">
                     <strong>Joined At:</strong> {{ auth()->user()->created_at->format('d-m-Y h:i') }}
                 </div>
             </div>

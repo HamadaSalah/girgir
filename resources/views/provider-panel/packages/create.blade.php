@@ -36,7 +36,7 @@
                               <img src="{{asset('imgs/plussign.png')}}" width="50px" alt="Add file">
                             </label>
                             <input type="file" id="fileInput2" style="display: none;"  name="files[]" accept="image/*" required >
-                            @error('files.0')
+                            @error('files.1')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -45,7 +45,7 @@
                               <img src="{{asset('imgs/plussign.png')}}" width="50px" alt="Add file">
                             </label>
                             <input type="file" id="fileInput2" style="display: none;"  name="files[]" accept="image/*" required >
-                            @error('files.0')
+                            @error('files.')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>

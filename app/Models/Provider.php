@@ -70,4 +70,8 @@ class Provider extends Authenticatable
         $this->attributes['password'] = bcrypt($value);
     }
 
+    public function employees()
+    {
+        return $this->hasMany(Manager::class);
+    }
 }

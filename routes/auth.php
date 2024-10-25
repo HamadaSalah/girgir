@@ -20,3 +20,5 @@ Route::get('login',[LoginController::class,'login'])->name('users.login');
 Route::post('login',[LoginController::class,'authenticate']);
 Route::get('register', [RegisterController::class, 'register'])->name('register');
 Route::post('register', [RegisterController::class, 'store']);
+Route::get('admin', [LoginController::class, 'adminLogin'])->name('admin.login');
+Route::post('admin', [LoginController::class, 'adminAuthenticate']);

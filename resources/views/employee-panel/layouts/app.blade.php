@@ -34,55 +34,26 @@
             /></a>
             <ul class="navbar-nav align-items-center">
               <li class="nav-item active px-4">
-                <a class="nav-link" href="{{ route('provider-panel.home') }}">Home</a>
+                <a class="nav-link" href="{{ route('employee-panel.home') }}">Home</a>
               </li>
               <li class="nav-item px-4">
-                <a class="nav-link" href="{{ route('provider-panel.reviews') }}">Reviews</a>
+                <a class="nav-link" href="{{ route('employee-panel.orders.index') }}">Assigned Orders</a>
               </li>
-              <li class="nav-item px-4">
-                <a class="nav-link" href="{{ route('provider-panel.orders.index') }}">Orders</a>
-              </li>
-              <li class="nav-item px-4">
-                <a class="nav-link" href="{{ route('provider-panel.services.index') }}">Services</a>
-              </li>
-              <li class="nav-item px-4">
-                <a class="nav-link" href="{{ route('provider-panel.location') }}">Location</a>
-              </li>
-              <li class="nav-item px-4">
-                <a class="nav-link" href="{{ route('provider-panel.about') }}">About</a>
-              </li>
-              <li class="nav-item px-4">
-                <a class="nav-link" href="{{ route('provider-panel.packages.index') }}">Packages</a>
-              </li>
-              <li class="nav-item px-4">
-                <a class="nav-link" href="{{ route('provider-panel.withdrawal.create') }}">Withdrawal</a>
-              </li>
-              @if(auth()->user()->type == 'company')
-              <li class="nav-item px-4">
-                <a class="nav-link" href="{{ route('provider-panel.employees.index') }}">Employees</a>
-              </li>
-              @endif
             </ul>
           </div>
         </nav>
-        <div class="col-md-12 col-lg-4 ms-lg-auto text-center text-lg-end">
-          <button class="btn btn-outline-primary border-0 py-1 px-2">
-            <a href="{{ route('provider-panel.profile') }}">
-            <img src="{{ asset('provider-panel') }}/imgs/profile-icon.png" width="30px" alt="bell pin light" />
-            </a>
-          </button>
-        </div>
       </div>
       <div class="row align-items-center text-center">
         <div class="col d-flex align-items-center justify-content-start mt-2 mb-2">
             <!-- User Image -->
             <img src="{{ auth()->user()->avatar }}" alt="User Image" class="rounded-circle" style="width: 40px; height: 40px; margin-right: 10px;">
             <span>{{ auth()->user()->name }}</span>
-            <span class="text-center" style="margin-left: 10px;">(${{ number_format(auth()->user()->balance,2) }})</span>
-            <span class="text-center" style="margin-left: 3px;"> - Company ID: {{ auth()->user()->company_id }}</span>
+            <span class="text-center" style="margin-left: 3px;">({{ auth()->user()->manager_id }})</span>
+            <span class="text-center" style="margin-left: 3px;"> - Company: {{ auth()->user()->provider->name }}</span>
+            <span class="text-center" style="margin-left: 3px;">({{ auth()->user()->company_id }})</span>
         </div>
         <div class="col text-end">
-            <a href="{{ route('provider-panel.signout') }}">Logout</a>
+            <a href="{{ route('employee-panel.logout') }}">Logout</a>
         </div>
     </div>
     </div>

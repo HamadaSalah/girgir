@@ -48,6 +48,11 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('provider_panel')
                 ->as('provider-panel.')
                 ->group(base_path('routes/provider.php'));
+
+            Route::middleware(['web', 'auth:manager'])
+                ->prefix('employee-panel')
+                ->as('employee-panel.')
+                ->group(base_path('routes/employee.php'));
         });
     }
 }
