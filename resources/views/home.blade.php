@@ -49,10 +49,10 @@
             </button> --}}
             <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary startplan" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    START PLANING &#8594;	
+    START PLANING &#8594;
   </button>
-  
-  
+
+
         </div>
     </section>
 
@@ -84,13 +84,13 @@
                             alt="add to fav"
                             class="p-2 bg-dark bg-opacity-75 rounded-2 position-absolute end-0 me-3 mt-3"
                           />
-    
+
                            <img
                             src="{{ asset($package->files()->first()->path) }}"
                             alt="wedding"
                             class="card-img-top"
                           />
-    
+
                           <div class="card-body px-2 py-1 pb-4 px-2">
                             <div
                               class="d-flex align-items-center justify-content-between mb-1 "
@@ -252,18 +252,18 @@
                                 alt="add to fav"
                                 class="border border-4 border-white rounded-5 position-absolute top-54 start-50 translate-middle"
                               />
-        
+
                               <img
                                 src="{{ asset($shop->files()->first()?->path) }}"
                                 alt="wedding"
                                 class="card-img-top"
                               />
-        
+
                               <div class="card-body d-flex flex-column px-2 py-2">
                                 <div
                                   class="d-flex align-items-center justify-content-between mb-1"
                                 >
-                                
+
                                 <div class="shopnames">
                                     <img src="http://girgir.test//imgs/houseico.svg" alt="icon" class="myiconn">
                                     <span class="text-black  fs-14"> Shop :
@@ -302,7 +302,7 @@
                             </div>
                           </li>
                         @endforeach
-        
+
                         {{-- end of Best shops --}}
                     </ul>
                 </div>
@@ -356,7 +356,7 @@
                         </div>
                     </div>
                     </li>
-                    
+
                 @endforeach
 
               </ul>
@@ -369,8 +369,8 @@
           </div>
         </div>
       </section>
-  
-  
+
+
     <section class="robot">
         <div class="container d-flex flex-column align-items-center">
             <h2 class="text-black mt-7 mb-5">
@@ -681,7 +681,7 @@
 
                     @foreach (categories() as $categ)
                     <label style="text-align: center;width: 32%;margin: auto;margin-bottom: 20px">
-                        <input type="checkbox" name="cat_ids[]" value="{{ $categ->id }}">  
+                        <input type="checkbox" name="cat_ids[]" value="{{ $categ->id }}">
                         <div class="col-3 events d-flex flex-column align-items-center bg-gray SelectCateg">
                             <img src="{{ asset($categ->files()?->path) }}" alt="birthday icon" />
                             <span>{{ $categ->name }}</span>
@@ -693,7 +693,7 @@
                         <button style="" class="btn btn-primary" type="button" onclick="nextStep()">Next</button>
                     </div>
                 </div>
-            
+
                 <!-- Step 2: Budget and Guest Count -->
                 <div class="step">
                     <div class="stepHeader">
@@ -708,7 +708,7 @@
                   {{-- <input type="range" name="guests" min="1" max="500" value="100" id="guestCount">
                   <p>Guests: <span id="guestValue">100</span></p> --}}
                   <div class="stepHeader">
-                      <h2>What is your budget?</h2>  
+                      <h2>What is your budget?</h2>
                   </div>
                   <div class="container-range--2 position-relative">
                     <div class="range-wrapper position-relative">
@@ -735,8 +735,8 @@
                         <button type="button"  class="btn btn-primary"  onclick="nextStep()">Next</button>
                     </div>
                 </div>
-  
-  
+
+
                 <!-- Step 3: Select Vendors -->
                 <div class="step">
                     <div class="stepHeader">
@@ -745,19 +745,19 @@
                   <div class="row gap-2 px-2 mt-5 w-75 vendours">
                     <input style="display: none;" type="checkbox" name="vendors" value="DJ Music" id="vendor-dj" tabindex="-1">
                     <label for="vendor-dj" class="btn rounded-5 col border py-1 px-2 text-nowrap" style="line-height: 31px;">DJ Music</label>
-          
+
                     <input style="display: none;" type="checkbox" name="vendors" value="Cook" id="vendor-cook" tabindex="-1">
                     <label style="width: 133px; height: 43px;" for="vendor-cook" class="btn py-1 px-2 rounded-5 col border text-nowrap"  style="line-height: 31px;">a cook</label>
-          
+
                     <input style="display: none;" type="checkbox" name="vendors" value="Chairs" id="vendor-chairs" tabindex="-1">
                     <label style="width: 133px; height: 43px;" for="vendor-chairs" class="btn py-1 px-2 rounded-5 col border text-nowrap"  style="line-height: 31px;">Chairs</label>
-          
+
                     <input style="display: none;" type="checkbox" name="vendors" value="Photographer" id="vendor-photographer" tabindex="-1">
                     <label style="width: 133px; height: 43px;" for="vendor-photographer" class="btn py-1 px-2 rounded-5 col border text-nowrap"  style="line-height: 31px;">Photographer</label>
-          
+
                     <input style="display: none;" type="checkbox" name="vendors" value="Decorations" id="vendor-decorations" tabindex="-1">
                     <label style="width: 133px; height: 43px;" for="vendor-decorations" class="btn py-1 px-2 rounded-5 col border text-nowrap"  style="line-height: 31px;">Decorations</label>
-          
+
                     <input style="display: none;" type="checkbox" name="vendors" value="Flowers" id="vendor-flowers" tabindex="-1">
                     <label style="width: 133px; height: 43px;" for="vendor-flowers" class="btn py-1 px-2 rounded-5 col border text-nowrap"  style="line-height: 31px;">Flowers</label>
 
@@ -772,42 +772,42 @@
 
                     <input style="display: none;" type="checkbox" name="vendors" value="Flowers" id="vendor-flowers" tabindex="-1">
                     <label style="width: 133px; height: 43px;" for="vendor-flowers" class="btn py-1 px-2 rounded-5 col border text-nowrap"  style="line-height: 31px;">Other</label>
-                  </div>                  
+                  </div>
                   <div style="text-align: center;margin: auto; margin-top: 50px" class="subbuttons">
                     <button type="button"  onclick="prevStep()">Back</button>
                     <button type="submit" >Submit</button>
                   </div>
                 </div>
               </form>
-            
+
               <script>
                 let currentStep = 0;
                 const steps = document.querySelectorAll(".step");
-            
+
                 function showStep(step) {
                   steps.forEach((el, index) => {
                     el.classList.toggle("active", index === step);
                   });
                 }
-            
+
                 function nextStep() {
                   if (currentStep < steps.length - 1) {
                     currentStep++;
                     showStep(currentStep);
                   }
                 }
-            
+
                 function prevStep() {
                   if (currentStep > 0) {
                     currentStep--;
                     showStep(currentStep);
                   }
                 }
-            
+
                 document.getElementById("guestCount").addEventListener("input", function() {
                   document.getElementById("guestValue").textContent = this.value;
                 });
-            
+
                 document.getElementById("budgetRange").addEventListener("input", function() {
                   document.getElementById("budgetValue").textContent = this.value;
                 });

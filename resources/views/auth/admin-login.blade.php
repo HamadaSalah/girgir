@@ -18,21 +18,34 @@
             <div class="mb-3">
                 <a href="{{Route('home')}}"><img src="{{ asset('imgs/logo.svg') }}" class="img-fluid" alt="brand logo" /></a>
             </div>
-            <!-- Update the form action to the correct route -->
+
+            <!-- Update the form action to the correct route for login -->
             <form class="form p-2" method="POST" action="">
                 @csrf
                 <h2 class="text-primary h2 mb-3">Login</h2>
                 <p class="lead mb-5">Welcome back,</p>
 
-                <!-- Email Input -->
+                <!-- Company ID Input -->
                 <input
-                    type="email"
-                    name="email"
-                    value="{{ old('email') }}"
-                    placeholder="Email"
-                    class="form-control border-0 rounded-5 bg-secondary @error('email') is-invalid @else mb-3 @enderror"
+                    type="text"
+                    name="company_id"
+                    value="{{ old('company_id') }}"
+                    placeholder="Company ID"
+                    class="form-control border-0 rounded-5 bg-secondary @error('company_id') is-invalid @else mb-3 @enderror"
                 />
-                @error('email')
+                @error('company_id')
+                    <div class="invalid-feedback mb-3">{{ $message }}</div>
+                @enderror
+
+                <!-- Manager ID Input -->
+                <input
+                    type="text"
+                    name="manager_id"
+                    value="{{ old('manager_id') }}"
+                    placeholder="Manager ID"
+                    class="form-control border-0 rounded-5 bg-secondary @error('manager_id') is-invalid @else mb-3 @enderror"
+                />
+                @error('manager_id')
                     <div class="invalid-feedback mb-3">{{ $message }}</div>
                 @enderror
 
@@ -61,23 +74,11 @@
                     <a href="#" class="text-primary">Forgot your password?</a>
                 </div>
 
-                <!-- Guard Selection Dropdown -->
-                <div class="form-group mt-3 mb-4">
-                    <label for="guard">Sign in as:</label>
-                    <select name="type" class="form-control">
-                        <option value="web">User</option>
-                        <option value="provider">Provider</option>
-                    </select>
-                    @error('type')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
                 <!-- Submit Button -->
                 <button class="btn btn-primary w-100 rounded-5 mb-3">Login</button>
 
                 <!-- Admin Manager Login Button -->
-                <a href="{{ route('admin.login') }}" class="btn btn-secondary w-100 rounded-5">Admin manager login</a>
+                <a href="{{ route('users.login') }}" class="btn btn-secondary w-100 rounded-5">User login</a>
             </form>
         </div>
 

@@ -11,17 +11,20 @@ class PackagesController extends Controller
     public function index()
     {
         $provider = auth('provider')->user();
-
-        $categories = Category::whereHas('packages', function($query) use ($provider) {
+    
+        $categories = Category::whereHas('packages', function ($query) use ($provider) {
             $query->where('provider_id', $provider->id);
-        })->with(['packages' => function($query) use ($provider) {
-            $query->where('provider_id', $provider->id)
-            ->with('files');
-        }])->get();
-
-
+        })
+        ->withCount(['packages' => function ($query) use ($provider) {
+            $query->where('provider_id', $provider->id);
+        }])
+        ->with(['packages' => function ($query) use ($provider) {
+            $query->where('provider_id', $provider->id)->with('files');
+        }])
+        ->get();
+    
         return view('provider-panel.packages.index', compact('categories'));
-    }
+    } 
 
     public function show(Category $category, $package)
     {

@@ -39,7 +39,7 @@ class Order extends Model
     public function items() {
         return $this->hasMany(OrderItem::class);
     }
-    
+
 
     protected $casts = [
         'created_at' => 'datetime',
@@ -63,4 +63,22 @@ class Order extends Model
     {
         return $this->belongsTo(Provider::class);
     }
+
+
+    public function getReadableStatusAttribute()
+    {
+        $statusMapping = [
+            'requested' => 'Requested',
+            'approved' => 'Approved',
+            'cancelled' => 'Cancelled',
+            'set_the_installation' => 'Set the installation',
+            'the_visit_has_been_scheduled' => 'The visit has been scheduled',
+            'worker_on_the_road' => 'Worker on the road',
+            'get_started' => 'Get started',
+            'work_completed' => 'Work completed',
+        ];
+
+        return $statusMapping[$this->status] ?? 'Unknown status';
+    }
+
 }

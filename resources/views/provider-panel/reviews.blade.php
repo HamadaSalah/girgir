@@ -9,6 +9,11 @@
             <h2 class="text-center font-weight-bold mb-4">Reviews</h2>
 
             <div class="row">
+                @if ($reviews->isEmpty())
+                    <div class="alert alert-primary text-center mt-4">
+                        <strong>No reviews available at the moment.</strong>
+                    </div>
+                @else
                 @foreach ($reviews as $review)
                 <div class="col-md-6 mb-4">
                     <!-- Review card -->
@@ -55,6 +60,7 @@
                     </div>
                 </div>
                 @endforeach
+                @endif
             </div>
 
             <!-- Pagination links -->

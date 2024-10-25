@@ -683,3 +683,119 @@ h3 span {
 form a:hover, .edit-btn:hover {
   color: #b21852;
 }
+.steps-section {
+  margin-bottom: 20px;
+  .steps {
+    display: flex;
+    text-align: center;
+    gap: 50px;
+    width: -25% !important;
+    .step {
+      position: relative;
+      padding: 10px;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 26.24px;
+      z-index: 1;
+
+      &:not(:last-child) {
+        &::after {
+          content: "";
+          position: absolute;
+          height: 3px;
+          width: calc(100% + 50px);
+          background-color: #2bb673;
+          right: -98px;
+          top: 36%;
+          transform: translateY(-50%);
+          z-index: -1;
+        }
+      }
+    }
+  }
+}
+.track-order {
+  .track-title {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 43px;
+    color: #000000;
+  }
+  .track-status {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      position: relative;
+      z-index: 1;
+      .icon {
+        width: 45px;
+        height: 45px;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #b6b6b6;
+        border-radius: 50%;
+        transition: 0.3s;
+        cursor: pointer;
+
+        img {
+          width: 20px;
+          height: 20px;
+        }
+      }
+      .content {
+        color: #696969;
+        h3 {
+          font-family: Cairo;
+          font-size: 15px;
+          font-weight: 600;
+          line-height: 24px;
+          margin: 0;
+        }
+        p {
+          font-size: 12px;
+          font-weight: 300;
+          line-height: 17px;
+          margin: 0;
+        }
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 20px;
+        top: 40px;
+        width: 2px;
+        height: 60px;
+        background-color: #c1c1c1;
+        z-index: -1;
+      }
+
+      &:last-child::before {
+        display: none;
+      }
+
+      &.active {
+        .icon {
+          background-color: #2bb673;
+        }
+        .content {
+          h3 {
+            color: #000000;
+            font-weight: 700;
+          }
+        }
+
+        &::before {
+          background-color: #2bb673;
+        }
+      }
+    }
+  }
+}

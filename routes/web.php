@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ServiceProviderController;
+use App\Http\Controllers\User\ProfileController;
 use App\Models\Category;
 use App\Models\File;
 use App\Models\Withdrawal;
@@ -62,3 +63,12 @@ Route::get('test-view',function()
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
+
+
+//Profile Routes
+Route::group(['prefix' => 'profile' , 'as' => 'profile.', 'controller' => ProfileController::class] , function(){
+    Route::get('' , 'index')->name('index');
+    Route::post('update-picture' , 'update_picture')->name('update-picture');
+    Route::post('update-info' , 'update_info')->name('update-info');
+    Route::post('update-password' , 'update_password')->name('update-password');
+});
