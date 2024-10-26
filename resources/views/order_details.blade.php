@@ -57,11 +57,11 @@
                     </h3>
                     <p>
                       Total Discount :
-                      <span>100.1 $ </span>
+                      <span>0 $ </span>
                     </p>
                     <p>
                       Total Amount :
-                      <span>100.2 $ </span>
+                      <span>{{ $order->total }} $ </span>
                     </p>
                   </div>
                   <div class="text">
@@ -75,7 +75,7 @@
                     </h3>
                     <p>
                       Date:
-                      <span>31/5/2024</span>
+                      <span>{{ $order->created_at }}</span>
                     </p>
                     <p>
                       Status :
@@ -92,22 +92,18 @@
             <div class="details-section">
               <div class="details-left">
                 <h3>Details:</h3>
-                <p>Name : <span>Kareem Mohsen</span></p>
-                <p>Date : <span>30/7/2024</span></p>
-                <p>Invoice number : <span>12346</span></p>
-                <p>Providers : <span>sick rose company</span></p>
-                <p>Starts from : <span>100.3 $</span></p>
+                <p>Name : <span>{{ $order->user->name }}</span></p>
+                <p>Date : <span>{{ $order->created_at }}</span></p>
+                <p>Invoice number : <span>{{ $order->invoice_number }}</span></p>
+                <p>Providers : <span>{{ $order->provider->name}}</span></p>
               </div>
               <div class="details-right">
-                <p>Package name : <span>Red them Birthday</span></p>
-                <p>Package num : <span>1223</span></p>
+                <p>Package name : <span>{{ $order->items[0]->orderable->name }}</span></p>
                 <h3>Package details :</h3>
                 <ul>
-                  <li>DJ and Music</li>
-                  <li>Balloons and Decorations</li>
-                  <li>Cake and Sweets</li>
-                  <li>Food and Drinks</li>
-                  <li>Party Favors</li>
+                  
+                  <li>{{ $order->items[0]->orderable->description }}</li>
+                  {{(int)$order->delivery_status}}
                 </ul>
               </div>
             </div>
@@ -118,7 +114,7 @@
             <h3 class="track-title">Track Order</h3>
             <div class="track-status">
               <!-- Tracking steps content here -->
-              <div class="step active">
+              <div class="step active " >
                 <div class="icon">
                   <img
                     src="/imgs/k-track-order1.svg"
@@ -135,7 +131,7 @@
                 </div>
               </div>
 
-              <div class="step">
+              <div class="step <?php if((int)$order->delivery_status >=2) echo 'active';?>">
                 <div class="icon">
                   <img
                     src="/imgs/k-track-order2.svg"
@@ -152,7 +148,7 @@
                 </div>
               </div>
 
-              <div class="step">
+              <div class="step <?php if((int)$order->delivery_status >=3) echo 'active';?>">
                 <div class="icon">
                   <img
                     src="/imgs/k-track-order3.svg"
@@ -168,7 +164,7 @@
                 </div>
               </div>
 
-              <div class="step">
+              <div class="step <?php if((int)$order->delivery_status >=4) echo 'active';?>">
                 <div class="icon">
                   <img
                     src="/imgs/k-track-order4.svg"
@@ -182,7 +178,7 @@
                 </div>
               </div>
 
-              <div class="step">
+              <div class="step <?php if((int)$order->delivery_status >=5) echo 'active';?>">
                 <div class="icon">
                   <img
                     src="/imgs/k-track-order5.svg"
@@ -196,7 +192,7 @@
                 </div>
               </div>
 
-              <div class="step">
+              <div class="step <?php if((int)$order->delivery_status >=6) echo 'active';?>">
                 <div class="icon">
                   <img
                     src="/imgs/k-track-order6.svg"
@@ -213,7 +209,7 @@
                 </div>
               </div>
 
-              <div class="step">
+              <div class="step <?php if((int)$order->delivery_status >=7) echo 'active';?>">
                 <div class="icon" onclick="openFeedbackPopup()">
                   <img
                     src="/imgs/k-track-order7.svg"
@@ -363,19 +359,19 @@
         </div>
         <div class="footer-social">
           <a href="#"
-            ><img src="./imgs/Group 1000004623.png" alt="Facebook"
+            ><img src="{{ asset('') }}imgs/Group 1000004623.png" alt="Facebook"
           /></a>
         </div>
         <div class="footer-apps">
           <h4>Get the app</h4>
           <a href="#"
             ><img
-              src="./imgs/app-store.24ce31e7a13056d542d1.png"
+              src="{{ asset('') }}imgs/app-store.24ce31e7a13056d542d1.png"
               alt="App Store"
           /></a>
           <a href="#"
             ><img
-              src="./imgs/googleApp.8f241223f55c067c2fb6.png"
+              src="{{ asset('') }}imgs/googleApp.8f241223f55c067c2fb6.png"
               alt="Google Play"
           /></a>
         </div>

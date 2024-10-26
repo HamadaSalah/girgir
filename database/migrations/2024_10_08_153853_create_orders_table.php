@@ -24,8 +24,9 @@ return new class extends Migration
             $table->string('gender')->nullable();
             $table->string('notes')->nullable();
             $table->string('status')->nullable()->default('received');
-            $table->string('delivery_status')->nullable()->default('received');
+            $table->integer('delivery_status')->nullable()->default(1);
             $table->string('location')->nullable();
+            $table->string('coupon_code_id')->nullable();
             $table->timestamps();
         });
     }

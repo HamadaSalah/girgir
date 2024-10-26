@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('phone_numbers')->nullable();
             $table->dateTime('time_from')->nullable();
             $table->dateTime('time_to')->nullable();
+            $table->string('discount')->nullable()->default(0);
             $table->timestamps();
         });
     }

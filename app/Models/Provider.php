@@ -17,15 +17,11 @@ class Provider extends Authenticatable
     protected $guarded = [];
 
 
-    public function services(): HasMany
+    public function services()
     {
-        return $this->hasMany(Service::class);
+        return $this->belongsToMany(Service::class);
     }
 
-    public function packages()
-    {
-        return $this->hasMany(Package::class);
-    }
 
     public function orders(): HasMany
     {
@@ -35,6 +31,10 @@ class Provider extends Authenticatable
     public function package(): HasMany
     {
         return $this->hasMany(Package::class)->latest()->take(1);
+    }
+    public function packages(): HasMany
+    {
+        return $this->hasMany(Package::class);
     }
 
     public function files(): MorphMany

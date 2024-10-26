@@ -38,6 +38,7 @@
             </div>
         </div>
         <!-- items -->
+        @if ($carts->count() > 0)
         <div class="cardItems container">
             @foreach ($carts as $cart)
                 <div class="cardItem">
@@ -77,6 +78,7 @@
             @endforeach
 
         </div>
+
         <!-- items -->
     </div>
 
@@ -95,8 +97,8 @@
             margin-left: 25px;
           "></div>
         <div class="text2">
-            <p>Sub-fee &nbsp; 2000.2 $</p>
-            <p>Service Fee&nbsp;&nbsp; :22.3 $</p>
+            <p>Sub-fee &nbsp; 0 $</p>
+            <p>Service Fee&nbsp;&nbsp; :{{ $totalCost/10 }} $</p>
         </div>
         <div class="columtext" class="Line461" style="
             width: 61px;
@@ -108,8 +110,8 @@
             margin-left: 25px;
           "></div>
         <div class="text3">
-            <p>Promo discount &nbsp; 33.33$</p>
-            <p> Total amount &nbsp;&nbsp; 2000.2 $</p>
+            <p>Promo discount &nbsp; 0$</p>
+            <p> Total amount &nbsp;&nbsp; {{ $totalCost+$totalCost/10 }} $</p>
         </div>
 
         <div class="columtext" class="Line461" style="
@@ -125,12 +127,18 @@
         <div class="text4">
             <form action="{{ Route('checkout') }}" method="POST">
                 @csrf
-                <button type="submit">pay now</button>
+                <a  href="{{ route('stripe.checkout', ['price' => $totalCost , 'product' => '100 baloon product']) }}"  style="color: #FFF">pay now</a>
 
             </form>
         </div>
     </div>
     <!-- header -->
+    @else
+        <div class="text-center">
+            <img src="{{ asset('Group 1000004395.png') }}" alt="">
+        </div>
+            <center class="mt-5 mb-5">Empty Card</center>
+    @endif
 
 </main>
 

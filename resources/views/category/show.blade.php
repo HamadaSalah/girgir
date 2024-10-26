@@ -79,7 +79,7 @@
                                 from/<span class="text-primary fw-medium">{{ $package->cost }}$</span>
                             </p>
                             <div class="d-flex align-items-center justify-content-end gap-2">
-                                <a href="#" class="btn btn-primary fm-cairo py-1 px-2 rounded-2">Discover now</a>
+                                <a href="{{ Route('package', $package->id) }}" class="btn btn-primary fm-cairo py-1 px-2 rounded-2">Discover now</a>
                             </div>
                         </div>
                     </div>

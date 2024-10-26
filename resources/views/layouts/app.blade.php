@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ env('APP_NAME') }} | @yield('title')</title>
     <link rel="stylesheet" href="{{ asset('css/nav.css') }}" />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
     @stack('css')
   </head>
   <body>
@@ -55,6 +61,19 @@
             <img src="{{ asset('imgs') }}/call-calling.svg" alt="contact us" />
             <span>Contact Us</span>
           </a>
+          @auth
+          <div class="dropdown" style="display: inline-block; margin:0 10px">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{auth()->user()->name}}
+            </a>
+          
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{{Route('orders')}}">Order Histroy</a></li>
+            </ul>
+          </div>
+
+          @endauth
+
           @guest
             <a href="{{ route('users.login') }}" class="fm-cairo btn btn-primary py-1 px-3 mx-3"
             ><span><img src="{{ asset('imgs') }}/loginico.svg" alt="login icon" /></span>
@@ -68,6 +87,7 @@
             Sign Up</a
             >
           @endguest
+           
           @auth
             {{-- <button class="btn btn-outline-primary border-0 py-1 px-2">
               <img src="{{ asset('imgs') }}/Bell_pin_light.svg" alt="bell pin light">
@@ -78,8 +98,8 @@
             <button class="btn btn-outline-primary border-0 py-1 px-2"> --}}
               <img src="{{ asset('imgs') }}/messagesnavico.svg" alt="messages icon">
             </button>
-            <button class="btn btn-outline-primary border-0 py-1 px-2 mb-1">
-              <a href="{{Route('myCart')}}"><img src="{{ asset('imgs') }}/cartnavico.svg" alt="cart icon"></a>
+            <button class="btn btn-outline-primary border-0 py-1 px-2 mb-1" style="position: relative">
+              <a href="{{Route('myCart')}}"><img src="{{ asset('imgs') }}/cartnavico.svg" alt="cart icon"><span class="cartCount">{{ cartCount() }}</span></a>
             </button>
             <button class="btn btn-outline-primary border-0 py-1 px-2 mb-1 settings__btn">
               <img src="{{ asset('imgs') }}/settingnavico.svg" alt="settings icon">
@@ -106,13 +126,18 @@
         </ul>
       </div>
       <div class="col-lg-5 col-sm-12">
-        <form class="form form__nav my-3 me-5">
+        <form class="form   my-3 me-5"  action="{{ Route('search') }}" method="GET">
           <div class="input-group border ms-2 rounded rounded-5">
-            <input type="text" class="form-control border-end-0 rounded-start-5 p-2 form__nav--input" placeholder="What is the event?">
-            <button class="btn filter p-2">
+               @csrf
+              <input type="text" name="name" class="form-control border-end-0 rounded-start-5 p-2  " placeholder="What is the event?">
+              <input type="submit" 
+              style="position: absolute; left: -9999px; width: 1px; height: 1px;"
+              tabindex="-1" />
+       
+             <button class="btn filter p-2" type="submit">
               <img src="{{ asset('imgs/uil_filter.svg') }}" alt="filter icon">
             </button>
-            <button class="btn search p-2">
+            <button class="btn search p-2" type="submit">
               <img src="{{ asset('imgs/searchico.svg') }}" alt="search icon">
             </button>
           </div>
@@ -665,5 +690,8 @@
   </div>
 @endauth
     @stack('js')
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>new WOW().init();</script>
   </body>
 </html>
