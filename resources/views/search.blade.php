@@ -45,6 +45,8 @@
                 </ul>
             </button>
         </div>
+        @if ($packages->count() > 0)
+            
         <div class="row">
             @foreach($packages as $package)
                 <div class="col-lg-6">
@@ -167,6 +169,11 @@
                         aria-label="Go to page 1" aria-selected="true"></button></li>
             </ul>
         </section>
+        @else
+                <div class="text-center">
+                    <img src="{{asset('Group 1000004395.png')}}" alt="">
+                </div>
+        @endif
 
     </div>
 </section>

@@ -19,6 +19,9 @@ class PackagesFilter
         if(!empty(request('cost'))) {
             $query->where('cost', '<=', (int)request('cost'));
         }
+        if(!empty(request('name'))) {
+            $query->where('name', 'LIKE', '%'. request('name') . '%');
+        }
 
         // if(!empty(request('description'))) {
         //     $query->whereIn('description', 'LIKE', '%' . request('description') . '%');

@@ -258,7 +258,247 @@ alt=""></buttton>
 </main>
 <!-- slider -->
 
+<button class="open-button" onclick="openForm()"><i class="fa-solid fa-comments"></i></button>
 
+<div class="chat-popup" id="myForm">
+
+
+    <div class="chatHeader">
+        <img src="{{asset($provider->files[0]->path)}}" width="40px" height="40px" alt=""> <span style="color: #fff">{{ $provider->name }}</span>
+        <a href="tel:{{ $provider->phone }}"> <i class="fa-solid fa-phone-volume" style="font-size: 30px;float: right;color: #fff;margin-top: 7px;"></i></a>
+    </div>
+    <div class="chat-Body">
+
+        <div class="all-messages">
+            @if ($chat)
+                @foreach ($chat->messages as $message)
+                <div class="oneMessage <?php if($message->sender_id != 'guest') echo "providerBG"; ?>">
+                    <p>{{ $message->message }}</p>
+                </div>
+                @endforeach
+            @endif
+            {{-- <div class="oneMessage">
+                <p>Hello Every Body</p>
+            </div>
+            <div class="oneMessage">
+                <p>Hello Every Body</p>
+            </div>
+            <div class="oneMessage">
+                <p>Hello Every Body</p>
+            </div>
+            <div class="oneMessage">
+                <p>Hello Every Body</p>
+            </div>
+            <div class="oneMessage">
+                <p>Hello Every Body</p>
+            </div>
+            <div class="oneMessage">
+                <p>Hello Every Body</p>
+            </div>
+            <div class="oneMessage">
+                <p>Hello Every Body</p>
+            </div>
+            <div class="oneMessage">
+                <p>Hello Every Body</p>
+            </div>
+            <div class="oneMessage">
+                <p>Hello Every Body</p>
+            </div>
+            <div class="oneMessage">
+                <p>Hello Every Body</p>
+            </div>
+            <div class="oneMessage">
+                <p>Hello Every Body</p>
+            </div> --}}
+        </div>
+        <form action="/action_page.php" class="form-container">
+            <textarea placeholder="Type message.." name="msg" id="MyMessage" required></textarea>
+      
+          <div class="bottomButtons">
+              <button type="button" class="btn" id="sendRequestBtn">Send</button>
+              <button type="button" class="btn cancel" style="float: right" onclick="closeForm()">Close</button>
+          </div>
+        </form>
+
+    </div>
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    $('#sendRequestBtn').on('click', function() {
+        let userId = {{ auth()->user()->id }};         // Replace with the actual user ID
+        let providerId = {{ $provider->id }};     // Replace with the actual provider ID
+        let message = $("#MyMessage").val() ?? "Message"; // Replace with the actual message content
+
+        $.ajax({
+            url: "{{ route('send.message') }}",
+            type: "POST",
+            data: {
+                user_id: userId,
+                provider_id: providerId,
+                message: message,
+                sender_id: 'guest',
+                _token: "{{ csrf_token() }}" // CSRF token for security
+            },
+            success: function(response) {
+                if (response.success) {
+                    // Create the new message div
+                    let newMessage = `<div class="oneMessage">
+                                          <p>${message}</p>
+                                      </div>`;
+                    // Append the new message to the messages container
+                    $('.all-messages').append(newMessage);
+
+                    $('#MyMessage').val('');
+                }
+            },
+            error: function(xhr) {
+                console.log("Error:", xhr.responseText);
+            }
+        });
+    });
+</script>
+
+<style>
+    /* Button used to open the chat form - fixed at the bottom of the page */
+.open-button {
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    opacity: 1;
+    position: fixed;
+    bottom: 23px;
+    right: 28px;
+    width: 80px;
+    border-radius: 50%;
+    /* padding: 20px; */
+    text-align: center;
+    margin: auto;
+    height: 80px;
+    background: #8a004f;
+}
+.open-button i {
+    font-size: 35px
+}
+.oneMessage {
+    width: 80%;
+    background: #ccc;
+    padding: 5px 10px;
+    border-radius: 25px 25px 0 25px;
+    margin-bottom: 10px;
+    float: left;
+    
+}
+.oneMessage p {
+    margin: 0
+}
+.chat-Body {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    height: 100%;
+}
+/* The popup chat - hidden by default */
+.chat-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  z-index: 9;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 450px;
+  width: 350px;
+  background: #fff;
+  box-shadow: 0 0 5px #ccc;
+}
+.chat-popup h1 {
+  font-size: 20px;
+  text-align: right;
+  background-color: #8a004f;
+  padding: 10px
+}
+.chatHeader {
+    background-color: #8a004f;
+    padding: 10px 20px;
+}
+.chatHeader img {
+    border-radius: 50%
+}
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  background-color: white;
+  height: 100%;
+}
+.all-messages {
+    width: 100%;
+    height: 250px;
+    overflow-y: scroll;
+    padding-right: 23px;
+    float: left;
+}
+/* Full-width textarea */
+.form-container textarea {
+  width: 100%;
+  padding: 5px 15px;
+  margin: 10px 0;
+  border: none;
+  background: #f1f1f1;
+  resize: none;
+  height: 40px;
+  border-radius: 25px
+}
+
+/* When the textarea gets focus, do something */
+.form-container textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/send button */
+.form-container .btn {
+    background-color: #8a004f;
+    color: white;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    width: 45%;
+    margin-bottom: 10px;
+    opacity: 1;
+    float: left;
+    padding: 2px;
+    border-radius: 25px;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: #ccc;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+.providerBG {
+    background: linear-gradient(90deg, #931158 0%, #258CC5 142.08%);
+    color: #fff;
+    text-align: left;
+    float: right;
+
+}
+</style>
 @endsection
 
 

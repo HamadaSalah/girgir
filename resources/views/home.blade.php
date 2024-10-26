@@ -37,7 +37,7 @@
         </section>
 
         <div
-            class="w-50 position-absolute py-1 px-2 py-lg-4 px-lg-6 text-center bottom-0 start-50 bg-white hero__content rounded-3 align-self-center shadow-lg">
+            class="wow   fadeIn w-50 position-absolute py-1 px-2 py-lg-4 px-lg-6 text-center bottom-0 start-50 bg-white hero__content rounded-3 align-self-center shadow-lg">
             <h1 class="hero__title text-primary">Plan your dream event</h1>
             <p class="hero__text text-center">
                 Weddings, galas, birthdays, and beyond Gir Gir events connects you
@@ -66,7 +66,7 @@
                 alt="prize image" />
         </div>
 
-        <div class="container text-center">
+        <div class="container text-center wow bounceInDown ">
             <h2 class="heading position-relative">Most requested</h2>
             <p class="text-black-50">Here are the most searched packages ever</p>
 
@@ -149,7 +149,7 @@
         </div>
     </section>
 
-    <section class="splide wedding__splide" aria-label="Splide Basic HTML Example">
+    <section class="splide wedding__splide wow flipInX " aria-label="Splide Basic HTML Example">
         <div class="splide__track">
             <ul class="splide__list gap-2">
                 {{-- (LOOPING)  Big banner --}}
@@ -232,7 +232,7 @@
       class="position-absolute arr-right"
     /> -->
 
-        <div class="container text-center">
+        <div class="container text-center wow bounceInUp">
             <h2 class="heading position-relative">Best shops</h2>
             <p class="text-black-50">
                 Here are the best-selling stores for wedding and birthday packages
@@ -314,7 +314,7 @@
         </div>
     </section>
 
-    <section class="trinds mb-6 position-relative">
+    <section class="trinds mb-6 position-relative wow bounceInUp">
         <div class="container text-center">
           <h2 class="heading position-relative">Trinds</h2>
           <p class="text-black-50">
@@ -371,7 +371,7 @@
       </section>
 
 
-    <section class="robot">
+    <section class="robot wow rubberBand">
         <div class="container d-flex flex-column align-items-center">
             <h2 class="text-black mt-7 mb-5">
                 Let AI help you find amazing ideas for your event !!

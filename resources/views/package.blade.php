@@ -208,18 +208,32 @@
       </div>
       @foreach ($package->services as $service)
       <div class="description">
-        <img src="{{asset('imgs/Group 40632.png')}}" alt="">
+        <input type="checkbox" name="services[]" checked value="{{ $service->id }}"  id="">
         <span>{{$service->name}}</span>
         <p style="padding-left: 25px">{{$service->description}}</p>
       </div>
       @endforeach
+
+      <div>
+        <p>Additional Services</p>
+        @foreach ($another_Service as $another)
+          <div class="addition_Ser <?php if($another->another) echo 'anotherProv'; ?> ">
+              {{$another->service->name}}
+              <a href="{{ Route('DeleteFromANother', $another->id) }}">
+              <button type="button" style="float: right"><i class="fa-solid fa-x"></i></button></a>
+          </div>
+        @endforeach
+      </div>
       <div class="btnmore">
         <div class="btn1">
-            <a href=""><img src="{{asset('imgs/ic_round-plus.png')}}" alt=""> Choose more packages from other providers</a>
+          <a href="" style="height: 20px;line-height: 28px;padding: 0"  
+          type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#choosefromanotherporvider">
+          <img src="{{asset('imgs/ic_round-plus.png')}}" alt=""> Choose packages from other providers</a>
+        </a>
 
         </div>
         <div class="btn2">
-            <a href=""><img src="{{asset('imgs/ic_round-plus.png')}}" alt=""> Choose more packages from here</a>
+            <a href="" style="height: 20px;line-height: 20px;padding: 0"  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#choosefromporvider"><img src="{{asset('imgs/ic_round-plus.png')}}" alt=""> Choose more packages from here</a>
         </div>
       </div>
     </div>
@@ -231,10 +245,10 @@
       <div class="booking">
 
         {{-- <button>Book Now</button> --}}
-        <label for="" style="line-height: 50px">From</label><input type="datetime-local" id="birthdaytime" name="time_from" style="border: 1px solid #CCC;
+        <label for="" style="line-height: 50px">From</label><input required type="datetime-local" id="birthdaytime" name="time_from" style="border: 1px solid #CCC;
     padding: 10px 20px;
     border-radius: 25px;">
-        <label for=""  style="line-height: 50px">To</label><input type="datetime-local" id="birthdaytime" name="time_to" style="border: 1px solid #CCC;
+        <label for=""  style="line-height: 50px">To</label><input required type="datetime-local" id="birthdaytime" name="time_to" style="border: 1px solid #CCC;
     padding: 10px 20px;
     border-radius: 25px;">
 
@@ -250,7 +264,7 @@
       </div>
       <div class="kind">
         <div>
-          <input type="radio" name="gender" value="male"><i class="fa-solid fa-person"></i>
+          <input type="radio"  name="gender" value="male"><i class="fa-solid fa-person"></i>
           <h4>Male</h4>
         </div>
         <i class="fa-regular fa-circle-check"></i>
@@ -270,7 +284,7 @@
       <div class="order-details">
         <div class="input">
           <h4>Order Location</h4>
-          <input
+          <input required
             class="info"
             type="text" name="location"
             placeholder="Kareem Mohsen, Order location Order location"
@@ -279,7 +293,7 @@
 
         <div class="input">
           <h4>Note For Provider</h4>
-          <input
+          <input required
             class="info"
             type="text" name="notes"
             placeholder="worker: >>>>>>>>>>>>>>>>>>>>>>>>"
@@ -288,7 +302,7 @@
 
         <div class="input">
           <h4>Phone Number</h4>
-          <input
+          <input required
             class="info"
             type="text" name="phone_numbers"
             placeholder="32456767877, 32456767877"
@@ -298,7 +312,7 @@
         <div class="code">
           <div class="input">
             <h4>Promo Code</h4>
-            <input class="info" type="text" placeholder="32W4E76R877" />
+            <input class="info" name="coupon_code" type="text" placeholder="32W4E76R877" />
           </div>
 
           <h4>OR</h4>
@@ -308,7 +322,7 @@
             <input class="info" type="text" placeholder="1000" />
           </div>
         </div>
-
+      </form>
         <div class="summary-details">
           {{-- <div class="box">
             <div>DJ shop</div>
@@ -397,19 +411,19 @@
         </div>
         <div class="footer-social">
           <a href="#"
-            ><img src="./imgs/Group 1000004623.png" alt="Facebook"
+            ><img src="{{ asset('') }}imgs/Group 1000004623.png" alt="Facebook"
           /></a>
         </div>
         <div class="footer-apps">
           <h4>Get the app</h4>
           <a href="#"
             ><img
-              src="./imgs/app-store.24ce31e7a13056d542d1.png"
+              src="{{ asset('') }}imgs/app-store.24ce31e7a13056d542d1.png"
               alt="App Store"
           /></a>
           <a href="#"
             ><img
-              src="./imgs/googleApp.8f241223f55c067c2fb6.png"
+              src="{{ asset('') }}imgs/googleApp.8f241223f55c067c2fb6.png"
               alt="Google Play"
           /></a>
         </div>
@@ -419,7 +433,72 @@
           <p>Company, 2024.</p>
         </div>
       </div>
-    </footer>
+    </footer>  
+    <!-- Modal -->
+    <div class="modal fade" id="choosefromporvider" tabindex="-1" aria-labelledby="choosefromporviderLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="choosefromporviderLabel">Choose Packages from proivder</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+           
+            @foreach ($services as $service)
+            <form action="{{ Route('addServicesToPackage')}}" method="POST">
+              @csrf
+                <input type="hidden" name="service_id" value="{{$service->id}}">
+                <input type="hidden" name="package_id" value="{{$package->id}}">
+                <div class="choosePackage">
+                  <div class="leftch"><img src="{{asset($service->files[0]->path)}}" alt=""></div>
+                  <div class="rightch">
+                    <p>name : {{$service->name}}</p>
+                    <input type="submit" style="margin: 0;padding: 0px 44px;" class="btn btn-primary" value="+ ADD">
+                  </div>
+                </div>            
+            </form>
+            @endforeach
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="choosefromanotherporvider" tabindex="-1" aria-labelledby="choosefromanotherporviderLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="choosefromanotherporviderLabel">Choose Packages from another proivders</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+           
+            @foreach ($an_service as $service1)
+            <form action="{{ Route('addServicesToPackage')}}" method="POST">
+              @csrf
+                <input type="hidden" name="service_id" value="{{$service1->id}}">
+                <input type="hidden" name="package_id" value="{{$package->id}}">
+                <input type="hidden" name="another" value="1">
+                <div class="choosePackage">
+                  <div class="leftch"><img src="{{asset($service1->files[0]->path)}}" alt=""></div>
+                  <div class="rightch">
+                    <p>name : {{$service1->name}}</p>
+                    <input type="submit" style="margin: 0;padding: 0px 44px;" class="btn btn-primary" value="+ ADD">
+                  </div>
+                </div>            
+            </form>
+            @endforeach
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+        
     <script src="{{asset('js/BookShop.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
   </body>

@@ -23,7 +23,9 @@ class Order extends Model
         'orderable',
         'service_ids',
         'user_id',
-        'provider_id'
+        'provider_id',
+        'coupon_code',
+        'another_service_ids'
     ];
     protected static function boot()
     {

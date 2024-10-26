@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{{ asset('provider-panel') }}/css/bootstrap.css" />
     <link rel="stylesheet" href="{{ asset('provider-panel') }}/css/service.css" />
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
     <style>
         body {
             font-family: 'Cairo', sans-serif !important;
@@ -56,6 +58,9 @@
               </li>
               <li class="nav-item px-4">
                 <a class="nav-link" href="{{ route('provider-panel.withdrawal.create') }}">Withdrawal</a>
+              </li>
+              <li class="nav-item px-4">
+                <a class="nav-link" href="{{ route('provider-panel.chat.index') }}">Messages</a>
               </li>
               @if(auth()->user()->type == 'company')
               <li class="nav-item px-4">

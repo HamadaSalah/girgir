@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Provider\{AboutController, HomeController, LocationController, OrdersController, PackagesController , ProfileController, ReviewsController, ServicesController, SignOutController, WithdrawalController , EmployeesController};
+use App\Http\Controllers\Provider\{AboutController, ChatController, HomeController, LocationController, OrdersController, PackagesController , ProfileController, ReviewsController, ServicesController, SignOutController, WithdrawalController , EmployeesController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,6 +62,10 @@ Route::group(['prefix' => 'employees' , 'as' => 'employees.', 'controller' => Em
 
 Route::group(['prefix' => 'withdrawal' , 'as' => 'withdrawal.', 'controller' => WithdrawalController::class],function(){
     Route::get('', 'create')->name('create');
+    Route::post('', 'store')->name('store');
+});
+Route::group(['prefix' => 'chat' , 'as' => 'chat.', 'controller' => ChatController::class],function(){
+    Route::get('', 'index')->name('index');
     Route::post('', 'store')->name('store');
 });
 

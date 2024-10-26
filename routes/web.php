@@ -28,16 +28,27 @@ Route::get('category/{category}', [HomeController::class,'category'])->name('cat
 
 
 Route::get('providers', [HomeController::class,'providers'])->name('providers');
-Route::get('providers/{provider}', [HomeController::class,'showProvider'])->name('provider.show');
+Route::get('providers/{provider}', [HomeController::class,'showProvider'])->middleware('auth:web')->name('provider.show');
 Route::get('providers/{provider}/packages', [HomeController::class,'providerPackage'])->name('provider.packages');
 Route::get('providers/{provider}/about', [HomeController::class,'aboutProvider'])->name('provider.about');
-Route::get('packages/{package}', [HomeController::class,'showPackage'])->name('package');
+Route::get('packages/{package}', [HomeController::class,'showPackage'])->middleware('auth:web')->name('package');
 Route::post('addToCard', [HomeController::class,'addToCard'])->name('addToCard');
 Route::get('mycart', [HomeController::class,'myCart'])->name('myCart');
 Route::delete('deleteCart/{cart}', [HomeController::class,'deleteMyCart'])->name('deleteMyCart');
 Route::post('checkout', [HomeController::class,'checkout'])->name('checkout');
 Route::get('orders', [HomeController::class,'orders'])->name('orders');
 Route::get('orderDetails/{invoice_number}', [HomeController::class,'orderDetails'])->name('orderDetails');
+Route::post('add-service-to-package', [HomeController::class,'addServicesToPackage'])->middleware('auth:web')->name('addServicesToPackage');
+Route::get('delete-service-to-package/{id}', [HomeController::class,'DeleteFromANother'])->middleware('auth:web')->name('DeleteFromANother');
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\StripePaymentController;
+
+// Route::get('payment', [PaymentController::class, 'showPaymentForm'])->middleware('auth:web');
+// Route::post('payment', [PaymentController::class, 'processPayment'])->middleware('auth:web');
+
+Route::get('/stripe', [StripePaymentController::class, 'stripe'])->name('stripe.index');
+Route::get('stripe/checkout', [StripePaymentController::class, 'stripeCheckout'])->name('stripe.checkout');
+Route::get('stripe/checkout/success', [StripePaymentController::class, 'stripeCheckoutSuccess'])->name('stripe.checkout.success');
 
 // Route::group(['prefix' => 'p'], function(){
 //     Route::group(['as' => 'provider.','prefix' => '{provider:uuid}', 'controller' => ServiceProviderController::class] , function()

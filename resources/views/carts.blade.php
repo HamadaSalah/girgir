@@ -38,6 +38,7 @@
             </div>
         </div>
         <!-- items -->
+        @if ($carts->count() > 0)
         <div class="cardItems container">
             @foreach ($carts as $cart)
                 <div class="cardItem">
@@ -77,6 +78,7 @@
             @endforeach
 
         </div>
+
         <!-- items -->
     </div>
 
@@ -125,12 +127,18 @@
         <div class="text4">
             <form action="{{ Route('checkout') }}" method="POST">
                 @csrf
-                <button type="submit">pay now</button>
+                <a  href="{{ route('stripe.checkout', ['price' => $totalCost , 'product' => '100 baloon product']) }}"  style="color: #FFF">pay now</a>
 
             </form>
         </div>
     </div>
     <!-- header -->
+    @else
+        <div class="text-center">
+            <img src="{{ asset('Group 1000004395.png') }}" alt="">
+        </div>
+            <center class="mt-5 mb-5">Empty Card</center>
+    @endif
 
 </main>
 
