@@ -142,7 +142,7 @@ class HomeController extends Controller
 
     public function showPackage(Package $package){
 
-        
+
         return view('package', ['package' => $package]);
     }
 
@@ -186,7 +186,7 @@ class HomeController extends Controller
     }
 
     public function checkout() {
-        
+
         $carts = Cart::with('cartable')->where('user_id', auth()->user()?->id)->get();
         $totalCost = Cart::with('cartable')
         ->where('user_id', auth()->user()?->id)
@@ -194,7 +194,7 @@ class HomeController extends Controller
         ->sum(function($cart) {
             return $cart->cartable->cost;
         });
-        
+
         if($carts->count() > 0) {
               $order = Order::create([
                 'user_id'=> auth()->user()->id,
@@ -207,7 +207,7 @@ class HomeController extends Controller
                 "total" => $totalCost ?? 0,
                 "gender" => $carts[0]->gender,
             ]);
-            
+
             foreach($carts as $cart){
                 $order->items()->create([
                     'orderable_type' => $cart->cartable_type,
@@ -225,8 +225,14 @@ class HomeController extends Controller
     }
 
     public function orderDetails(Order $order) {
-         
+
         return view('order_details', compact('order'));
+    }
+
+    public function logout()
+    {
+        auth()->logout();
+        return redirect()->route('home');
     }
 
 }

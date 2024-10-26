@@ -169,5 +169,6 @@
     <script src="{{ asset('provider-panel') }}/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script src="{{ asset('provider-panel') }}/js/service.js"></script>
+    @stack('scripts')
   </body>
 </html>
